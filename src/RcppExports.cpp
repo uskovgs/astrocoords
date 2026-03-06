@@ -20,9 +20,24 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cpp_era_seps
+Rcpp::NumericVector cpp_era_seps(Rcpp::NumericVector lon1, Rcpp::NumericVector lat1, Rcpp::NumericVector lon2, Rcpp::NumericVector lat2);
+RcppExport SEXP _astrocoords_cpp_era_seps(SEXP lon1SEXP, SEXP lat1SEXP, SEXP lon2SEXP, SEXP lat2SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type lon1(lon1SEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type lat1(lat1SEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type lon2(lon2SEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type lat2(lat2SEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_era_seps(lon1, lat1, lon2, lat2));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_astrocoords_rcpp_hello_world", (DL_FUNC) &_astrocoords_rcpp_hello_world, 0},
+    {"_astrocoords_cpp_era_seps", (DL_FUNC) &_astrocoords_cpp_era_seps, 4},
     {NULL, NULL, 0}
 };
 
