@@ -8,3 +8,4 @@ src/*.dll
 astrocoords.Rproj
 radec.R
 ToDo.md
+inst/doc

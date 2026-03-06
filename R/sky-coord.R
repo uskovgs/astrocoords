@@ -1,0 +1,179 @@
+.rad_to_deg <- function(x) {
+  x * 180 / pi
+}
+
+.deg_to_rad <- function(x) {
+  x * pi / 180
+}
+
+.validate_equal_lengths <- function(x, y) {
+  if (vctrs::vec_size(x) != vctrs::vec_size(y)) {
+    stop("`x` and `y` must have the same length.", call. = FALSE)
+  }
+}
+
+.validate_latitude <- function(lat) {
+  ok <- is.na(lat) | (lat >= -90 & lat <= 90)
+  if (!all(ok)) {
+    stop("Latitude-like coordinate must be between -90 and 90 degrees.", call. = FALSE)
+  }
+}
+
+.validate_sky_coord <- function(x, arg = deparse(substitute(x))) {
+  if (!inherits(x, "sky_coord")) {
+    stop(sprintf("`%s` must be a <sky_coord>.", arg), call. = FALSE)
+  }
+
+  x
+}
+
+#' Low-level sky coordinate constructor
+#'
+#' @param lon,lat Longitude and latitude in degrees.
+#' @param frame A sky frame object.
+#'
+#' @return A <sky_coord> vector.
+#' @export
+new_sky_coord <- function(lon = double(), lat = double(), frame = icrs()) {
+  lon <- vctrs::vec_cast(lon, double())
+  lat <- vctrs::vec_cast(lat, double())
+  frame <- .validate_frame(frame)
+
+  .validate_equal_lengths(lon, lat)
+  .validate_latitude(lat)
+
+  out <- vctrs::new_rcrd(
+    fields = list(
+      lon = lon,
+      lat = lat
+    ),
+    class = "sky_coord"
+  )
+
+  attr(out, "frame") <- frame
+  out
+}
+
+#' User-facing sky coordinate constructor
+#'
+#' @param lon,lat Longitude and latitude.
+#' @param frame A sky frame object.
+#'
+#' @return A <sky_coord> vector.
+#' @export
+sky_coord <- function(
+  lon = double(),
+  lat = double(),
+  frame = icrs()
+) {
+  args <- vctrs::vec_recycle_common(
+    lon = vctrs::vec_cast(lon, double()),
+    lat = vctrs::vec_cast(lat, double())
+  )
+
+  new_sky_coord(args$lon, args$lat, frame = frame)
+}
+
+.format_coord_number <- function(x) {
+  format(x, trim = TRUE, digits = getOption("digits"))
+}
+
+.coord_to_hmsdms <- function(x, kind, nsec = 1L, plain = FALSE) {
+  x <- vctrs::vec_cast(x, double())
+  nsec <- max(as.integer(nsec), 0L)
+
+  if (kind == "ra") {
+    x <- x / 15
+  }
+
+  units <- if (kind == "ra") c("h", "m", "s") else c("\u00b0", "'", "\"")
+  sign_x <- if (kind %in% c("dec", "lat")) ifelse(sign(x) >= 0, "+", "-") else rep_len("", length(x))
+  x0 <- abs(x)
+  x1 <- as.integer(x0)
+  x2_tmp <- (x0 - x1) * 60
+  x2 <- as.integer(x2_tmp)
+  x3 <- (x2_tmp - x2) * 60
+
+  sec_digits <- if (kind %in% c("dec", "lat")) max(nsec - 1L, 0L) else nsec
+  sec_width <- sec_digits + if (plain && kind == "ra") 4L else 3L
+  if (kind %in% c("dec", "lat")) {
+    sec_width <- sec_digits + 2L
+  }
+  sec_fmt <- paste0("%0", sec_width, ".", sec_digits, "f")
+
+  if (plain) {
+    out <- paste0(
+      sign_x,
+      sprintf("%02d", x1),
+      " ",
+      sprintf("%02d", x2),
+      " ",
+      sprintf(sec_fmt, round(x3, sec_digits))
+    )
+  } else {
+    out <- paste0(
+      sign_x,
+      sprintf("%02d", x1),
+      units[1],
+      sprintf("%02d", x2),
+      units[2],
+      sprintf(sec_fmt, round(x3, sec_digits)),
+      units[3]
+    )
+  }
+
+  out[is.na(x)] <- NA_character_
+  out
+}
+
+.sky_coord_format_style <- function() {
+  style <- getOption("astrocoords.notation", "hmsdms")
+  match.arg(style, c("pair", "hmsdms", "plain"))
+}
+
+#' @export
+format.sky_coord <- function(x, ..., style = .sky_coord_format_style()) {
+  style <- match.arg(style, c("pair", "hmsdms", "plain"))
+  lon <- vctrs::vec_data(x)$lon
+  lat <- vctrs::vec_data(x)$lat
+  fr <- frame(x)
+
+  if (style == "pair") {
+    ok <- !(is.na(lon) | is.na(lat))
+    out <- rep_len("NA", length(lon))
+    out[ok] <- paste0(
+      "(",
+      .format_coord_number(lon[ok]),
+      ", ",
+      .format_coord_number(lat[ok]),
+      ")"
+    )
+    return(out)
+  }
+
+  nsec <- getOption("astrocoords.sky_coord.nsec", 1L)
+  is_plain <- identical(style, "plain")
+  lon_kind <- if (identical(fr$x_name, "ra")) "ra" else "lon"
+  lat_kind <- if (identical(fr$y_name, "dec")) "dec" else "lat"
+  lon_fmt <- .coord_to_hmsdms(lon, kind = lon_kind, nsec = nsec, plain = is_plain)
+  lat_fmt <- .coord_to_hmsdms(lat, kind = lat_kind, nsec = nsec, plain = is_plain)
+  ifelse(is.na(lon_fmt) | is.na(lat_fmt), "NA", paste(lon_fmt, lat_fmt))
+}
+
+#' @export
+print.sky_coord <- function(x, ...) {
+  fr <- frame(x)
+  cat("<sky_coord[", length(x), "] ", fr$name, ">\n", sep = "")
+  print(format(x, ...), quote = FALSE)
+  invisible(x)
+}
+
+#' @export
+vec_ptype_abbr.sky_coord <- function(x, ...) {
+  "sky"
+}
+
+#' @export
+vec_ptype_full.sky_coord <- function(x, ...) {
+  paste0("sky_coord<", format(frame(x)), ">")
+}
