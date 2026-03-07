@@ -1,0 +1,10 @@
+@echo off
+
+del /f /q src\*.o 2>nul
+del /f /q src\*.obj 2>nul
+del /f /q src\*.so 2>nul
+del /f /q src\*.dll 2>nul
+del /f /q src\erfa\*.o 2>nul
+del /f /q src\erfa\*.obj 2>nul
+
+exit /b 0

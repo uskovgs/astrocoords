@@ -1,0 +1,11 @@
+#!/bin/sh
+
+if test -n "${R_HOME}"; then
+  RSCRIPT="${R_HOME}/bin/Rscript"
+else
+  RSCRIPT=Rscript
+fi
+
+"${RSCRIPT}" tools/update_makevars.R || exit 1
+
+exit 0

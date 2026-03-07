@@ -1,0 +1,5 @@
+#!/bin/sh
+
+rm -f src/*.o src/*.obj src/*.so src/*.dll src/erfa/*.o src/erfa/*.obj
+
+exit 0

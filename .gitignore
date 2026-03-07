@@ -3,6 +3,8 @@
 .RData
 .Ruserdata
 src/*.o
+src/erfa/*.o
+src/erfa/*.obj
 src/*.so
 src/*.dll
 astrocoords.Rproj
