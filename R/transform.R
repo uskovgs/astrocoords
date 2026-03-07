@@ -1,7 +1,3 @@
-.normalize_lon_deg <- function(x) {
-  x %% 360
-}
-
 #' Transform ICRS coordinates to Galactic frame
 #'
 #' @param x A <sky_coord> vector in ICRS frame.
@@ -65,7 +61,7 @@ transform_to <- function(x, frame) {
 
 #' @export
 transform_to.default <- function(x, frame) {
-  stop("`x` must be a <sky_coord>.", call. = FALSE)
+  .validate_sky_coord(x)
 }
 
 #' @export

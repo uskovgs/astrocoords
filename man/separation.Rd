@@ -15,3 +15,11 @@ Numeric vector in arcseconds.
 \description{
 Angular separation between sky coordinates
 }
+\examples{
+x <- ra_dec(10, 20)
+y <- ra_dec(11, 21)
+separation(x, y)
+
+g <- transform(x, galactic())
+separation(g, y)
+}

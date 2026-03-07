@@ -5,6 +5,13 @@
 #' @param x,y <sky_coord> vectors.
 #'
 #' @return Numeric vector in arcseconds.
+#' @examples
+#' x <- ra_dec(10, 20)
+#' y <- ra_dec(11, 21)
+#' separation(x, y)
+#'
+#' g <- transform(x, galactic())
+#' separation(g, y)
 #' @export
 separation <- function(x, y) {
   UseMethod("separation")
@@ -12,13 +19,13 @@ separation <- function(x, y) {
 
 #' @export
 separation.default <- function(x, y) {
-  stop("`x` must be a <sky_coord>.", call. = FALSE)
+  .validate_sky_coord(x)
 }
 
 #' @export
 separation.sky_coord <- function(x, y) {
-  x <- .validate_sky_coord(x, "x")
-  y <- .validate_sky_coord(y, "y")
+  x <- .validate_sky_coord(x)
+  y <- .validate_sky_coord(y)
 
   coords <- vctrs::vec_recycle_common(x = x, y = y)
   x <- coords$x
@@ -28,7 +35,7 @@ separation.sky_coord <- function(x, y) {
   frame_y <- frame(y)
 
   if (!.same_frame(frame_x, frame_y)) {
-    stop("`x` and `y` must use the same frame.", call. = FALSE)
+    y <- transform_to(y, frame_x)
   }
 
   data_x <- vctrs::vec_data(x)

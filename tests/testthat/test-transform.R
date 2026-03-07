@@ -31,7 +31,7 @@ test_that("transform_to dispatch and behavior", {
 
   expect_equal(frame(g)$name, "galactic")
   expect_identical(id, x)
-  expect_error(transform_to(1, icrs()), "must be a <sky_coord>")
+  expect_error(transform_to(1, icrs()), "Must inherit from class 'sky_coord'")
   expect_error(
     transform_to(x, sky_frame("custom", "u", "v")),
     "Unsupported transformation"

@@ -33,14 +33,6 @@ galactic <- function() {
   sky_frame("galactic", x_name = "l", y_name = "b")
 }
 
-.validate_frame <- function(x) {
-  if (!inherits(x, "sky_frame")) {
-    stop("`frame` must be a <sky_frame> object.", call. = FALSE)
-  }
-
-  x
-}
-
 .same_frame <- function(x, y) {
   identical(unclass(x), unclass(y))
 }
