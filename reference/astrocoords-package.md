@@ -11,4 +11,4 @@ Useful links:
 ## Author
 
 **Maintainer**: Grigory Uskov <uskov.russia@gmail.com>
-([ORCID](https://orcid.org/0000-0002-0274-1350)) \[copyright holder\]
+([ORCID](https://orcid.org/0000-0002-0274-1350))

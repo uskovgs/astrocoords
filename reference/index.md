@@ -16,6 +16,8 @@
   : Galactic frame
 - [`get_sky_coord_notation()`](https://uskovgs.github.io/astrocoords/reference/get_sky_coord_notation.md)
   : Get sky_coord print notation
+- [`iau_name()`](https://uskovgs.github.io/astrocoords/reference/iau_name.md)
+  : Build IAU-style source names from sky coordinates
 - [`icrs()`](https://uskovgs.github.io/astrocoords/reference/icrs.md) :
   ICRS frame
 - [`jd2greg()`](https://uskovgs.github.io/astrocoords/reference/jd2greg.md)

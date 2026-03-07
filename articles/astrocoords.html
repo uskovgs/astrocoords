@@ -134,9 +134,15 @@ for Galactic.</p>
 <span><span class="co">#&gt; [1] -30</span></span></code></pre></div>
 <p>You can also parse compact ICRS strings.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/parse_coord.html">parse_coord</a></span><span class="op">(</span><span class="st">"J230615.4+155635"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/parse_coord.html">parse_coord</a></span><span class="op">(</span><span class="st">"J230631.0+155633"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;sky_coord[1] icrs&gt;</span></span>
-<span><span class="co">#&gt; [1] 23h06m15.4s +15°56'35"</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 23h06m31.0s +15°56'33"</span></span></code></pre></div>
+<p>You can build a simple IAU-style source name from ICRS
+coordinates.</p>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/parse_coord.html">parse_coord</a></span><span class="op">(</span><span class="st">"J230631.0+155633"</span><span class="op">)</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="../reference/iau_name.html">iau_name</a></span><span class="op">(</span>prefix <span class="op">=</span> <span class="st">"SRGA J"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "SRGA J230631.0+155633"</span></span></code></pre></div>
   </main>
 </div>
 

@@ -2,7 +2,7 @@
 
 ## Authors
 
-- **Grigory Uskov**. Author, maintainer, copyright holder.
+- **Grigory Uskov**. Author, maintainer.
   [](https://orcid.org/0000-0002-0274-1350)
 
 ## Citation

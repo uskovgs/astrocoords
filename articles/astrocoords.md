@@ -87,7 +87,15 @@ b(g)
 You can also parse compact ICRS strings.
 
 ``` r
-parse_coord("J230615.4+155635")
+parse_coord("J230631.0+155633")
 #> <sky_coord[1] icrs>
-#> [1] 23h06m15.4s +15°56'35"
+#> [1] 23h06m31.0s +15°56'33"
+```
+
+You can build a simple IAU-style source name from ICRS coordinates.
+
+``` r
+parse_coord("J230631.0+155633") |>
+  iau_name(prefix = "SRGA J")
+#> [1] "SRGA J230631.0+155633"
 ```
