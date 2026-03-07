@@ -73,14 +73,3 @@ Backward-compatible aliases.
 
 - [`radec()`](https://uskovgs.github.io/astrocoords/reference/radec.md)
   : Deprecated alias for parse_coord
-
-## Internals
-
-Internal package docs.
-
-- [`astrocoords`](https://uskovgs.github.io/astrocoords/reference/astrocoords-package.md)
-  [`astrocoords-package`](https://uskovgs.github.io/astrocoords/reference/astrocoords-package.md)
-  : astrocoords: Astronomical Coordinates for R
-- [`vec_ptype_abbr(`*`<sky_coord>`*`)`](https://uskovgs.github.io/astrocoords/reference/sky_coord-vctrs-methods.md)
-  [`vec_ptype_full(`*`<sky_coord>`*`)`](https://uskovgs.github.io/astrocoords/reference/sky_coord-vctrs-methods.md)
-  : vctrs ptype methods for sky_coord
