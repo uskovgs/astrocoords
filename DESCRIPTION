@@ -1,19 +1,24 @@
-Package: astrocoords
 Type: Package
+Package: astrocoords
 Title: Astronomical Coordinates for R
 Version: 0.0.1
 Date: 2026-03-06
-Authors@R: person("Your", "Name", role = c("aut",
-     "cre"), email = "your@email.com")
+Authors@R: 
+    person("Your", "Name", , "your@email.com", role = c("aut", "cre"))
 Description: Vectorized astronomical coordinates for R.
 License: MIT + file LICENSE
 Imports:
+    checkmate,
     Rcpp (>= 1.1.1),
     vctrs
 Suggests:
     knitr,
     rmarkdown,
     testthat (>= 3.0.0)
+LinkingTo: 
+    Rcpp
+VignetteBuilder: 
+    knitr
 Config/testthat/edition: 3
-LinkingTo: Rcpp
-VignetteBuilder: knitr
+Encoding: UTF-8
+RoxygenNote: 7.3.3

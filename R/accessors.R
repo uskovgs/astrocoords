@@ -6,6 +6,7 @@
 #' @export
 ra <- function(x) {
   x <- .validate_sky_coord(x)
+  .require_frame_name(x, expected = "icrs", accessor = "ra")
   vctrs::vec_data(x)$lon
 }
 
@@ -17,6 +18,7 @@ ra <- function(x) {
 #' @export
 dec <- function(x) {
   x <- .validate_sky_coord(x)
+  .require_frame_name(x, expected = "icrs", accessor = "dec")
   vctrs::vec_data(x)$lat
 }
 
@@ -29,6 +31,40 @@ dec <- function(x) {
 frame <- function(x) {
   x <- .validate_sky_coord(x)
   attr(x, "frame", exact = TRUE)
+}
+
+.require_frame_name <- function(x, expected, accessor) {
+  fr <- frame(x)
+  if (!identical(fr$name, expected)) {
+    stop(
+      sprintf("`%s()` requires <%s> coordinates, got <%s>.", accessor, expected, fr$name),
+      call. = FALSE
+    )
+  }
+}
+
+#' Galactic longitude accessor
+#'
+#' @param x A <sky_coord> vector in Galactic frame.
+#'
+#' @return Numeric vector.
+#' @export
+l <- function(x) {
+  x <- .validate_sky_coord(x)
+  .require_frame_name(x, expected = "galactic", accessor = "l")
+  vctrs::vec_data(x)$lon
+}
+
+#' Galactic latitude accessor
+#'
+#' @param x A <sky_coord> vector in Galactic frame.
+#'
+#' @return Numeric vector.
+#' @export
+b <- function(x) {
+  x <- .validate_sky_coord(x)
+  .require_frame_name(x, expected = "galactic", accessor = "b")
+  vctrs::vec_data(x)$lat
 }
 
 #' Sugar constructor for ICRS coordinates

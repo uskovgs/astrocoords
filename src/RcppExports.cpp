@@ -20,6 +20,30 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cpp_era_icrs2g
+Rcpp::List cpp_era_icrs2g(Rcpp::NumericVector ra, Rcpp::NumericVector dec);
+RcppExport SEXP _astrocoords_cpp_era_icrs2g(SEXP raSEXP, SEXP decSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type ra(raSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type dec(decSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_era_icrs2g(ra, dec));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_era_g2icrs
+Rcpp::List cpp_era_g2icrs(Rcpp::NumericVector l, Rcpp::NumericVector b);
+RcppExport SEXP _astrocoords_cpp_era_g2icrs(SEXP lSEXP, SEXP bSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type l(lSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type b(bSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_era_g2icrs(l, b));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cpp_era_seps
 Rcpp::NumericVector cpp_era_seps(Rcpp::NumericVector lon1, Rcpp::NumericVector lat1, Rcpp::NumericVector lon2, Rcpp::NumericVector lat2);
 RcppExport SEXP _astrocoords_cpp_era_seps(SEXP lon1SEXP, SEXP lat1SEXP, SEXP lon2SEXP, SEXP lat2SEXP) {
@@ -37,6 +61,8 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_astrocoords_rcpp_hello_world", (DL_FUNC) &_astrocoords_rcpp_hello_world, 0},
+    {"_astrocoords_cpp_era_icrs2g", (DL_FUNC) &_astrocoords_cpp_era_icrs2g, 2},
+    {"_astrocoords_cpp_era_g2icrs", (DL_FUNC) &_astrocoords_cpp_era_g2icrs, 2},
     {"_astrocoords_cpp_era_seps", (DL_FUNC) &_astrocoords_cpp_era_seps, 4},
     {NULL, NULL, 0}
 };

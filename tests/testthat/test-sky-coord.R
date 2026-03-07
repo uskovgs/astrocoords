@@ -8,15 +8,35 @@ test_that("constructor works in degrees", {
   expect_equal(format(frame(x)), "icrs")
 })
 
-test_that("latitude validation rejects invalid values", {
+test_that("coordinate range validation rejects invalid values", {
+  expect_error(
+    sky_coord(361, 0),
+    "ra"
+  )
+
   expect_error(
     sky_coord(0, 91),
-    "between -90 and 90"
+    "dec"
+  )
+
+  expect_error(
+    new_sky_coord(361, 0, frame = icrs()),
+    "ra"
   )
 
   expect_error(
     new_sky_coord(0, 91, frame = icrs()),
-    "between -90 and 90"
+    "dec"
+  )
+
+  expect_error(
+    gal_coord(361, 0),
+    "\\bl\\b"
+  )
+
+  expect_error(
+    gal_coord(0, 91),
+    "\\bb\\b"
   )
 })
 
@@ -36,11 +56,23 @@ test_that("galactic frame and sugar constructors work", {
   expect_equal(frame(x)$name, "galactic")
   expect_equal(frame(x)$x_name, "l")
   expect_equal(frame(x)$y_name, "b")
-  expect_equal(ra(x), 120)
-  expect_equal(dec(x), -30)
-  expect_equal(ra(y), 120)
-  expect_equal(dec(y), -30)
+  expect_equal(l(x), 120)
+  expect_equal(b(x), -30)
+  expect_equal(l(y), 120)
+  expect_equal(b(y), -30)
   expect_equal(frame(z)$name, "icrs")
+  expect_equal(ra(z), 10)
+  expect_equal(dec(z), 20)
+})
+
+test_that("frame-specific accessors validate frame", {
+  x_icrs <- ra_dec(10, 20)
+  x_gal <- gal_coord(120, -30)
+
+  expect_error(l(x_icrs), "requires <galactic>")
+  expect_error(b(x_icrs), "requires <galactic>")
+  expect_error(ra(x_gal), "requires <icrs>")
+  expect_error(dec(x_gal), "requires <icrs>")
 })
 
 test_that("format supports configurable styles", {

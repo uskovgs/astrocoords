@@ -5,6 +5,14 @@ rcpp_hello_world <- function() {
     .Call(`_astrocoords_rcpp_hello_world`)
 }
 
+cpp_era_icrs2g <- function(ra, dec) {
+    .Call(`_astrocoords_cpp_era_icrs2g`, ra, dec)
+}
+
+cpp_era_g2icrs <- function(l, b) {
+    .Call(`_astrocoords_cpp_era_g2icrs`, l, b)
+}
+
 cpp_era_seps <- function(lon1, lat1, lon2, lat2) {
     .Call(`_astrocoords_cpp_era_seps`, lon1, lat1, lon2, lat2)
 }

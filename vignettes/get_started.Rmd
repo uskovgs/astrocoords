@@ -42,6 +42,8 @@ ra_dec(x, y)
 gal_coord(x, y)
 ```
 
+
+
 # Angular separation in arcsec
 
 ```{r}
@@ -55,5 +57,44 @@ y2 <- runif(B, -90, 90)
 
 ra_dec(x1, y1) |>
   separation(ra_dec(x2, y2))
+```
+
+# Convert between frames
+
+
+```{r}
+B <- 5
+x3 <- runif(B, 0, 360)
+y3 <- runif(B, -90, 90)
+
+
+sc3 <- ra_dec(c(x3, NA), c(y3, NA))
+sc3
+
+sc3 |> 
+  transform(galactic())
+
+sc3 |>
+  transform(galactic()) |>
+  transform(icrs())
+```
+# Get ra, dec, l, b
+
+```{r}
+B <- 3
+x4 <- runif(B, 0, 360)
+y4 <- runif(B, -90, 90)
+
+x4
+ra_dec(x4, y4) |> ra()
+
+y4
+ra_dec(x4, y4) |> dec()
+
+x4
+gal_coord(x4, y4) |> l()
+y4
+gal_coord(x4, y4) |> b()
+
 ```
 

@@ -12,11 +12,34 @@
   }
 }
 
-.validate_latitude <- function(lat) {
-  ok <- is.na(lat) | (lat >= -90 & lat <= 90)
-  if (!all(ok)) {
-    stop("Latitude-like coordinate must be between -90 and 90 degrees.", call. = FALSE)
-  }
+.validate_longitude <- function(lon, name = "lon") {
+  checkmate::assert_numeric(
+    lon,
+    lower = 0,
+    upper = 360,
+    any.missing = TRUE,
+    finite = FALSE,
+    .var.name = name
+  )
+}
+
+.validate_latitude <- function(lat, name = "lat") {
+  checkmate::assert_numeric(
+    lat,
+    lower = -90,
+    upper = 90,
+    any.missing = TRUE,
+    finite = FALSE,
+    .var.name = name
+  )
+}
+
+.validate_ranges_for_frame <- function(lon, lat, frame) {
+  x_name <- if (is.null(frame$x_name)) "lon" else frame$x_name
+  y_name <- if (is.null(frame$y_name)) "lat" else frame$y_name
+
+  .validate_longitude(lon, name = x_name)
+  .validate_latitude(lat, name = y_name)
 }
 
 .validate_sky_coord <- function(x, arg = deparse(substitute(x))) {
@@ -40,7 +63,7 @@ new_sky_coord <- function(lon = double(), lat = double(), frame = icrs()) {
   frame <- .validate_frame(frame)
 
   .validate_equal_lengths(lon, lat)
-  .validate_latitude(lat)
+  .validate_ranges_for_frame(lon, lat, frame)
 
   out <- vctrs::new_rcrd(
     fields = list(
@@ -168,11 +191,20 @@ print.sky_coord <- function(x, ...) {
   invisible(x)
 }
 
+#' vctrs ptype methods for sky_coord
+#'
+#' Internal methods used by vctrs/pillar to display type abbreviations.
+#'
+#' @param x A <sky_coord> vector.
+#'
+#' @name sky_coord-vctrs-methods
+#' @keywords internal
 #' @export
 vec_ptype_abbr.sky_coord <- function(x, ...) {
   "sky"
 }
 
+#' @rdname sky_coord-vctrs-methods
 #' @export
 vec_ptype_full.sky_coord <- function(x, ...) {
   paste0("sky_coord<", format(frame(x)), ">")
