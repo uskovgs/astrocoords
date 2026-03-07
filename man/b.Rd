@@ -2,7 +2,7 @@
 % Please edit documentation in R/accessors.R
 \name{b}
 \alias{b}
-\title{Galactic latitude accessor}
+\title{Get Galactic latitude (b)}
 \usage{
 b(x)
 }
@@ -10,8 +10,12 @@ b(x)
 \item{x}{A <sky_coord> vector in Galactic frame.}
 }
 \value{
-Numeric vector.
+Numeric vector with Galactic latitude values in degrees.
 }
 \description{
-Galactic latitude accessor
+Extract Galactic latitude values (in degrees) from Galactic coordinates.
+}
+\examples{
+x <- gal_coord(c(120, 121), c(-30, -31))
+b(x)
 }

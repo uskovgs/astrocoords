@@ -1,8 +1,14 @@
-#' Right ascension accessor
+#' Get right ascension (RA)
 #'
-#' @param x A <sky_coord> vector.
+#' Extract right ascension values (in degrees) from ICRS coordinates.
 #'
-#' @return Numeric vector.
+#' @param x A <sky_coord> vector in ICRS frame.
+#'
+#' @return Numeric vector with RA values in degrees.
+#'
+#' @examples
+#' x <- ra_dec(c(10, 20), c(-5, 30))
+#' ra(x)
 #' @export
 ra <- function(x) {
   x <- .validate_sky_coord(x)
@@ -10,11 +16,17 @@ ra <- function(x) {
   vctrs::vec_data(x)$lon
 }
 
-#' Declination accessor
+#' Get declination (Dec)
 #'
-#' @param x A <sky_coord> vector.
+#' Extract declination values (in degrees) from ICRS coordinates.
 #'
-#' @return Numeric vector.
+#' @param x A <sky_coord> vector in ICRS frame.
+#'
+#' @return Numeric vector with Dec values in degrees.
+#'
+#' @examples
+#' x <- ra_dec(c(10, 20), c(-5, 30))
+#' dec(x)
 #' @export
 dec <- function(x) {
   x <- .validate_sky_coord(x)
@@ -43,11 +55,17 @@ frame <- function(x) {
   }
 }
 
-#' Galactic longitude accessor
+#' Get Galactic longitude (l)
+#'
+#' Extract Galactic longitude values (in degrees) from Galactic coordinates.
 #'
 #' @param x A <sky_coord> vector in Galactic frame.
 #'
-#' @return Numeric vector.
+#' @return Numeric vector with Galactic longitude values in degrees.
+#'
+#' @examples
+#' x <- gal_coord(c(120, 121), c(-30, -31))
+#' l(x)
 #' @export
 l <- function(x) {
   x <- .validate_sky_coord(x)
@@ -55,11 +73,17 @@ l <- function(x) {
   vctrs::vec_data(x)$lon
 }
 
-#' Galactic latitude accessor
+#' Get Galactic latitude (b)
+#'
+#' Extract Galactic latitude values (in degrees) from Galactic coordinates.
 #'
 #' @param x A <sky_coord> vector in Galactic frame.
 #'
-#' @return Numeric vector.
+#' @return Numeric vector with Galactic latitude values in degrees.
+#'
+#' @examples
+#' x <- gal_coord(c(120, 121), c(-30, -31))
+#' b(x)
 #' @export
 b <- function(x) {
   x <- .validate_sky_coord(x)
@@ -67,7 +91,9 @@ b <- function(x) {
   vctrs::vec_data(x)$lat
 }
 
-#' Sugar constructor for ICRS coordinates
+#' Create ICRS sky coordinates
+#'
+#' Convenience wrapper for `sky_coord(..., frame = icrs())`.
 #'
 #' @param ra,dec Coordinates in degrees.
 #'
@@ -77,7 +103,9 @@ ra_dec <- function(ra, dec) {
   sky_coord(ra, dec, frame = icrs())
 }
 
-#' Sugar constructor for Galactic coordinates
+#' Create Galactic sky coordinates
+#'
+#' Convenience wrapper for `sky_coord(..., frame = galactic())`.
 #'
 #' @param l,b Coordinates in degrees.
 #'

@@ -11,7 +11,11 @@
 
 #' ICRS frame
 #'
+#' International Celestial Reference System (ICRS), the standard inertial
+#' celestial frame with right ascension and declination axes.
+#'
 #' @return A <sky_frame> object.
+#' @references \url{https://en.wikipedia.org/wiki/International_Celestial_Reference_System}
 #' @export
 icrs <- function() {
   .sky_frame("icrs", x_name = "ra", y_name = "dec")
@@ -19,7 +23,11 @@ icrs <- function() {
 
 #' Galactic frame
 #'
+#' Galactic coordinate system, a celestial frame aligned with the Milky Way
+#' plane, with longitude `l` and latitude `b`.
+#'
 #' @return A <sky_frame> object.
+#' @references \url{https://en.wikipedia.org/wiki/Galactic_coordinate_system}
 #' @export
 galactic <- function() {
   .sky_frame("galactic", x_name = "l", y_name = "b")

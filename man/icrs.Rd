@@ -10,5 +10,9 @@ icrs()
 A <sky_frame> object.
 }
 \description{
-ICRS frame
+International Celestial Reference System (ICRS), the standard inertial
+celestial frame with right ascension and declination axes.
+}
+\references{
+\url{https://en.wikipedia.org/wiki/International_Celestial_Reference_System}
 }

@@ -2,16 +2,20 @@
 % Please edit documentation in R/accessors.R
 \name{dec}
 \alias{dec}
-\title{Declination accessor}
+\title{Get declination (Dec)}
 \usage{
 dec(x)
 }
 \arguments{
-\item{x}{A <sky_coord> vector.}
+\item{x}{A <sky_coord> vector in ICRS frame.}
 }
 \value{
-Numeric vector.
+Numeric vector with Dec values in degrees.
 }
 \description{
-Declination accessor
+Extract declination values (in degrees) from ICRS coordinates.
+}
+\examples{
+x <- ra_dec(c(10, 20), c(-5, 30))
+dec(x)
 }

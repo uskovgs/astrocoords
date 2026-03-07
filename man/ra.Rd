@@ -2,16 +2,20 @@
 % Please edit documentation in R/accessors.R
 \name{ra}
 \alias{ra}
-\title{Right ascension accessor}
+\title{Get right ascension (RA)}
 \usage{
 ra(x)
 }
 \arguments{
-\item{x}{A <sky_coord> vector.}
+\item{x}{A <sky_coord> vector in ICRS frame.}
 }
 \value{
-Numeric vector.
+Numeric vector with RA values in degrees.
 }
 \description{
-Right ascension accessor
+Extract right ascension values (in degrees) from ICRS coordinates.
+}
+\examples{
+x <- ra_dec(c(10, 20), c(-5, 30))
+ra(x)
 }

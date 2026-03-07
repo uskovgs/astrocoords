@@ -2,7 +2,7 @@
 % Please edit documentation in R/accessors.R
 \name{gal_coord}
 \alias{gal_coord}
-\title{Sugar constructor for Galactic coordinates}
+\title{Create Galactic sky coordinates}
 \usage{
 gal_coord(l, b)
 }
@@ -13,5 +13,5 @@ gal_coord(l, b)
 A <sky_coord> vector in Galactic frame.
 }
 \description{
-Sugar constructor for Galactic coordinates
+Convenience wrapper for `sky_coord(..., frame = galactic())`.
 }

@@ -10,5 +10,9 @@ galactic()
 A <sky_frame> object.
 }
 \description{
-Galactic frame
+Galactic coordinate system, a celestial frame aligned with the Milky Way
+plane, with longitude `l` and latitude `b`.
+}
+\references{
+\url{https://en.wikipedia.org/wiki/Galactic_coordinate_system}
 }

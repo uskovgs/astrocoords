@@ -2,7 +2,7 @@
 % Please edit documentation in R/accessors.R
 \name{ra_dec}
 \alias{ra_dec}
-\title{Sugar constructor for ICRS coordinates}
+\title{Create ICRS sky coordinates}
 \usage{
 ra_dec(ra, dec)
 }
@@ -13,5 +13,5 @@ ra_dec(ra, dec)
 A <sky_coord> vector in ICRS frame.
 }
 \description{
-Sugar constructor for ICRS coordinates
+Convenience wrapper for `sky_coord(..., frame = icrs())`.
 }
