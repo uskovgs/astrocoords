@@ -4,15 +4,21 @@ template:
   light-switch: true
 
 navbar:
-  left:
-    - text: Get started
+  structure:
+    left: [intro, reference, articles]
+    right: [search, github, lightswitch]
+  components:
+    intro:
+      text: Get started
       href: articles/astrocoords.html
-    - text: Articles
+    articles:
+      text: Articles
       menu:
         - text: Working with time
           href: articles/working_with_time.html
-  right:
-    - icon: fab fa-github
+    github:
+      icon: fab fa-github
+      aria-label: GitHub repository
       href: https://github.com/uskovgs/astrocoords
 
 reference:
@@ -61,9 +67,3 @@ reference:
     desc: Backward-compatible aliases.
     contents:
       - radec
-
-  - title: Internals
-    desc: Internal package docs.
-    contents:
-      - astrocoords-package
-      - sky_coord-vctrs-methods
