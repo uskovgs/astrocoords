@@ -8,8 +8,15 @@
 \description{
 Vectorized astronomical coordinates for R.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://uskovgs.github.io/astrocoords/}
+}
+
+}
 \author{
-\strong{Maintainer}: Your Name \email{your@email.com}
+\strong{Maintainer}: Grigory Uskov \email{uskov.russia@gmail.com} (\href{https://orcid.org/0000-0002-0274-1350}{ORCID}) [copyright holder]
 
 }
 \keyword{internal}
