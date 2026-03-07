@@ -4,7 +4,7 @@ Title: Astronomical Coordinates for R
 Version: 0.0.1
 Date: 2026-03-06
 Authors@R: 
-    person("Grigory", "Uskov", , "uskov.russia@gmail.com", role = c("aut", "cre", "cph"),
+    person("Grigory", "Uskov", , "uskov.russia@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0000-0002-0274-1350"))
 Description: Vectorized astronomical coordinates for R.
 License: MIT + file LICENSE

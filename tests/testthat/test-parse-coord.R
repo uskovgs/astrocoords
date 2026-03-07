@@ -1,10 +1,10 @@
 test_that("parse_coord parses compact J-form", {
-  x <- parse_coord("J230615.4+155635")
+  x <- parse_coord("J230631.0+155633")
 
   expect_s3_class(x, "sky_coord")
   expect_equal(frame(x)$name, "icrs")
-  expect_equal(ra(x), 346.56416666666667, tolerance = 1e-12)
-  expect_equal(dec(x), 15.943055555555556, tolerance = 1e-12)
+  expect_equal(ra(x), 346.6291666666667, tolerance = 1e-12)
+  expect_equal(dec(x), 15.9425, tolerance = 1e-12)
 })
 
 test_that("parse_coord parses spaced hms/dms and preserves NA", {

@@ -68,7 +68,7 @@ separation(ra_dec(10, 20), ra_dec(11, 21))
 Parse a compact coordinate string:
 
 ```{r}
-parse_coord("J230615.4+155635")
+parse_coord("J230631.0+155633")
 ```
 
 Work with Julian Date:

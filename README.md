@@ -69,9 +69,9 @@ separation(ra_dec(10, 20), ra_dec(11, 21))
 Parse a compact coordinate string:
 
 ``` r
-parse_coord("J230615.4+155635")
+parse_coord("J230631.0+155633")
 #> <sky_coord[1] icrs>
-#> [1] 23h06m15.4s +15°56'35"
+#> [1] 23h06m31.0s +15°56'33"
 ```
 
 Work with Julian Date:
