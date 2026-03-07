@@ -61,11 +61,9 @@ Convert between calendar dates and JD/MJD.
 Control how sky coordinates are printed.
 
 - [`set_print_hms()`](https://uskovgs.github.io/astrocoords/reference/set_print_hms.md)
-  : Use HMS/DMS print style for sky_coord
-- [`set_print_plain()`](https://uskovgs.github.io/astrocoords/reference/set_print_plain.md)
-  : Use plain print style for sky_coord
-- [`set_print_pair()`](https://uskovgs.github.io/astrocoords/reference/set_print_pair.md)
-  : Use pair print style for sky_coord
+  [`set_print_plain()`](https://uskovgs.github.io/astrocoords/reference/set_print_hms.md)
+  [`set_print_pair()`](https://uskovgs.github.io/astrocoords/reference/set_print_hms.md)
+  : Set printing style for sky coordinates
 
 ## Deprecated
 

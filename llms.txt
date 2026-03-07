@@ -1,7 +1,7 @@
 # astrocoords
 
-`astrocoords` is a small R package for basic astronomical coordinates
-and time conversion.
+`astrocoords` is an R package for basic astronomical coordinate and time
+conversion.
 
 Core coordinate and time calculations in `astrocoords` are based on the
 [ERFA](https://github.com/liberfa/erfa) library.
@@ -16,7 +16,7 @@ It currently supports:
 ## Installation
 
 You can install the development version of astrocoords from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/uskovgs/astrocoords) with:
 
 ``` r
 # install.packages("pak")
@@ -138,11 +138,9 @@ Convert between calendar dates and JD/MJD.
 Control how sky coordinates are printed.
 
 - [`set_print_hms()`](https://uskovgs.github.io/astrocoords/reference/set_print_hms.md)
-  : Use HMS/DMS print style for sky_coord
-- [`set_print_plain()`](https://uskovgs.github.io/astrocoords/reference/set_print_plain.md)
-  : Use plain print style for sky_coord
-- [`set_print_pair()`](https://uskovgs.github.io/astrocoords/reference/set_print_pair.md)
-  : Use pair print style for sky_coord
+  [`set_print_plain()`](https://uskovgs.github.io/astrocoords/reference/set_print_hms.md)
+  [`set_print_pair()`](https://uskovgs.github.io/astrocoords/reference/set_print_hms.md)
+  : Set printing style for sky coordinates
 
 ## Deprecated
 

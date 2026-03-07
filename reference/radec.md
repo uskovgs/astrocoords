@@ -1,6 +1,6 @@
 # Deprecated alias for parse_coord
 
-Deprecated alias for parse_coord
+Use \[parse_coord()\] instead.
 
 ## Usage
 
@@ -17,3 +17,7 @@ radec(x = character())
 ## Value
 
 A \<sky_coord\> vector in ICRS frame.
+
+## See also
+
+\[parse_coord()\]

@@ -1,7 +1,7 @@
 # astrocoords
 
-`astrocoords` is a small R package for basic astronomical coordinates
-and time conversion.
+`astrocoords` is an R package for basic astronomical coordinate and time
+conversion.
 
 Core coordinate and time calculations in `astrocoords` are based on the
 [ERFA](https://github.com/liberfa/erfa) library.
@@ -16,7 +16,7 @@ It currently supports:
 ## Installation
 
 You can install the development version of astrocoords from
-[GitHub](https://github.com/) with:
+[GitHub](https://github.com/uskovgs/astrocoords) with:
 
 ``` r
 # install.packages("pak")
