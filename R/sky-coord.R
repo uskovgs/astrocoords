@@ -20,10 +20,38 @@
 
 #' User-facing sky coordinate constructor
 #'
-#' @param lon,lat Longitude and latitude.
-#' @param frame A sky frame object.
+#' Create a vector of sky coordinates in degrees.
+#'
+#' @param lon Longitude-like coordinate in degrees.
+#'
+#'   For `frame = icrs()`, this is right ascension (`ra`) and must be between
+#'   `0` and `360`.
+#'
+#'   For `frame = galactic()`, this is Galactic longitude (`l`) and must be
+#'   between `0` and `360`.
+#'
+#' @param lat Latitude-like coordinate in degrees.
+#'
+#'   For `frame = icrs()`, this is declination (`dec`) and must be between
+#'   `-90` and `90`.
+#'
+#'   For `frame = galactic()`, this is Galactic latitude (`b`) and must be
+#'   between `-90` and `90`.
+#'
+#' @param frame A sky frame object. Supported frames are [icrs()] and
+#'   [galactic()]. The default is [icrs()].
 #'
 #' @return A <sky_coord> vector.
+#'
+#' @examples
+#' x <- sky_coord(10, 20)
+#' x
+#'
+#' g <- sky_coord(120, -30, frame = galactic())
+#' g
+#'
+#' ra_dec(10, 20)
+#' gal_coord(120, -30)
 #' @export
 sky_coord <- function(
   lon = double(),

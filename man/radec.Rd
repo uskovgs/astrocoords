@@ -13,5 +13,8 @@ radec(x = character())
 A <sky_coord> vector in ICRS frame.
 }
 \description{
-Deprecated alias for parse_coord
+Use [parse_coord()] instead.
+}
+\seealso{
+[parse_coord()]
 }

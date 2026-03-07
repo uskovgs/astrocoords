@@ -116,9 +116,12 @@ parse_coord <- function(x = character()) {
 
 #' Deprecated alias for parse_coord
 #'
+#' Use [parse_coord()] instead.
+#'
 #' @param x Character vector with ICRS coordinates.
 #'
 #' @return A <sky_coord> vector in ICRS frame.
+#' @seealso [parse_coord()]
 #' @export
 radec <- function(x = character()) {
   .Deprecated("parse_coord")

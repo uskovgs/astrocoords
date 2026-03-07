@@ -2,13 +2,43 @@
 % Please edit documentation in R/options.R
 \name{set_print_hms}
 \alias{set_print_hms}
-\title{Use HMS/DMS print style for sky_coord}
+\alias{set_print_plain}
+\alias{set_print_pair}
+\title{Set printing style for sky coordinates}
 \usage{
 set_print_hms()
+
+set_print_plain()
+
+set_print_pair()
 }
 \value{
 Invisibly returns the previous notation.
 }
 \description{
-Use HMS/DMS print style for sky_coord
+These helpers control how `sky_coord` objects are displayed when printed or
+formatted.
+}
+\details{
+`set_print_hms()` uses sexagesimal notation such as
+`00h40m00.0s +20d00'00"`.
+
+`set_print_plain()` uses a compact plain-text style such as
+`00 40 000.0 +20 00 00`.
+
+`set_print_pair()` prints decimal degree pairs such as `(10, 20)`.
+
+The current style is stored in `options(astrocoords.notation = ...)`.
+}
+\examples{
+x <- ra_dec(10, 20)
+
+set_print_hms()
+format(x)
+
+set_print_plain()
+format(x)
+
+set_print_pair()
+format(x)
 }

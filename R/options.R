@@ -9,25 +9,46 @@
   getOption("astrocoords.notation", "hmsdms")
 }
 
-#' Use HMS/DMS print style for sky_coord
+#' Set printing style for sky coordinates
+#'
+#' These helpers control how `sky_coord` objects are displayed when printed or
+#' formatted.
+#'
+#' `set_print_hms()` uses sexagesimal notation such as
+#' `00h40m00.0s +20d00'00"`.
+#'
+#' `set_print_plain()` uses a compact plain-text style such as
+#' `00 40 000.0 +20 00 00`.
+#'
+#' `set_print_pair()` prints decimal degree pairs such as `(10, 20)`.
+#'
+#' The current style is stored in `options(astrocoords.notation = ...)`.
 #'
 #' @return Invisibly returns the previous notation.
+#'
+#' @examples
+#' x <- ra_dec(10, 20)
+#'
+#' set_print_hms()
+#' format(x)
+#'
+#' set_print_plain()
+#' format(x)
+#'
+#' set_print_pair()
+#' format(x)
 #' @export
 set_print_hms <- function() {
   .set_sky_coord_notation("hmsdms")
 }
 
-#' Use plain print style for sky_coord
-#'
-#' @return Invisibly returns the previous notation.
+#' @rdname set_print_hms
 #' @export
 set_print_plain <- function() {
   .set_sky_coord_notation("plain")
 }
 
-#' Use pair print style for sky_coord
-#'
-#' @return Invisibly returns the previous notation.
+#' @rdname set_print_hms
 #' @export
 set_print_pair <- function() {
   .set_sky_coord_notation("pair")
