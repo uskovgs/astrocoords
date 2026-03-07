@@ -4,9 +4,11 @@ Title: Astronomical Coordinates for R
 Version: 0.0.1
 Date: 2026-03-06
 Authors@R: 
-    person("Your", "Name", , "your@email.com", role = c("aut", "cre"))
+    person("Grigory", "Uskov", , "uskov.russia@gmail.com", role = c("aut", "cre", "cph"),
+           comment = c(ORCID = "0000-0002-0274-1350"))
 Description: Vectorized astronomical coordinates for R.
 License: MIT + file LICENSE
+URL: https://uskovgs.github.io/astrocoords/
 Imports:
     checkmate,
     Rcpp (>= 1.1.1),
