@@ -1,6 +1,7 @@
-# Galactic longitude accessor
+# Get Galactic longitude (l)
 
-Galactic longitude accessor
+Extract Galactic longitude values (in degrees) from Galactic
+coordinates.
 
 ## Usage
 
@@ -16,4 +17,12 @@ l(x)
 
 ## Value
 
-Numeric vector.
+Numeric vector with Galactic longitude values in degrees.
+
+## Examples
+
+``` r
+x <- gal_coord(c(120, 121), c(-30, -31))
+l(x)
+#> [1] 120 121
+```

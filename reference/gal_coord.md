@@ -1,6 +1,6 @@
-# Sugar constructor for Galactic coordinates
+# Create Galactic sky coordinates
 
-Sugar constructor for Galactic coordinates
+Convenience wrapper for \`sky_coord(..., frame = galactic())\`.
 
 ## Usage
 

@@ -84,17 +84,17 @@ Create and inspect sky coordinate vectors.
 - [`sky_coord()`](https://uskovgs.github.io/astrocoords/reference/sky_coord.md)
   : Create sky coordinates
 - [`ra_dec()`](https://uskovgs.github.io/astrocoords/reference/ra_dec.md)
-  : Sugar constructor for ICRS coordinates
+  : Create ICRS sky coordinates
 - [`gal_coord()`](https://uskovgs.github.io/astrocoords/reference/gal_coord.md)
-  : Sugar constructor for Galactic coordinates
-- [`ra()`](https://uskovgs.github.io/astrocoords/reference/ra.md) :
-  Right ascension accessor
+  : Create Galactic sky coordinates
+- [`ra()`](https://uskovgs.github.io/astrocoords/reference/ra.md) : Get
+  right ascension (RA)
 - [`dec()`](https://uskovgs.github.io/astrocoords/reference/dec.md) :
-  Declination accessor
-- [`l()`](https://uskovgs.github.io/astrocoords/reference/l.md) :
-  Galactic longitude accessor
-- [`b()`](https://uskovgs.github.io/astrocoords/reference/b.md) :
-  Galactic latitude accessor
+  Get declination (Dec)
+- [`l()`](https://uskovgs.github.io/astrocoords/reference/l.md) : Get
+  Galactic longitude (l)
+- [`b()`](https://uskovgs.github.io/astrocoords/reference/b.md) : Get
+  Galactic latitude (b)
 - [`frame()`](https://uskovgs.github.io/astrocoords/reference/frame.md)
   : Frame accessor
 - [`separation()`](https://uskovgs.github.io/astrocoords/reference/separation.md)

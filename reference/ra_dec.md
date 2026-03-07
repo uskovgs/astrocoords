@@ -1,6 +1,6 @@
-# Sugar constructor for ICRS coordinates
+# Create ICRS sky coordinates
 
-Sugar constructor for ICRS coordinates
+Convenience wrapper for \`sky_coord(..., frame = icrs())\`.
 
 ## Usage
 
