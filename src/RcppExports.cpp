@@ -58,12 +58,72 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cpp_era_cal2jd
+Rcpp::List cpp_era_cal2jd(Rcpp::IntegerVector year, Rcpp::IntegerVector month, Rcpp::IntegerVector day);
+RcppExport SEXP _astrocoords_cpp_era_cal2jd(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type year(yearSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type month(monthSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type day(daySEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_era_cal2jd(year, month, day));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_era_jd2cal
+Rcpp::List cpp_era_jd2cal(Rcpp::NumericVector d1, Rcpp::NumericVector d2);
+RcppExport SEXP _astrocoords_cpp_era_jd2cal(SEXP d1SEXP, SEXP d2SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type d1(d1SEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type d2(d2SEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_era_jd2cal(d1, d2));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_era_dtf2d
+Rcpp::List cpp_era_dtf2d(std::string scale, Rcpp::IntegerVector year, Rcpp::IntegerVector month, Rcpp::IntegerVector day, Rcpp::IntegerVector hour, Rcpp::IntegerVector minute, Rcpp::NumericVector second);
+RcppExport SEXP _astrocoords_cpp_era_dtf2d(SEXP scaleSEXP, SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP, SEXP hourSEXP, SEXP minuteSEXP, SEXP secondSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type scale(scaleSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type year(yearSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type month(monthSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type day(daySEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type hour(hourSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type minute(minuteSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type second(secondSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_era_dtf2d(scale, year, month, day, hour, minute, second));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_era_d2dtf
+Rcpp::List cpp_era_d2dtf(std::string scale, int ndp, Rcpp::NumericVector d1, Rcpp::NumericVector d2);
+RcppExport SEXP _astrocoords_cpp_era_d2dtf(SEXP scaleSEXP, SEXP ndpSEXP, SEXP d1SEXP, SEXP d2SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type scale(scaleSEXP);
+    Rcpp::traits::input_parameter< int >::type ndp(ndpSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type d1(d1SEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type d2(d2SEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_era_d2dtf(scale, ndp, d1, d2));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_astrocoords_rcpp_hello_world", (DL_FUNC) &_astrocoords_rcpp_hello_world, 0},
     {"_astrocoords_cpp_era_icrs2g", (DL_FUNC) &_astrocoords_cpp_era_icrs2g, 2},
     {"_astrocoords_cpp_era_g2icrs", (DL_FUNC) &_astrocoords_cpp_era_g2icrs, 2},
     {"_astrocoords_cpp_era_seps", (DL_FUNC) &_astrocoords_cpp_era_seps, 4},
+    {"_astrocoords_cpp_era_cal2jd", (DL_FUNC) &_astrocoords_cpp_era_cal2jd, 3},
+    {"_astrocoords_cpp_era_jd2cal", (DL_FUNC) &_astrocoords_cpp_era_jd2cal, 2},
+    {"_astrocoords_cpp_era_dtf2d", (DL_FUNC) &_astrocoords_cpp_era_dtf2d, 7},
+    {"_astrocoords_cpp_era_d2dtf", (DL_FUNC) &_astrocoords_cpp_era_d2dtf, 4},
     {NULL, NULL, 0}
 };
 

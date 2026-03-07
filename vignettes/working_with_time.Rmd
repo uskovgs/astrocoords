@@ -1,0 +1,47 @@
+---
+title: "Working with time"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{working_with_time}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(astrocoords)
+```
+
+This vignette shows a few simple ways to work with Julian Date (JD) and Modified Julian Date (MJD).
+
+Astronomers often use JD for exact time stamps.
+
+```{r}
+now_utc <- as.POSIXct("2026-03-08 12:34:56", tz = "UTC")
+jd_fromdate(now_utc)
+```
+
+If you start from a calendar date without a clock time, the function uses midnight UTC.
+
+```{r}
+jd_fromdate(as.Date("2026-03-08"))
+```
+
+You can also go back from JD to a normal R date-time.
+
+```{r}
+jd <- jd_fromdate(now_utc)
+jd2greg(jd, tz = "UTC")
+```
+
+MJD is just a shifted version of JD. The package can convert it back to a normal date-time too.
+
+```{r}
+mjd2greg(51544, tz = "UTC")
+```

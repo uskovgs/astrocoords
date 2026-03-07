@@ -6,9 +6,9 @@
 \alias{vec_ptype_full.sky_coord}
 \title{vctrs ptype methods for sky_coord}
 \usage{
-vec_ptype_abbr.sky_coord(x, ...)
+\method{vec_ptype_abbr}{sky_coord}(x, ...)
 
-vec_ptype_full.sky_coord(x, ...)
+\method{vec_ptype_full}{sky_coord}(x, ...)
 }
 \arguments{
 \item{x}{A <sky_coord> vector.}

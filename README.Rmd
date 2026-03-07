@@ -1,0 +1,81 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# astrocoords
+
+<!-- badges: start -->
+
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+
+<!-- badges: end -->
+
+`astrocoords` is a small R package for basic astronomical coordinates and time conversion.
+
+Core coordinate and time calculations in `astrocoords` are based on the
+[ERFA](https://github.com/liberfa/erfa) library.
+
+It currently supports:
+
+- ICRS and Galactic sky coordinates
+- angular separation on the sphere
+- simple frame transformation between ICRS and Galactic
+- Julian Date / Modified Julian Date conversion
+
+## Installation
+
+You can install the development version of astrocoords from [GitHub](https://github.com/) with:
+
+```r
+# install.packages("pak")
+pak::pak("uskovgs/astrocoords")
+```
+
+## Quick examples
+
+Create coordinates in the ICRS frame:
+
+```{r}
+library(astrocoords)
+
+x <- ra_dec(c(10, 20), c(30, 40))
+x
+```
+
+Transform them to Galactic coordinates:
+
+```{r}
+transform(x, galactic())
+```
+
+Measure angular separation in arcseconds:
+
+```{r}
+separation(ra_dec(10, 20), ra_dec(11, 21))
+```
+
+Parse a compact coordinate string:
+
+```{r}
+parse_coord("J230615.4+155635")
+```
+
+Work with Julian Date:
+
+```{r}
+jd <- jd_fromdate(as.POSIXct("2026-03-08 12:34:56", tz = "UTC"))
+jd
+
+jd2greg(jd, tz = "UTC")
+```

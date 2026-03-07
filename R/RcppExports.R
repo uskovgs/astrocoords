@@ -17,3 +17,19 @@ cpp_era_seps <- function(lon1, lat1, lon2, lat2) {
     .Call(`_astrocoords_cpp_era_seps`, lon1, lat1, lon2, lat2)
 }
 
+cpp_era_cal2jd <- function(year, month, day) {
+    .Call(`_astrocoords_cpp_era_cal2jd`, year, month, day)
+}
+
+cpp_era_jd2cal <- function(d1, d2) {
+    .Call(`_astrocoords_cpp_era_jd2cal`, d1, d2)
+}
+
+cpp_era_dtf2d <- function(scale, year, month, day, hour, minute, second) {
+    .Call(`_astrocoords_cpp_era_dtf2d`, scale, year, month, day, hour, minute, second)
+}
+
+cpp_era_d2dtf <- function(scale, ndp, d1, d2) {
+    .Call(`_astrocoords_cpp_era_d2dtf`, scale, ndp, d1, d2)
+}
+

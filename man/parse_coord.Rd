@@ -15,3 +15,13 @@ A <sky_coord> vector in ICRS frame.
 \description{
 Parse coordinate strings into ICRS sky_coord
 }
+\examples{
+library(astrocoords)
+
+parse_coord("12 34 56 -76 54 3.210")
+
+parse_coord("12:34:56 -76:54:3.210")
+
+parse_coord("12h34m56s -76d54m3.210s")
+
+}

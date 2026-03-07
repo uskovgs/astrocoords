@@ -18,83 +18,55 @@ knitr::opts_chunk$set(
 library(astrocoords)
 ```
 
-```{r}
-B <- 5
-x <- runif(B, 0, 360)
-y <- runif(B, -90, 90)
-```
+This vignette shows the basic ideas of the package.
 
-# Init different frames
-
-## ICRS
-
-General approach
-```{r}
-sky_coord(x, y, frame = icrs())
-
-sky_coord(x, y, frame = galactic())
-```
-
-Or more convinient method with helpers
-```{r}
-ra_dec(x, y)
-
-gal_coord(x, y)
-```
-
-
-
-# Angular separation in arcsec
+You can create sky coordinates in the ICRS frame or in the Galactic frame.
 
 ```{r}
-B <- 5
-x1 <- runif(B, 0, 360)
-y1 <- runif(B, -90, 90)
-
-x2 <- runif(B, 0, 360)
-y2 <- runif(B, -90, 90)
-
-
-ra_dec(x1, y1) |>
-  separation(ra_dec(x2, y2))
+ra_dec(10, 20)
+gal_coord(120, -30)
 ```
 
-# Convert between frames
-
+The general constructor is `sky_coord()`. You choose the frame with `icrs()` or `galactic()`.
 
 ```{r}
-B <- 5
-x3 <- runif(B, 0, 360)
-y3 <- runif(B, -90, 90)
-
-
-sc3 <- ra_dec(c(x3, NA), c(y3, NA))
-sc3
-
-sc3 |> 
-  transform(galactic())
-
-sc3 |>
-  transform(galactic()) |>
-  transform(icrs())
+sky_coord(c(10, 20), c(30, 40), frame = icrs())
+sky_coord(c(120, 121), c(-30, -31), frame = galactic())
 ```
-# Get ra, dec, l, b
+
+You can measure angular separation between two points. The result is in arcseconds.
 
 ```{r}
-B <- 3
-x4 <- runif(B, 0, 360)
-y4 <- runif(B, -90, 90)
+x1 <- ra_dec(10, 20)
+x2 <- ra_dec(11, 21)
 
-x4
-ra_dec(x4, y4) |> ra()
-
-y4
-ra_dec(x4, y4) |> dec()
-
-x4
-gal_coord(x4, y4) |> l()
-y4
-gal_coord(x4, y4) |> b()
-
+separation(x1, x2)
 ```
 
+You can also transform coordinates between ICRS and Galactic.
+
+```{r}
+x <- ra_dec(c(10, 20), c(30, 40))
+g <- transform(x, galactic())
+g
+
+transform(g, icrs())
+```
+
+Accessors depend on the frame. Use `ra()` and `dec()` for ICRS, and `l()` and `b()` for Galactic.
+
+```{r}
+x <- ra_dec(10, 20)
+ra(x)
+dec(x)
+
+g <- gal_coord(120, -30)
+l(g)
+b(g)
+```
+
+You can also parse compact ICRS strings.
+
+```{r}
+parse_coord("J230615.4+155635")
+```
