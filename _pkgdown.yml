@@ -12,7 +12,7 @@ navbar:
         - text: Working with time
           href: articles/working_with_time.html
   right:
-    - icon: fa-github
+    - icon: fab fa-github
       href: https://github.com/uskovgs/astrocoords
 
 reference:
