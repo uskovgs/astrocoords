@@ -1,4 +1,4 @@
-# User-facing sky coordinate constructor
+# Create sky coordinates
 
 Create a vector of sky coordinates in degrees.
 
@@ -32,8 +32,12 @@ sky_coord(lon = double(), lat = double(), frame = icrs())
 
 - frame:
 
-  A sky frame object. Supported frames are \[icrs()\] and
-  \[galactic()\]. The default is \[icrs()\].
+  A sky frame object. Supported frames are
+  [`icrs()`](https://uskovgs.github.io/astrocoords/reference/icrs.md)
+  and
+  [`galactic()`](https://uskovgs.github.io/astrocoords/reference/galactic.md).
+  The default is
+  [`icrs()`](https://uskovgs.github.io/astrocoords/reference/icrs.md).
 
 ## Value
 

@@ -5,7 +5,7 @@
 Create and inspect sky coordinate vectors.
 
 - [`sky_coord()`](https://uskovgs.github.io/astrocoords/reference/sky_coord.md)
-  : User-facing sky coordinate constructor
+  : Create sky coordinates
 - [`ra_dec()`](https://uskovgs.github.io/astrocoords/reference/ra_dec.md)
   : Sugar constructor for ICRS coordinates
 - [`gal_coord()`](https://uskovgs.github.io/astrocoords/reference/gal_coord.md)
@@ -27,8 +27,6 @@ Create and inspect sky coordinate vectors.
 
 Define coordinate frames and transform between them.
 
-- [`sky_frame()`](https://uskovgs.github.io/astrocoords/reference/sky_frame.md)
-  : Generic sky frame constructor
 - [`icrs()`](https://uskovgs.github.io/astrocoords/reference/icrs.md) :
   ICRS frame
 - [`galactic()`](https://uskovgs.github.io/astrocoords/reference/galactic.md)
@@ -50,11 +48,11 @@ Parse source coordinates and build IAU-style names.
 Convert between calendar dates and JD/MJD.
 
 - [`jd_fromdate()`](https://uskovgs.github.io/astrocoords/reference/jd_fromdate.md)
-  : Julian Date from date-time
+  : Convert date-time to Julian Date (JD)
 - [`jd2greg()`](https://uskovgs.github.io/astrocoords/reference/jd2greg.md)
-  : POSIXct from Julian Date
+  : Convert Julian Date (JD) to POSIXct
 - [`mjd2greg()`](https://uskovgs.github.io/astrocoords/reference/mjd2greg.md)
-  : POSIXct from Modified Julian Date
+  : Convert Modified Julian Date (MJD) to POSIXct
 
 ## Printing Options
 
