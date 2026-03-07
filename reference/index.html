@@ -16,19 +16,11 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto"><li class="nav-item"><a class="nav-link" href="../articles/astrocoords.html">Get started</a></li>
-<li class="active nav-item"><a class="nav-link" href="../reference/index.html">Reference</a></li>
 <li class="nav-item dropdown">
   <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
   <ul class="dropdown-menu" aria-labelledby="dropdown-articles"><li><a class="dropdown-item" href="../articles/working_with_time.html">Working with time</a></li>
   </ul></li>
-      </ul><ul class="navbar-nav"><li class="nav-item"><form class="form-inline" role="search">
- <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="../search.json"></form></li>
-<li class="nav-item dropdown">
-  <button class="nav-link dropdown-toggle" type="button" id="dropdown-lightswitch" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" aria-label="Light switch"><span class="fa fa-sun"></span></button>
-  <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="dropdown-lightswitch"><li><button class="dropdown-item" data-bs-theme-value="light"><span class="fa fa-sun"></span> Light</button></li>
-    <li><button class="dropdown-item" data-bs-theme-value="dark"><span class="fa fa-moon"></span> Dark</button></li>
-    <li><button class="dropdown-item" data-bs-theme-value="auto"><span class="fa fa-adjust"></span> Auto</button></li>
-  </ul></li>
+      </ul><ul class="navbar-nav"><li class="nav-item"><a class="external-link nav-link" href="https://github.com/uskovgs/astrocoords"><span class="fa fab fa-github"></span></a></li>
       </ul></div>
 
 
@@ -41,9 +33,9 @@
     </div>
 
     <div class="section level2">
-      <h2 id="all-functions">All functions<a class="anchor" aria-label="anchor" href="#all-functions"></a></h2>
+      <h2 id="coordinates">Coordinates<a class="anchor" aria-label="anchor" href="#coordinates"></a></h2>
 
-
+      <div class="section-desc"><p>Create and inspect sky coordinate vectors.</p></div>
 
       <dl></dl></div><div class="section level2">
 
@@ -52,108 +44,10 @@
 
       <dl><dt>
 
-          <code><a href="b.html">b()</a></code>
+          <code><a href="sky_coord.html">sky_coord()</a></code>
 
         </dt>
-        <dd>Galactic latitude accessor</dd>
-
-        <dt>
-
-          <code><a href="dec.html">dec()</a></code>
-
-        </dt>
-        <dd>Declination accessor</dd>
-
-        <dt>
-
-          <code><a href="frame.html">frame()</a></code>
-
-        </dt>
-        <dd>Frame accessor</dd>
-
-        <dt>
-
-          <code><a href="gal_coord.html">gal_coord()</a></code>
-
-        </dt>
-        <dd>Sugar constructor for Galactic coordinates</dd>
-
-        <dt>
-
-          <code><a href="galactic.html">galactic()</a></code>
-
-        </dt>
-        <dd>Galactic frame</dd>
-
-        <dt>
-
-          <code><a href="get_sky_coord_notation.html">get_sky_coord_notation()</a></code>
-
-        </dt>
-        <dd>Get sky_coord print notation</dd>
-
-        <dt>
-
-          <code><a href="iau_name.html">iau_name()</a></code>
-
-        </dt>
-        <dd>Build IAU-style source names from sky coordinates</dd>
-
-        <dt>
-
-          <code><a href="icrs.html">icrs()</a></code>
-
-        </dt>
-        <dd>ICRS frame</dd>
-
-        <dt>
-
-          <code><a href="jd2greg.html">jd2greg()</a></code>
-
-        </dt>
-        <dd>POSIXct from Julian Date</dd>
-
-        <dt>
-
-          <code><a href="jd_fromdate.html">jd_fromdate()</a></code>
-
-        </dt>
-        <dd>Julian Date from date-time</dd>
-
-        <dt>
-
-          <code><a href="l.html">l()</a></code>
-
-        </dt>
-        <dd>Galactic longitude accessor</dd>
-
-        <dt>
-
-          <code><a href="mjd2greg.html">mjd2greg()</a></code>
-
-        </dt>
-        <dd>POSIXct from Modified Julian Date</dd>
-
-        <dt>
-
-          <code><a href="new_sky_coord.html">new_sky_coord()</a></code>
-
-        </dt>
-        <dd>Low-level sky coordinate constructor</dd>
-
-        <dt>
-
-          <code><a href="parse_coord.html">parse_coord()</a></code>
-
-        </dt>
-        <dd>Parse coordinate strings into ICRS sky_coord</dd>
-
-        <dt>
-
-          <code><a href="ra.html">ra()</a></code>
-
-        </dt>
-        <dd>Right ascension accessor</dd>
+        <dd>User-facing sky coordinate constructor</dd>
 
         <dt>
 
@@ -164,17 +58,45 @@
 
         <dt>
 
-          <code><a href="radec.html">radec()</a></code>
+          <code><a href="gal_coord.html">gal_coord()</a></code>
 
         </dt>
-        <dd>Deprecated alias for parse_coord</dd>
+        <dd>Sugar constructor for Galactic coordinates</dd>
 
         <dt>
 
-          <code><a href="rcpp_hello_world.html">rcpp_hello_world()</a></code>
+          <code><a href="ra.html">ra()</a></code>
 
         </dt>
-        <dd>Simple function using Rcpp</dd>
+        <dd>Right ascension accessor</dd>
+
+        <dt>
+
+          <code><a href="dec.html">dec()</a></code>
+
+        </dt>
+        <dd>Declination accessor</dd>
+
+        <dt>
+
+          <code><a href="l.html">l()</a></code>
+
+        </dt>
+        <dd>Galactic longitude accessor</dd>
+
+        <dt>
+
+          <code><a href="b.html">b()</a></code>
+
+        </dt>
+        <dd>Galactic latitude accessor</dd>
+
+        <dt>
+
+          <code><a href="frame.html">frame()</a></code>
+
+        </dt>
+        <dd>Frame accessor</dd>
 
         <dt>
 
@@ -182,20 +104,112 @@
 
         </dt>
         <dd>Angular separation between sky coordinates</dd>
+      </dl></div><div class="section level2">
+      <h2 id="frames-and-transforms">Frames and Transforms<a class="anchor" aria-label="anchor" href="#frames-and-transforms"></a></h2>
+
+      <div class="section-desc"><p>Define coordinate frames and transform between them.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="sky_frame.html">sky_frame()</a></code>
+
+        </dt>
+        <dd>Generic sky frame constructor</dd>
 
         <dt>
+
+          <code><a href="icrs.html">icrs()</a></code>
+
+        </dt>
+        <dd>ICRS frame</dd>
+
+        <dt>
+
+          <code><a href="galactic.html">galactic()</a></code>
+
+        </dt>
+        <dd>Galactic frame</dd>
+
+        <dt>
+
+          <code><a href="transform_to.html">transform_to()</a></code>
+
+        </dt>
+        <dd>Transform sky coordinates to another frame</dd>
+      </dl></div><div class="section level2">
+      <h2 id="parsing-and-naming">Parsing and Naming<a class="anchor" aria-label="anchor" href="#parsing-and-naming"></a></h2>
+
+      <div class="section-desc"><p>Parse source coordinates and build IAU-style names.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="parse_coord.html">parse_coord()</a></code>
+
+        </dt>
+        <dd>Parse coordinate strings into ICRS sky_coord</dd>
+
+        <dt>
+
+          <code><a href="iau_name.html">iau_name()</a></code>
+
+        </dt>
+        <dd>Build IAU-style source names from sky coordinates</dd>
+      </dl></div><div class="section level2">
+      <h2 id="time">Time<a class="anchor" aria-label="anchor" href="#time"></a></h2>
+
+      <div class="section-desc"><p>Convert between calendar dates and JD/MJD.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="jd_fromdate.html">jd_fromdate()</a></code>
+
+        </dt>
+        <dd>Julian Date from date-time</dd>
+
+        <dt>
+
+          <code><a href="jd2greg.html">jd2greg()</a></code>
+
+        </dt>
+        <dd>POSIXct from Julian Date</dd>
+
+        <dt>
+
+          <code><a href="mjd2greg.html">mjd2greg()</a></code>
+
+        </dt>
+        <dd>POSIXct from Modified Julian Date</dd>
+      </dl></div><div class="section level2">
+      <h2 id="printing-options">Printing Options<a class="anchor" aria-label="anchor" href="#printing-options"></a></h2>
+
+      <div class="section-desc"><p>Control how sky coordinates are printed.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
 
           <code><a href="set_print_hms.html">set_print_hms()</a></code>
 
         </dt>
         <dd>Use HMS/DMS print style for sky_coord</dd>
-
-        <dt>
-
-          <code><a href="set_print_pair.html">set_print_pair()</a></code>
-
-        </dt>
-        <dd>Use pair print style for sky_coord</dd>
 
         <dt>
 
@@ -206,47 +220,52 @@
 
         <dt>
 
-          <code><a href="set_sky_coord_notation.html">set_sky_coord_notation()</a></code>
+          <code><a href="set_print_pair.html">set_print_pair()</a></code>
 
         </dt>
-        <dd>Set sky_coord print notation</dd>
+        <dd>Use pair print style for sky_coord</dd>
+      </dl></div><div class="section level2">
+      <h2 id="deprecated">Deprecated<a class="anchor" aria-label="anchor" href="#deprecated"></a></h2>
+
+      <div class="section-desc"><p>Backward-compatible aliases.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="radec.html">radec()</a></code>
+
+        </dt>
+        <dd>Deprecated alias for parse_coord</dd>
+      </dl></div><div class="section level2">
+      <h2 id="internals">Internals<a class="anchor" aria-label="anchor" href="#internals"></a></h2>
+
+      <div class="section-desc"><p>Internal package docs.</p></div>
+
+      <dl></dl></div><div class="section level2">
+
+
+
+
+      <dl><dt>
+
+          <code><a href="astrocoords-package.html">astrocoords</a></code> <code><a href="astrocoords-package.html">astrocoords-package</a></code>
+
+        </dt>
+        <dd>astrocoords: Astronomical Coordinates for R</dd>
 
         <dt>
 
-          <code><a href="sky_coord.html">sky_coord()</a></code>
+          <code><a href="sky_coord-vctrs-methods.html">vec_ptype_abbr(<i>&lt;sky_coord&gt;</i>)</a></code> <code><a href="sky_coord-vctrs-methods.html">vec_ptype_full(<i>&lt;sky_coord&gt;</i>)</a></code>
 
         </dt>
-        <dd>User-facing sky coordinate constructor</dd>
-
-        <dt>
-
-          <code><a href="sky_frame.html">sky_frame()</a></code>
-
-        </dt>
-        <dd>Generic sky frame constructor</dd>
-
-        <dt>
-
-          <code><a href="transform_galactic_to_icrs.html">transform_galactic_to_icrs()</a></code>
-
-        </dt>
-        <dd>Transform Galactic coordinates to ICRS frame</dd>
-
-        <dt>
-
-          <code><a href="transform_icrs_to_galactic.html">transform_icrs_to_galactic()</a></code>
-
-        </dt>
-        <dd>Transform ICRS coordinates to Galactic frame</dd>
-
-        <dt>
-
-          <code><a href="transform_to.html">transform_to()</a></code>
-
-        </dt>
-        <dd>Transform sky coordinates to another frame</dd>
+        <dd>vctrs ptype methods for sky_coord</dd>
       </dl></div>
-  </main></div>
+  </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
+    </nav></aside></div>
 
 
     <footer><div class="pkgdown-footer-left">

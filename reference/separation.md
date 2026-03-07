@@ -26,7 +26,7 @@ y <- ra_dec(11, 21)
 separation(x, y)
 #> [1] 4932.552
 
-g <- transform(x, galactic())
+g <- transform_to(x, galactic())
 separation(g, y)
 #> [1] 4932.552
 ```

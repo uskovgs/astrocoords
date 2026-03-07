@@ -13,7 +13,6 @@
 <url><loc>https://uskovgs.github.io/astrocoords/reference/frame.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/gal_coord.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/galactic.html</loc></url>
-<url><loc>https://uskovgs.github.io/astrocoords/reference/get_sky_coord_notation.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/iau_name.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/icrs.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/index.html</loc></url>
@@ -21,22 +20,17 @@
 <url><loc>https://uskovgs.github.io/astrocoords/reference/jd_fromdate.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/l.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/mjd2greg.html</loc></url>
-<url><loc>https://uskovgs.github.io/astrocoords/reference/new_sky_coord.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/parse_coord.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/ra.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/ra_dec.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/radec.html</loc></url>
-<url><loc>https://uskovgs.github.io/astrocoords/reference/rcpp_hello_world.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/separation.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/set_print_hms.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/set_print_pair.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/set_print_plain.html</loc></url>
-<url><loc>https://uskovgs.github.io/astrocoords/reference/set_sky_coord_notation.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/sky_coord-vctrs-methods.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/sky_coord.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/sky_frame.html</loc></url>
-<url><loc>https://uskovgs.github.io/astrocoords/reference/transform_galactic_to_icrs.html</loc></url>
-<url><loc>https://uskovgs.github.io/astrocoords/reference/transform_icrs_to_galactic.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/transform_to.html</loc></url>
 </urlset>
 

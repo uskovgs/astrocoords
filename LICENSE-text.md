@@ -1,4 +1,4 @@
 # License
 
     YEAR: 2026
-    COPYRIGHT HOLDER: astrocoords authors
+    COPYRIGHT HOLDER: Grigory Uskov

@@ -44,7 +44,7 @@ x
 Transform them to Galactic coordinates:
 
 ``` r
-transform(x, galactic())
+transform_to(x, galactic())
 #> <sky_coord[2] galactic>
 #> [1] 119°59'08.0" -32°48'23" 128°50'58.6" -22°32'36"
 ```
@@ -77,64 +77,90 @@ jd2greg(jd, tz = "UTC")
 
 # Package index
 
-## All functions
+## Coordinates
 
-- [`b()`](https://uskovgs.github.io/astrocoords/reference/b.md) :
-  Galactic latitude accessor
-- [`dec()`](https://uskovgs.github.io/astrocoords/reference/dec.md) :
-  Declination accessor
-- [`frame()`](https://uskovgs.github.io/astrocoords/reference/frame.md)
-  : Frame accessor
-- [`gal_coord()`](https://uskovgs.github.io/astrocoords/reference/gal_coord.md)
-  : Sugar constructor for Galactic coordinates
-- [`galactic()`](https://uskovgs.github.io/astrocoords/reference/galactic.md)
-  : Galactic frame
-- [`get_sky_coord_notation()`](https://uskovgs.github.io/astrocoords/reference/get_sky_coord_notation.md)
-  : Get sky_coord print notation
-- [`iau_name()`](https://uskovgs.github.io/astrocoords/reference/iau_name.md)
-  : Build IAU-style source names from sky coordinates
-- [`icrs()`](https://uskovgs.github.io/astrocoords/reference/icrs.md) :
-  ICRS frame
-- [`jd2greg()`](https://uskovgs.github.io/astrocoords/reference/jd2greg.md)
-  : POSIXct from Julian Date
-- [`jd_fromdate()`](https://uskovgs.github.io/astrocoords/reference/jd_fromdate.md)
-  : Julian Date from date-time
-- [`l()`](https://uskovgs.github.io/astrocoords/reference/l.md) :
-  Galactic longitude accessor
-- [`mjd2greg()`](https://uskovgs.github.io/astrocoords/reference/mjd2greg.md)
-  : POSIXct from Modified Julian Date
-- [`new_sky_coord()`](https://uskovgs.github.io/astrocoords/reference/new_sky_coord.md)
-  : Low-level sky coordinate constructor
-- [`parse_coord()`](https://uskovgs.github.io/astrocoords/reference/parse_coord.md)
-  : Parse coordinate strings into ICRS sky_coord
-- [`ra()`](https://uskovgs.github.io/astrocoords/reference/ra.md) :
-  Right ascension accessor
-- [`ra_dec()`](https://uskovgs.github.io/astrocoords/reference/ra_dec.md)
-  : Sugar constructor for ICRS coordinates
-- [`radec()`](https://uskovgs.github.io/astrocoords/reference/radec.md)
-  : Deprecated alias for parse_coord
-- [`rcpp_hello_world()`](https://uskovgs.github.io/astrocoords/reference/rcpp_hello_world.md)
-  : Simple function using Rcpp
-- [`separation()`](https://uskovgs.github.io/astrocoords/reference/separation.md)
-  : Angular separation between sky coordinates
-- [`set_print_hms()`](https://uskovgs.github.io/astrocoords/reference/set_print_hms.md)
-  : Use HMS/DMS print style for sky_coord
-- [`set_print_pair()`](https://uskovgs.github.io/astrocoords/reference/set_print_pair.md)
-  : Use pair print style for sky_coord
-- [`set_print_plain()`](https://uskovgs.github.io/astrocoords/reference/set_print_plain.md)
-  : Use plain print style for sky_coord
-- [`set_sky_coord_notation()`](https://uskovgs.github.io/astrocoords/reference/set_sky_coord_notation.md)
-  : Set sky_coord print notation
+Create and inspect sky coordinate vectors.
+
 - [`sky_coord()`](https://uskovgs.github.io/astrocoords/reference/sky_coord.md)
   : User-facing sky coordinate constructor
+- [`ra_dec()`](https://uskovgs.github.io/astrocoords/reference/ra_dec.md)
+  : Sugar constructor for ICRS coordinates
+- [`gal_coord()`](https://uskovgs.github.io/astrocoords/reference/gal_coord.md)
+  : Sugar constructor for Galactic coordinates
+- [`ra()`](https://uskovgs.github.io/astrocoords/reference/ra.md) :
+  Right ascension accessor
+- [`dec()`](https://uskovgs.github.io/astrocoords/reference/dec.md) :
+  Declination accessor
+- [`l()`](https://uskovgs.github.io/astrocoords/reference/l.md) :
+  Galactic longitude accessor
+- [`b()`](https://uskovgs.github.io/astrocoords/reference/b.md) :
+  Galactic latitude accessor
+- [`frame()`](https://uskovgs.github.io/astrocoords/reference/frame.md)
+  : Frame accessor
+- [`separation()`](https://uskovgs.github.io/astrocoords/reference/separation.md)
+  : Angular separation between sky coordinates
+
+## Frames and Transforms
+
+Define coordinate frames and transform between them.
+
 - [`sky_frame()`](https://uskovgs.github.io/astrocoords/reference/sky_frame.md)
   : Generic sky frame constructor
-- [`transform_galactic_to_icrs()`](https://uskovgs.github.io/astrocoords/reference/transform_galactic_to_icrs.md)
-  : Transform Galactic coordinates to ICRS frame
-- [`transform_icrs_to_galactic()`](https://uskovgs.github.io/astrocoords/reference/transform_icrs_to_galactic.md)
-  : Transform ICRS coordinates to Galactic frame
+- [`icrs()`](https://uskovgs.github.io/astrocoords/reference/icrs.md) :
+  ICRS frame
+- [`galactic()`](https://uskovgs.github.io/astrocoords/reference/galactic.md)
+  : Galactic frame
 - [`transform_to()`](https://uskovgs.github.io/astrocoords/reference/transform_to.md)
   : Transform sky coordinates to another frame
+
+## Parsing and Naming
+
+Parse source coordinates and build IAU-style names.
+
+- [`parse_coord()`](https://uskovgs.github.io/astrocoords/reference/parse_coord.md)
+  : Parse coordinate strings into ICRS sky_coord
+- [`iau_name()`](https://uskovgs.github.io/astrocoords/reference/iau_name.md)
+  : Build IAU-style source names from sky coordinates
+
+## Time
+
+Convert between calendar dates and JD/MJD.
+
+- [`jd_fromdate()`](https://uskovgs.github.io/astrocoords/reference/jd_fromdate.md)
+  : Julian Date from date-time
+- [`jd2greg()`](https://uskovgs.github.io/astrocoords/reference/jd2greg.md)
+  : POSIXct from Julian Date
+- [`mjd2greg()`](https://uskovgs.github.io/astrocoords/reference/mjd2greg.md)
+  : POSIXct from Modified Julian Date
+
+## Printing Options
+
+Control how sky coordinates are printed.
+
+- [`set_print_hms()`](https://uskovgs.github.io/astrocoords/reference/set_print_hms.md)
+  : Use HMS/DMS print style for sky_coord
+- [`set_print_plain()`](https://uskovgs.github.io/astrocoords/reference/set_print_plain.md)
+  : Use plain print style for sky_coord
+- [`set_print_pair()`](https://uskovgs.github.io/astrocoords/reference/set_print_pair.md)
+  : Use pair print style for sky_coord
+
+## Deprecated
+
+Backward-compatible aliases.
+
+- [`radec()`](https://uskovgs.github.io/astrocoords/reference/radec.md)
+  : Deprecated alias for parse_coord
+
+## Internals
+
+Internal package docs.
+
+- [`astrocoords`](https://uskovgs.github.io/astrocoords/reference/astrocoords-package.md)
+  [`astrocoords-package`](https://uskovgs.github.io/astrocoords/reference/astrocoords-package.md)
+  : astrocoords: Astronomical Coordinates for R
+- [`vec_ptype_abbr(`*`<sky_coord>`*`)`](https://uskovgs.github.io/astrocoords/reference/sky_coord-vctrs-methods.md)
+  [`vec_ptype_full(`*`<sky_coord>`*`)`](https://uskovgs.github.io/astrocoords/reference/sky_coord-vctrs-methods.md)
+  : vctrs ptype methods for sky_coord
 
 # Articles
 

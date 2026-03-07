@@ -44,7 +44,7 @@ x
 Transform them to Galactic coordinates:
 
 ``` r
-transform(x, galactic())
+transform_to(x, galactic())
 #> <sky_coord[2] galactic>
 #> [1] 119°59'08.0" -32°48'23" 128°50'58.6" -22°32'36"
 ```

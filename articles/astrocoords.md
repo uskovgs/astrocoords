@@ -53,12 +53,12 @@ You can also transform coordinates between ICRS and Galactic.
 
 ``` r
 x <- ra_dec(c(10, 20), c(30, 40))
-g <- transform(x, galactic())
+g <- transform_to(x, galactic())
 g
 #> <sky_coord[2] galactic>
 #> [1] 119°59'08.0" -32°48'23" 128°50'58.6" -22°32'36"
 
-transform(g, icrs())
+transform_to(g, icrs())
 #> <sky_coord[2] icrs>
 #> [1] 00h40m00.0s +29°59'60" 01h20m00.0s +39°59'60"
 ```
