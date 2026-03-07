@@ -13,8 +13,8 @@ radec(x = character())
 A <sky_coord> vector in ICRS frame.
 }
 \description{
-Use [parse_coord()] instead.
+Use \code{\link{parse_coord}} instead.
 }
 \seealso{
-[parse_coord()]
+\code{\link{parse_coord}}
 }
