@@ -10,7 +10,7 @@
 #' y <- ra_dec(11, 21)
 #' separation(x, y)
 #'
-#' g <- transform(x, galactic())
+#' g <- transform_to(x, galactic())
 #' separation(g, y)
 #' @export
 separation <- function(x, y) {

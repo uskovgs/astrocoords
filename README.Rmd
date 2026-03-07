@@ -35,7 +35,7 @@ It currently supports:
 
 ## Installation
 
-You can install the development version of astrocoords from [GitHub](https://github.com/) with:
+You can install the development version of astrocoords from [GitHub](https://github.com/uskovgs/astrocoords) with:
 
 ```r
 # install.packages("pak")
@@ -56,7 +56,7 @@ x
 Transform them to Galactic coordinates:
 
 ```{r}
-transform(x, galactic())
+transform_to(x, galactic())
 ```
 
 Measure angular separation in arcseconds:

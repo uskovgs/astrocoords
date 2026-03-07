@@ -47,10 +47,10 @@ You can also transform coordinates between ICRS and Galactic.
 
 ```{r}
 x <- ra_dec(c(10, 20), c(30, 40))
-g <- transform(x, galactic())
+g <- transform_to(x, galactic())
 g
 
-transform(g, icrs())
+transform_to(g, icrs())
 ```
 
 Accessors depend on the frame. Use `ra()` and `dec()` for ICRS, and `l()` and `b()` for Galactic.

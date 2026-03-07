@@ -20,6 +20,6 @@ x <- ra_dec(10, 20)
 y <- ra_dec(11, 21)
 separation(x, y)
 
-g <- transform(x, galactic())
+g <- transform_to(x, galactic())
 separation(g, y)
 }

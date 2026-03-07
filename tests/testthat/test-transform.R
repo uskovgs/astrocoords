@@ -4,8 +4,8 @@
 
 test_that("ICRS and Galactic transforms round-trip", {
   x <- ra_dec(c(10, 120, 359.5), c(20, -30, 5))
-  g <- transform_icrs_to_galactic(x)
-  back <- transform_galactic_to_icrs(g)
+  g <- transform_to(x, galactic())
+  back <- transform_to(g, icrs())
 
   expect_equal(frame(g)$name, "galactic")
   expect_equal(frame(back)$name, "icrs")
@@ -15,8 +15,8 @@ test_that("ICRS and Galactic transforms round-trip", {
 
 test_that("transforms preserve NA values", {
   x <- ra_dec(c(10, NA_real_), c(20, NA_real_))
-  g <- transform_icrs_to_galactic(x)
-  back <- transform_galactic_to_icrs(g)
+  g <- transform_to(x, galactic())
+  back <- transform_to(g, icrs())
 
   expect_equal(is.na(l(g)), c(FALSE, TRUE))
   expect_equal(is.na(b(g)), c(FALSE, TRUE))
@@ -38,13 +38,14 @@ test_that("transform_to dispatch and behavior", {
   )
 })
 
-test_that("base transform returns sky_coord for sky_coord input", {
+test_that("base transform for sky_coord errors with transform_to hint", {
   x <- ra_dec(10, 20)
-  y <- transform(x, frame = galactic())
-  y2 <- transform(x, galactic())
-
-  expect_s3_class(y, "sky_coord")
-  expect_s3_class(y2, "sky_coord")
-  expect_equal(frame(y)$name, "galactic")
-  expect_equal(frame(y2)$name, "galactic")
+  expect_error(
+    transform(x, frame = galactic()),
+    "`transform\\(\\)` is not supported for `sky_coord` objects\\."
+  )
+  expect_error(
+    transform(x, galactic()),
+    "Did you mean `transform_to\\(\\)`\\?"
+  )
 })

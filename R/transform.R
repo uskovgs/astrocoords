@@ -1,10 +1,4 @@
-#' Transform ICRS coordinates to Galactic frame
-#'
-#' @param x A <sky_coord> vector in ICRS frame.
-#'
-#' @return A <sky_coord> vector in Galactic frame.
-#' @export
-transform_icrs_to_galactic <- function(x) {
+.transform_icrs_to_galactic <- function(x) {
   x <- .validate_sky_coord(x)
   if (!identical(frame(x)$name, "icrs")) {
     stop("`x` must be in <icrs> frame.", call. = FALSE)
@@ -23,13 +17,7 @@ transform_icrs_to_galactic <- function(x) {
   )
 }
 
-#' Transform Galactic coordinates to ICRS frame
-#'
-#' @param x A <sky_coord> vector in Galactic frame.
-#'
-#' @return A <sky_coord> vector in ICRS frame.
-#' @export
-transform_galactic_to_icrs <- function(x) {
+.transform_galactic_to_icrs <- function(x) {
   x <- .validate_sky_coord(x)
   if (!identical(frame(x)$name, "galactic")) {
     stop("`x` must be in <galactic> frame.", call. = FALSE)
@@ -77,11 +65,11 @@ transform_to.sky_coord <- function(x, frame) {
   }
 
   if (identical(src$name, "icrs") && identical(dst$name, "galactic")) {
-    return(transform_icrs_to_galactic(x))
+    return(.transform_icrs_to_galactic(x))
   }
 
   if (identical(src$name, "galactic") && identical(dst$name, "icrs")) {
-    return(transform_galactic_to_icrs(x))
+    return(.transform_galactic_to_icrs(x))
   }
 
   stop(
@@ -91,9 +79,12 @@ transform_to.sky_coord <- function(x, frame) {
 }
 
 #' @export
-transform.sky_coord <- function(`_data`, frame = NULL, ...) {
-  if (is.null(frame)) {
-    stop("`frame` must be provided for sky_coord transformation.", call. = FALSE)
-  }
-  transform_to(`_data`, frame = frame)
+transform.sky_coord <- function(`_data`, ...) {
+  rlang::abort(
+    c(
+      "`transform()` is not supported for `sky_coord` objects.",
+      "i" = "Did you mean `transform_to()`?",
+      ">" = "Example: `transform_to(x, galactic())`"
+    )
+  )
 }

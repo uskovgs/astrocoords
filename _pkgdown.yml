@@ -2,3 +2,68 @@ url: https://uskovgs.github.io/astrocoords/
 template:
   bootstrap: 5
   light-switch: true
+
+navbar:
+  left:
+    - text: Get started
+      href: articles/astrocoords.html
+    - text: Articles
+      menu:
+        - text: Working with time
+          href: articles/working_with_time.html
+  right:
+    - icon: fa-github
+      href: https://github.com/uskovgs/astrocoords
+
+reference:
+  - title: Coordinates
+    desc: Create and inspect sky coordinate vectors.
+    contents:
+      - sky_coord
+      - ra_dec
+      - gal_coord
+      - ra
+      - dec
+      - l
+      - b
+      - frame
+      - separation
+
+  - title: Frames and Transforms
+    desc: Define coordinate frames and transform between them.
+    contents:
+      - sky_frame
+      - icrs
+      - galactic
+      - transform_to
+
+  - title: Parsing and Naming
+    desc: Parse source coordinates and build IAU-style names.
+    contents:
+      - parse_coord
+      - iau_name
+
+  - title: Time
+    desc: Convert between calendar dates and JD/MJD.
+    contents:
+      - jd_fromdate
+      - jd2greg
+      - mjd2greg
+
+  - title: Printing Options
+    desc: Control how sky coordinates are printed.
+    contents:
+      - set_print_hms
+      - set_print_plain
+      - set_print_pair
+
+  - title: Deprecated
+    desc: Backward-compatible aliases.
+    contents:
+      - radec
+
+  - title: Internals
+    desc: Internal package docs.
+    contents:
+      - astrocoords-package
+      - sky_coord-vctrs-methods

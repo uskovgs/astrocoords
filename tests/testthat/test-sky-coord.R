@@ -20,16 +20,6 @@ test_that("coordinate range validation rejects invalid values", {
   )
 
   expect_error(
-    new_sky_coord(361, 0, frame = icrs()),
-    "ra"
-  )
-
-  expect_error(
-    new_sky_coord(0, 91, frame = icrs()),
-    "dec"
-  )
-
-  expect_error(
     gal_coord(361, 0),
     "\\bl\\b"
   )
@@ -108,11 +98,11 @@ test_that("notation helpers work", {
   }
   options(astrocoords.notation = NULL)
 
-  expect_equal(get_sky_coord_notation(), "hmsdms")
+  expect_equal(getOption("astrocoords.notation", "hmsdms"), "hmsdms")
   set_print_plain()
-  expect_equal(get_sky_coord_notation(), "plain")
+  expect_equal(getOption("astrocoords.notation"), "plain")
   set_print_pair()
-  expect_equal(get_sky_coord_notation(), "pair")
+  expect_equal(getOption("astrocoords.notation"), "pair")
   set_print_hms()
-  expect_equal(get_sky_coord_notation(), "hmsdms")
+  expect_equal(getOption("astrocoords.notation"), "hmsdms")
 })

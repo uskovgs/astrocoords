@@ -12,6 +12,7 @@ URL: https://uskovgs.github.io/astrocoords/
 Imports:
     checkmate,
     Rcpp (>= 1.1.1),
+    rlang,
     vctrs
 Suggests:
     knitr,

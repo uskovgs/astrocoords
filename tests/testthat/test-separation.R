@@ -25,7 +25,7 @@ test_that("separation is S3 and validates class", {
 test_that("separation supports galactic and mixed-frame inputs", {
   x <- gal_coord(0, 0)
   y_gal <- gal_coord(90, 0)
-  y_icrs <- transform(y_gal, icrs())
+  y_icrs <- transform_to(y_gal, icrs())
 
   expect_equal(separation(x, y_gal), 90 * 3600, tolerance = 1e-8)
   expect_equal(separation(x, y_icrs), 90 * 3600, tolerance = 1e-8)

@@ -1,11 +1,4 @@
-#' Low-level sky coordinate constructor
-#'
-#' @param lon,lat Longitude and latitude in degrees.
-#' @param frame A sky frame object.
-#'
-#' @return A <sky_coord> vector.
-#' @export
-new_sky_coord <- function(lon = double(), lat = double(), frame = icrs()) {
+.new_sky_coord <- function(lon = double(), lat = double(), frame = icrs()) {
   lon <- vctrs::vec_cast(lon, double())
   lat <- vctrs::vec_cast(lat, double())
   frame <- .validate_frame(frame)
@@ -38,11 +31,11 @@ sky_coord <- function(
   frame = icrs()
 ) {
   args <- vctrs::vec_recycle_common(
-    lon = vctrs::vec_cast(lon, double()),
-    lat = vctrs::vec_cast(lat, double())
+    lon = lon,
+    lat = lat
   )
 
-  new_sky_coord(args$lon, args$lat, frame = frame)
+  .new_sky_coord(args$lon, args$lat, frame = frame)
 }
 
 .format_coord_number <- function(x) {
