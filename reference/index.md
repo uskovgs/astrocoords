@@ -2,8 +2,6 @@
 
 ## All functions
 
-- [`ang_sep()`](https://uskovgs.github.io/astrocoords/reference/ang_sep.md)
-  : Angular separation on the sphere
 - [`b()`](https://uskovgs.github.io/astrocoords/reference/b.md) :
   Galactic latitude accessor
 - [`dec()`](https://uskovgs.github.io/astrocoords/reference/dec.md) :
