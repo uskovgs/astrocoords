@@ -2,20 +2,34 @@
 % Please edit documentation in R/julian-date.R
 \name{jd2greg}
 \alias{jd2greg}
-\title{POSIXct from Julian Date}
+\title{Convert Julian Date (JD) to POSIXct}
 \usage{
 jd2greg(jd, scale = "UTC", tz = "UTC")
 }
 \arguments{
-\item{jd}{Numeric vector of Julian Date.}
+\item{jd}{Numeric vector of Julian Date values.}
 
-\item{scale}{ERFA timescale. Only "UTC" is currently supported.}
+\item{scale}{Time scale used by ERFA. Only `"UTC"` is currently supported.}
 
-\item{tz}{Time zone for returned POSIXct.}
+\item{tz}{Time zone for the returned `POSIXct` vector.}
 }
 \value{
-POSIXct vector.
+`POSIXct` vector.
 }
 \description{
-POSIXct from Julian Date
+Convert Julian Date (JD) to POSIXct
+}
+\details{
+`tz` affects the returned clock representation, not the underlying moment.
+}
+\examples{
+jd <- 2461107.5
+jd2greg(jd, tz = "UTC")
+jd2greg(jd, tz = "Europe/Moscow")
+
+x <- as.POSIXct("2026-03-08 00:00:00", tz = "UTC")
+jd2greg(jd_fromdate(x), tz = "UTC")
+}
+\seealso{
+\code{\link{jd_fromdate}}, \code{\link{mjd2greg}}
 }

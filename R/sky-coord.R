@@ -18,7 +18,7 @@
   out
 }
 
-#' User-facing sky coordinate constructor
+#' Create sky coordinates
 #'
 #' Create a vector of sky coordinates in degrees.
 #'
@@ -38,8 +38,9 @@
 #'   For `frame = galactic()`, this is Galactic latitude (`b`) and must be
 #'   between `-90` and `90`.
 #'
-#' @param frame A sky frame object. Supported frames are [icrs()] and
-#'   [galactic()]. The default is [icrs()].
+#' @param frame A sky frame object. Supported frames are
+#'   \code{\link[=icrs]{icrs()}} and \code{\link[=galactic]{galactic()}}.
+#'   The default is \code{\link[=icrs]{icrs()}}.
 #'
 #' @return A <sky_coord> vector.
 #'

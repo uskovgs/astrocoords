@@ -1,12 +1,4 @@
-#' Generic sky frame constructor
-#'
-#' @param name Frame name.
-#' @param x_name Name of the longitude-like axis.
-#' @param y_name Name of the latitude-like axis.
-#'
-#' @return A <sky_frame> object.
-#' @export
-sky_frame <- function(name, x_name, y_name) {
+.sky_frame <- function(name, x_name, y_name) {
   structure(
     list(
       name = name,
@@ -22,7 +14,7 @@ sky_frame <- function(name, x_name, y_name) {
 #' @return A <sky_frame> object.
 #' @export
 icrs <- function() {
-  sky_frame("icrs", x_name = "ra", y_name = "dec")
+  .sky_frame("icrs", x_name = "ra", y_name = "dec")
 }
 
 #' Galactic frame
@@ -30,7 +22,7 @@ icrs <- function() {
 #' @return A <sky_frame> object.
 #' @export
 galactic <- function() {
-  sky_frame("galactic", x_name = "l", y_name = "b")
+  .sky_frame("galactic", x_name = "l", y_name = "b")
 }
 
 .same_frame <- function(x, y) {

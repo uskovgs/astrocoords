@@ -2,20 +2,34 @@
 % Please edit documentation in R/julian-date.R
 \name{mjd2greg}
 \alias{mjd2greg}
-\title{POSIXct from Modified Julian Date}
+\title{Convert Modified Julian Date (MJD) to POSIXct}
 \usage{
 mjd2greg(mjd, scale = "UTC", tz = "UTC")
 }
 \arguments{
-\item{mjd}{Numeric vector of Modified Julian Date.}
+\item{mjd}{Numeric vector of Modified Julian Date values.}
 
-\item{scale}{ERFA timescale. Only "UTC" is currently supported.}
+\item{scale}{Time scale used by ERFA. Only `"UTC"` is currently supported.}
 
-\item{tz}{Time zone for returned POSIXct.}
+\item{tz}{Time zone for the returned `POSIXct` vector.}
 }
 \value{
-POSIXct vector.
+`POSIXct` vector.
 }
 \description{
-POSIXct from Modified Julian Date
+Convert Modified Julian Date (MJD) to POSIXct
+}
+\details{
+MJD is related to JD by:
+\deqn{MJD = JD - 2400000.5}
+}
+\examples{
+mjd2greg(61107, tz = "UTC")
+
+m <- 61107.25
+mjd2greg(m, tz = "UTC")
+jd2greg(m + 2400000.5, tz = "UTC")
+}
+\seealso{
+\code{\link{jd2greg}}, \code{\link{jd_fromdate}}
 }

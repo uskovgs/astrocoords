@@ -2,7 +2,7 @@
 % Please edit documentation in R/sky-coord.R
 \name{sky_coord}
 \alias{sky_coord}
-\title{User-facing sky coordinate constructor}
+\title{Create sky coordinates}
 \usage{
 sky_coord(lon = double(), lat = double(), frame = icrs())
 }
@@ -23,8 +23,9 @@ sky_coord(lon = double(), lat = double(), frame = icrs())
   For `frame = galactic()`, this is Galactic latitude (`b`) and must be
   between `-90` and `90`.}
 
-\item{frame}{A sky frame object. Supported frames are [icrs()] and
-[galactic()]. The default is [icrs()].}
+\item{frame}{A sky frame object. Supported frames are
+\code{\link[=icrs]{icrs()}} and \code{\link[=galactic]{galactic()}}.
+The default is \code{\link[=icrs]{icrs()}}.}
 }
 \value{
 A <sky_coord> vector.

@@ -38,7 +38,6 @@ reference:
   - title: Frames and Transforms
     desc: Define coordinate frames and transform between them.
     contents:
-      - sky_frame
       - icrs
       - galactic
       - transform_to

@@ -59,6 +59,16 @@
 #' @param dec_digits Number of digits after the decimal point in Dec seconds.
 #'
 #' @return Character vector.
+#'
+#' @examples
+#' x <- parse_coord("J230631.0+155633")
+#'
+#' iau_name(x)
+#' iau_name(x, prefix = "SRGA J")
+#' iau_name(x, ra_digits = 2, dec_digits = 1)
+#'
+#' # Non-ICRS inputs are transformed internally
+#' iau_name(transform_to(x, galactic()))
 #' @export
 iau_name <- function(x, prefix = NULL, epoch = "J", ra_digits = 1, dec_digits = 0) {
   x <- .validate_sky_coord(x)

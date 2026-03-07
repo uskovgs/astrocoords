@@ -1,9 +1,25 @@
-#' Julian Date from date-time
+#' Convert date-time to Julian Date (JD)
 #'
-#' @param x POSIXct/POSIXlt or Date vector.
-#' @param scale ERFA timescale. Only "UTC" is currently supported.
+#' @param x Date-time input as `POSIXct`, `POSIXlt`, or `Date`.
 #'
-#' @return Numeric vector with Julian Date.
+#'   `Date` values are interpreted as `00:00:00` in UTC.
+#'
+#' @param scale Time scale used by ERFA. Only `"UTC"` is currently supported.
+#'
+#' @return Numeric vector with Julian Date values (in days).
+#'
+#' @details
+#' The fractional part of JD encodes time of day.
+#'
+#' JD starts at noon, so calendar midnight corresponds to `.5` in JD.
+#'
+#' @seealso \code{\link{jd2greg}}, \code{\link{mjd2greg}}
+#'
+#' @examples
+#' t <- as.POSIXct("2026-03-08 12:34:56", tz = "UTC")
+#' jd_fromdate(t)
+#'
+#' jd_fromdate(as.Date("2026-03-08"))
 #' @export
 jd_fromdate <- function(x, scale = "UTC") {
   scale <- .assert_scale_utc(scale)
@@ -31,13 +47,26 @@ jd_fromdate <- function(x, scale = "UTC") {
   degenerate_jd2(out$d1, out$d2)
 }
 
-#' POSIXct from Julian Date
+#' Convert Julian Date (JD) to POSIXct
 #'
-#' @param jd Numeric vector of Julian Date.
-#' @param scale ERFA timescale. Only "UTC" is currently supported.
-#' @param tz Time zone for returned POSIXct.
+#' @param jd Numeric vector of Julian Date values.
+#' @param scale Time scale used by ERFA. Only `"UTC"` is currently supported.
+#' @param tz Time zone for the returned `POSIXct` vector.
 #'
-#' @return POSIXct vector.
+#' @return `POSIXct` vector.
+#'
+#' @details
+#' `tz` affects the returned clock representation, not the underlying moment.
+#'
+#' @seealso \code{\link{jd_fromdate}}, \code{\link{mjd2greg}}
+#'
+#' @examples
+#' jd <- 2461107.5
+#' jd2greg(jd, tz = "UTC")
+#' jd2greg(jd, tz = "Europe/Moscow")
+#'
+#' x <- as.POSIXct("2026-03-08 00:00:00", tz = "UTC")
+#' jd2greg(jd_fromdate(x), tz = "UTC")
 #' @export
 jd2greg <- function(jd, scale = "UTC", tz = "UTC") {
   scale <- .assert_scale_utc(scale)
@@ -47,13 +76,26 @@ jd2greg <- function(jd, scale = "UTC", tz = "UTC") {
   .d2dtf_to_posixct(parts$d1, parts$d2, scale = scale, tz = tz, ndp = 6L)
 }
 
-#' POSIXct from Modified Julian Date
+#' Convert Modified Julian Date (MJD) to POSIXct
 #'
-#' @param mjd Numeric vector of Modified Julian Date.
-#' @param scale ERFA timescale. Only "UTC" is currently supported.
-#' @param tz Time zone for returned POSIXct.
+#' @param mjd Numeric vector of Modified Julian Date values.
+#' @param scale Time scale used by ERFA. Only `"UTC"` is currently supported.
+#' @param tz Time zone for the returned `POSIXct` vector.
 #'
-#' @return POSIXct vector.
+#' @return `POSIXct` vector.
+#'
+#' @details
+#' MJD is related to JD by:
+#' \deqn{MJD = JD - 2400000.5}
+#'
+#' @seealso \code{\link{jd2greg}}, \code{\link{jd_fromdate}}
+#'
+#' @examples
+#' mjd2greg(61107, tz = "UTC")
+#'
+#' m <- 61107.25
+#' mjd2greg(m, tz = "UTC")
+#' jd2greg(m + 2400000.5, tz = "UTC")
 #' @export
 mjd2greg <- function(mjd, scale = "UTC", tz = "UTC") {
   scale <- .assert_scale_utc(scale)

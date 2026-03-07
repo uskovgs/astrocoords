@@ -7,13 +7,41 @@
 transform_to(x, frame)
 }
 \arguments{
-\item{x}{A <sky_coord> vector.}
+\item{x}{A \code{<sky_coord>} vector.}
 
-\item{frame}{Target frame.}
+\item{frame}{Target frame. Use \code{\link[=icrs]{icrs()}} or
+\code{\link[=galactic]{galactic()}}.}
 }
 \value{
-A transformed <sky_coord> vector.
+A transformed \code{<sky_coord>} vector.
 }
 \description{
-Transform sky coordinates to another frame
+Convert a \code{sky_coord} vector between supported coordinate frames.
+}
+\details{
+Supported transformations are:
+\itemize{
+  \item \code{icrs() -> galactic()}
+  \item \code{galactic() -> icrs()}
+}
+
+If \code{x} is already in the requested \code{frame}, it is returned
+unchanged.
+
+Use \code{transform_to()} (not \code{transform()}) for \code{sky_coord}
+objects.
+}
+\examples{
+x <- ra_dec(c(10, 120), c(20, -30))
+x
+
+g <- transform_to(x, galactic())
+g
+
+transform_to(g, icrs())
+
+# Pipe-friendly workflow
+ra_dec(10, 20) |>
+  transform_to(galactic()) |>
+  transform_to(icrs())
 }

@@ -23,3 +23,13 @@ Character vector.
 \description{
 Build IAU-style source names from sky coordinates
 }
+\examples{
+x <- parse_coord("J230631.0+155633")
+
+iau_name(x)
+iau_name(x, prefix = "SRGA J")
+iau_name(x, ra_digits = 2, dec_digits = 1)
+
+# Non-ICRS inputs are transformed internally
+iau_name(transform_to(x, galactic()))
+}

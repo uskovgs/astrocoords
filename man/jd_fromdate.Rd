@@ -2,18 +2,34 @@
 % Please edit documentation in R/julian-date.R
 \name{jd_fromdate}
 \alias{jd_fromdate}
-\title{Julian Date from date-time}
+\title{Convert date-time to Julian Date (JD)}
 \usage{
 jd_fromdate(x, scale = "UTC")
 }
 \arguments{
-\item{x}{POSIXct/POSIXlt or Date vector.}
+\item{x}{Date-time input as `POSIXct`, `POSIXlt`, or `Date`.
 
-\item{scale}{ERFA timescale. Only "UTC" is currently supported.}
+  `Date` values are interpreted as `00:00:00` in UTC.}
+
+\item{scale}{Time scale used by ERFA. Only `"UTC"` is currently supported.}
 }
 \value{
-Numeric vector with Julian Date.
+Numeric vector with Julian Date values (in days).
 }
 \description{
-Julian Date from date-time
+Convert date-time to Julian Date (JD)
+}
+\details{
+The fractional part of JD encodes time of day.
+
+JD starts at noon, so calendar midnight corresponds to `.5` in JD.
+}
+\examples{
+t <- as.POSIXct("2026-03-08 12:34:56", tz = "UTC")
+jd_fromdate(t)
+
+jd_fromdate(as.Date("2026-03-08"))
+}
+\seealso{
+\code{\link{jd2greg}}, \code{\link{mjd2greg}}
 }
