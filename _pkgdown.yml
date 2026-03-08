@@ -51,9 +51,9 @@ reference:
   - title: Time
     desc: Convert between calendar dates and JD/MJD.
     contents:
-      - jd_fromdate
-      - jd2greg
-      - mjd2greg
+      - datetime_to_jd
+      - jd_to_datetime
+      - mjd_to_datetime
 
   - title: Printing Options
     desc: Control how sky coordinates are printed.

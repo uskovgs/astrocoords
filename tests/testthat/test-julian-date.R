@@ -4,20 +4,20 @@ test_that("roundtrip POSIXct -> JD -> POSIXct works for UTC", {
     tz = "UTC"
   )
 
-  jd <- jd_fromdate(x, scale = "UTC")
-  back <- jd2greg(jd, scale = "UTC", tz = "UTC")
+  jd <- datetime_to_jd(x)
+  back <- jd_to_datetime(jd, tz = "UTC")
 
   expect_s3_class(back, "POSIXct")
   expect_equal(as.numeric(back), as.numeric(x), tolerance = 1e-6)
 })
 
 test_that("Date input is supported and maps to midnight UTC", {
-  jd <- jd_fromdate(as.Date("2026-03-08"), scale = "UTC")
+  jd <- datetime_to_jd(as.Date("2026-03-08"))
   expect_equal(jd, 2461107.5, tolerance = 1e-10)
 })
 
-test_that("mjd2greg works for known MJD", {
-  x <- mjd2greg(51544, scale = "UTC", tz = "UTC")
+test_that("mjd_to_datetime works for known MJD", {
+  x <- mjd_to_datetime(51544, tz = "UTC")
   expect_equal(format(x, tz = "UTC", usetz = FALSE), "2000-01-01")
 })
 
@@ -26,11 +26,18 @@ test_that("vectorized conversion works", {
     c("2020-01-01 00:00:00", "2020-01-02 00:00:00", "2020-01-03 00:00:00"),
     tz = "UTC"
   )
-  jd <- jd_fromdate(x)
-  back <- jd2greg(jd, tz = "UTC")
+  jd <- datetime_to_jd(x)
+  back <- jd_to_datetime(jd, tz = "UTC")
 
   expect_length(jd, 3L)
   expect_equal(as.numeric(back), as.numeric(x), tolerance = 1e-6)
+})
+
+test_that("time conversion function names are consistent", {
+  x <- as.POSIXct("2026-03-08 12:34:56", tz = "UTC")
+
+  expect_equal(jd_to_datetime(datetime_to_jd(x), tz = "UTC"), x)
+  expect_equal(mjd_to_datetime(61107.25, tz = "UTC"), jd_to_datetime(61107.25 + 2400000.5, tz = "UTC"))
 })
 
 test_that("invalid calendar dates produce errors via status handling", {
