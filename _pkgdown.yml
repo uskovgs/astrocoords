@@ -54,6 +54,7 @@ reference:
       - datetime_to_jd
       - jd_to_datetime
       - mjd_to_datetime
+      - leap_second_dates
 
   - title: Printing Options
     desc: Control how sky coordinates are printed.

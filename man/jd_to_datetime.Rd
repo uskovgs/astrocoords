@@ -2,25 +2,25 @@
 % Please edit documentation in R/julian-date.R
 \name{jd_to_datetime}
 \alias{jd_to_datetime}
-\title{Convert Julian Date (JD) to POSIXct}
+\title{Convert Julian Date (JD) to date-time}
 \usage{
 jd_to_datetime(jd, tz = "UTC")
 }
 \arguments{
 \item{jd}{Numeric vector of Julian Date values.}
 
-\item{tz}{Time zone for the returned `POSIXct` vector.}
+\item{tz}{Time zone for output `POSIXct` values.}
 }
 \value{
 `POSIXct` vector.
 }
 \description{
-Convert Julian Date (JD) to POSIXct
+Convert Julian Date values back to regular date-time values.
 }
 \details{
-`tz` affects the returned clock representation, not the underlying moment.
+`tz` changes only how time is displayed, not the physical moment.
 
-This function currently uses ERFA with fixed `scale = "UTC"` internally.
+Uses ERFA with `scale = "UTC"`. Leap seconds are handled by ERFA.
 }
 \examples{
 jd <- 2461107.5

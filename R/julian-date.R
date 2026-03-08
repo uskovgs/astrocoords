@@ -1,17 +1,21 @@
 #' Convert date-time to Julian Date (JD)
 #'
-#' @param x Date-time input as `POSIXct`, `POSIXlt`, or `Date`.
+#' Convert regular calendar date-times to Julian Date.
 #'
-#'   `Date` values are interpreted as `00:00:00` in UTC.
+#' @param x Date-time values as `POSIXct`, `POSIXlt`, or `Date`.
 #'
-#' @return Numeric vector with Julian Date values (in days).
+#'   `Date` values are treated as midnight (`00:00:00`) in UTC.
+#'
+#' @return Numeric vector of Julian Date values (days).
 #'
 #' @details
-#' The fractional part of JD encodes time of day.
+#' JD is a continuous day count used in astronomy.
 #'
-#' JD starts at noon, so calendar midnight corresponds to `.5` in JD.
+#' The fractional part is time of day.
 #'
-#' This function currently uses ERFA with fixed `scale = "UTC"` internally.
+#' JD starts at noon, so midnight is shown as `.5`.
+#'
+#' Uses ERFA with `scale = "UTC"`. Leap seconds are handled by ERFA.
 #'
 #' @seealso \code{\link{jd_to_datetime}}, \code{\link{mjd_to_datetime}}
 #'
@@ -50,17 +54,19 @@ datetime_to_jd <- function(x) {
   degenerate_jd2(out$d1, out$d2)
 }
 
-#' Convert Julian Date (JD) to POSIXct
+#' Convert Julian Date (JD) to date-time
+#'
+#' Convert Julian Date values back to regular date-time values.
 #'
 #' @param jd Numeric vector of Julian Date values.
-#' @param tz Time zone for the returned `POSIXct` vector.
+#' @param tz Time zone for output `POSIXct` values.
 #'
 #' @return `POSIXct` vector.
 #'
 #' @details
-#' `tz` affects the returned clock representation, not the underlying moment.
+#' `tz` changes only how time is displayed, not the physical moment.
 #'
-#' This function currently uses ERFA with fixed `scale = "UTC"` internally.
+#' Uses ERFA with `scale = "UTC"`. Leap seconds are handled by ERFA.
 #'
 #' @seealso \code{\link{datetime_to_jd}}, \code{\link{mjd_to_datetime}}
 #'
@@ -79,10 +85,12 @@ jd_to_datetime <- function(jd, tz = "UTC") {
   .d2dtf_to_posixct(parts$d1, parts$d2, scale = "UTC", tz = tz, ndp = 6L)
 }
 
-#' Convert Modified Julian Date (MJD) to POSIXct
+#' Convert Modified Julian Date (MJD) to date-time
+#'
+#' Convert MJD values to regular date-time values.
 #'
 #' @param mjd Numeric vector of Modified Julian Date values.
-#' @param tz Time zone for the returned `POSIXct` vector.
+#' @param tz Time zone for output `POSIXct` values.
 #'
 #' @return `POSIXct` vector.
 #'
@@ -90,7 +98,7 @@ jd_to_datetime <- function(jd, tz = "UTC") {
 #' MJD is related to JD by:
 #' \deqn{MJD = JD - 2400000.5}
 #'
-#' This function currently uses ERFA with fixed `scale = "UTC"` internally.
+#' Uses ERFA with `scale = "UTC"`. Leap seconds are handled by ERFA.
 #'
 #' @seealso \code{\link{jd_to_datetime}}, \code{\link{datetime_to_jd}}
 #'

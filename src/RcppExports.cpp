@@ -104,6 +104,19 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// cpp_era_dat
+Rcpp::List cpp_era_dat(Rcpp::IntegerVector year, Rcpp::IntegerVector month, Rcpp::IntegerVector day);
+RcppExport SEXP _astrocoords_cpp_era_dat(SEXP yearSEXP, SEXP monthSEXP, SEXP daySEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type year(yearSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type month(monthSEXP);
+    Rcpp::traits::input_parameter< Rcpp::IntegerVector >::type day(daySEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_era_dat(year, month, day));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
     {"_astrocoords_cpp_era_icrs2g", (DL_FUNC) &_astrocoords_cpp_era_icrs2g, 2},
@@ -113,6 +126,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_astrocoords_cpp_era_jd2cal", (DL_FUNC) &_astrocoords_cpp_era_jd2cal, 2},
     {"_astrocoords_cpp_era_dtf2d", (DL_FUNC) &_astrocoords_cpp_era_dtf2d, 7},
     {"_astrocoords_cpp_era_d2dtf", (DL_FUNC) &_astrocoords_cpp_era_d2dtf, 4},
+    {"_astrocoords_cpp_era_dat", (DL_FUNC) &_astrocoords_cpp_era_dat, 3},
     {NULL, NULL, 0}
 };
 

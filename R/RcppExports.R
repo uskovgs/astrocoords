@@ -29,3 +29,7 @@ cpp_era_d2dtf <- function(scale, ndp, d1, d2) {
     .Call(`_astrocoords_cpp_era_d2dtf`, scale, ndp, d1, d2)
 }
 
+cpp_era_dat <- function(year, month, day) {
+    .Call(`_astrocoords_cpp_era_dat`, year, month, day)
+}
+

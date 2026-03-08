@@ -2,26 +2,26 @@
 % Please edit documentation in R/julian-date.R
 \name{mjd_to_datetime}
 \alias{mjd_to_datetime}
-\title{Convert Modified Julian Date (MJD) to POSIXct}
+\title{Convert Modified Julian Date (MJD) to date-time}
 \usage{
 mjd_to_datetime(mjd, tz = "UTC")
 }
 \arguments{
 \item{mjd}{Numeric vector of Modified Julian Date values.}
 
-\item{tz}{Time zone for the returned `POSIXct` vector.}
+\item{tz}{Time zone for output `POSIXct` values.}
 }
 \value{
 `POSIXct` vector.
 }
 \description{
-Convert Modified Julian Date (MJD) to POSIXct
+Convert MJD values to regular date-time values.
 }
 \details{
 MJD is related to JD by:
 \deqn{MJD = JD - 2400000.5}
 
-This function currently uses ERFA with fixed `scale = "UTC"` internally.
+Uses ERFA with `scale = "UTC"`. Leap seconds are handled by ERFA.
 }
 \examples{
 mjd_to_datetime(61107, tz = "UTC")

@@ -58,3 +58,11 @@ test_that("positive ERFA status is surfaced as warning when encountered", {
     "warning status"
   )
 })
+
+test_that("leap_second_dates returns known ERFA table dates", {
+  x <- leap_second_dates()
+
+  expect_s3_class(x, "Date")
+  expect_true(as.Date("1972-07-01") %in% x)
+  expect_true(as.Date("2017-01-01") %in% x)
+})

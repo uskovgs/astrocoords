@@ -197,3 +197,35 @@ Rcpp::List cpp_era_d2dtf(
     Rcpp::Named("status") = status
   );
 }
+
+// [[Rcpp::export]]
+Rcpp::List cpp_era_dat(
+    Rcpp::IntegerVector year,
+    Rcpp::IntegerVector month,
+    Rcpp::IntegerVector day
+) {
+  R_xlen_t n = year.size();
+  if (month.size() != n || day.size() != n) {
+    Rcpp::stop("`year`, `month`, and `day` must have the same length.");
+  }
+
+  Rcpp::NumericVector deltat(n, NA_REAL);
+  Rcpp::IntegerVector status(n, NA_INTEGER);
+
+  for (R_xlen_t i = 0; i < n; ++i) {
+    if (is_na_int(year[i]) || is_na_int(month[i]) || is_na_int(day[i])) {
+      continue;
+    }
+
+    double out_deltat = NA_REAL;
+    int st = eraDat(year[i], month[i], day[i], 0.0, &out_deltat);
+
+    deltat[i] = out_deltat;
+    status[i] = st;
+  }
+
+  return Rcpp::List::create(
+    Rcpp::Named("deltat") = deltat,
+    Rcpp::Named("status") = status
+  );
+}

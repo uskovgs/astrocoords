@@ -7,22 +7,24 @@
 datetime_to_jd(x)
 }
 \arguments{
-\item{x}{Date-time input as `POSIXct`, `POSIXlt`, or `Date`.
+\item{x}{Date-time values as `POSIXct`, `POSIXlt`, or `Date`.
 
-  `Date` values are interpreted as `00:00:00` in UTC.}
+  `Date` values are treated as midnight (`00:00:00`) in UTC.}
 }
 \value{
-Numeric vector with Julian Date values (in days).
+Numeric vector of Julian Date values (days).
 }
 \description{
-Convert date-time to Julian Date (JD)
+Convert regular calendar date-times to Julian Date.
 }
 \details{
-The fractional part of JD encodes time of day.
+JD is a continuous day count used in astronomy.
 
-JD starts at noon, so calendar midnight corresponds to `.5` in JD.
+The fractional part is time of day.
 
-This function currently uses ERFA with fixed `scale = "UTC"` internally.
+JD starts at noon, so midnight is shown as `.5`.
+
+Uses ERFA with `scale = "UTC"`. Leap seconds are handled by ERFA.
 }
 \examples{
 old_accuracy <- getOption("digits")
