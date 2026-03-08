@@ -10,6 +10,18 @@ Rcpp::Rostream<true>&  Rcpp::Rcout = Rcpp::Rcpp_cout_get();
 Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
+// cpp_era_s2c
+Rcpp::List cpp_era_s2c(Rcpp::NumericVector lon, Rcpp::NumericVector lat);
+RcppExport SEXP _astrocoords_cpp_era_s2c(SEXP lonSEXP, SEXP latSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type lon(lonSEXP);
+    Rcpp::traits::input_parameter< Rcpp::NumericVector >::type lat(latSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_era_s2c(lon, lat));
+    return rcpp_result_gen;
+END_RCPP
+}
 // cpp_era_icrs2g
 Rcpp::List cpp_era_icrs2g(Rcpp::NumericVector ra, Rcpp::NumericVector dec);
 RcppExport SEXP _astrocoords_cpp_era_icrs2g(SEXP raSEXP, SEXP decSEXP) {
@@ -119,6 +131,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
+    {"_astrocoords_cpp_era_s2c", (DL_FUNC) &_astrocoords_cpp_era_s2c, 2},
     {"_astrocoords_cpp_era_icrs2g", (DL_FUNC) &_astrocoords_cpp_era_icrs2g, 2},
     {"_astrocoords_cpp_era_g2icrs", (DL_FUNC) &_astrocoords_cpp_era_g2icrs, 2},
     {"_astrocoords_cpp_era_seps", (DL_FUNC) &_astrocoords_cpp_era_seps, 4},

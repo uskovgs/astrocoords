@@ -10,6 +10,7 @@ Description: Vectorized astronomical coordinates for R.
 License: MIT + file LICENSE
 URL: https://uskovgs.github.io/astrocoords/
 Imports:
+    dbscan,
     checkmate,
     Rcpp (>= 1.1.1),
     rlang,

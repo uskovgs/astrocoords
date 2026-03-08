@@ -35,6 +35,13 @@ reference:
       - frame
       - separation
 
+  - title: Matching
+    desc: Low-level catalog matching helpers.
+    contents:
+      - to_cartesian
+      - coord_match
+      - coord_nearest
+
   - title: Frames and Transforms
     desc: Define coordinate frames and transform between them.
     contents:

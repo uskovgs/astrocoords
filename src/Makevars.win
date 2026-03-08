@@ -26,6 +26,7 @@ OBJECTS = \
 	erfa/tr.o \
 	erfa/trxp.o \
 	RcppExports.o \
+	wrap_cartesian.o \
 	wrap_galactic.o \
 	wrap_seps.o \
 	wrap_time.o
