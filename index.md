@@ -67,10 +67,10 @@ parse_coord("J230631.0+155633")
 Work with Julian Date:
 
 ``` r
-jd <- jd_fromdate(as.POSIXct("2026-03-08 12:34:56", tz = "UTC"))
+jd <- datetime_to_jd(as.POSIXct("2026-03-08 12:34:56", tz = "UTC"))
 jd
 #> [1] 2461108
 
-jd2greg(jd, tz = "UTC")
+jd_to_datetime(jd, tz = "UTC")
 #> [1] "2026-03-08 12:34:56 UTC"
 ```

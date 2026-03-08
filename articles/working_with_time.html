@@ -85,22 +85,22 @@ and Modified Julian Date (MJD).</p>
 <p>Astronomers often use JD for exact time stamps.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">now_utc</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"2026-03-08 12:34:56"</span>, tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/jd_fromdate.html">jd_fromdate</a></span><span class="op">(</span><span class="va">now_utc</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/datetime_to_jd.html">datetime_to_jd</a></span><span class="op">(</span><span class="va">now_utc</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 2461108</span></span></code></pre></div>
 <p>If you start from a calendar date without a clock time, the function
 uses midnight UTC.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/jd_fromdate.html">jd_fromdate</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2026-03-08"</span><span class="op">)</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/datetime_to_jd.html">datetime_to_jd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.Date.html" class="external-link">as.Date</a></span><span class="op">(</span><span class="st">"2026-03-08"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 2461108</span></span></code></pre></div>
 <p>You can also go back from JD to a normal R date-time.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/jd_fromdate.html">jd_fromdate</a></span><span class="op">(</span><span class="va">now_utc</span><span class="op">)</span></span>
-<span><span class="fu"><a href="../reference/jd2greg.html">jd2greg</a></span><span class="op">(</span><span class="va">jd</span>, tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/datetime_to_jd.html">datetime_to_jd</a></span><span class="op">(</span><span class="va">now_utc</span><span class="op">)</span></span>
+<span><span class="fu"><a href="../reference/jd_to_datetime.html">jd_to_datetime</a></span><span class="op">(</span><span class="va">jd</span>, tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "2026-03-08 12:34:56 UTC"</span></span></code></pre></div>
 <p>MJD is just a shifted version of JD. The package can convert it back
 to a normal date-time too.</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="../reference/mjd2greg.html">mjd2greg</a></span><span class="op">(</span><span class="fl">51544</span>, tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="fu"><a href="../reference/mjd_to_datetime.html">mjd_to_datetime</a></span><span class="op">(</span><span class="fl">51544</span>, tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "2000-01-01 UTC"</span></span></code></pre></div>
   </main>
 </div>

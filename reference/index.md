@@ -47,12 +47,14 @@ Parse source coordinates and build IAU-style names.
 
 Convert between calendar dates and JD/MJD.
 
-- [`jd_fromdate()`](https://uskovgs.github.io/astrocoords/reference/jd_fromdate.md)
+- [`datetime_to_jd()`](https://uskovgs.github.io/astrocoords/reference/datetime_to_jd.md)
   : Convert date-time to Julian Date (JD)
-- [`jd2greg()`](https://uskovgs.github.io/astrocoords/reference/jd2greg.md)
-  : Convert Julian Date (JD) to POSIXct
-- [`mjd2greg()`](https://uskovgs.github.io/astrocoords/reference/mjd2greg.md)
-  : Convert Modified Julian Date (MJD) to POSIXct
+- [`jd_to_datetime()`](https://uskovgs.github.io/astrocoords/reference/jd_to_datetime.md)
+  : Convert Julian Date (JD) to date-time
+- [`mjd_to_datetime()`](https://uskovgs.github.io/astrocoords/reference/mjd_to_datetime.md)
+  : Convert Modified Julian Date (MJD) to date-time
+- [`leap_second_dates()`](https://uskovgs.github.io/astrocoords/reference/leap_second_dates.md)
+  : Leap-second dates (UTC)
 
 ## Printing Options
 
