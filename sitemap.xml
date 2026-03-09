@@ -9,6 +9,8 @@
 <url><loc>https://uskovgs.github.io/astrocoords/index.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/astrocoords-package.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/b.html</loc></url>
+<url><loc>https://uskovgs.github.io/astrocoords/reference/coord_match.html</loc></url>
+<url><loc>https://uskovgs.github.io/astrocoords/reference/coord_nearest.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/datetime_to_jd.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/dec.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/frame.html</loc></url>
@@ -29,6 +31,7 @@
 <url><loc>https://uskovgs.github.io/astrocoords/reference/set_print_hms.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/sky_coord-vctrs-methods.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/sky_coord.html</loc></url>
+<url><loc>https://uskovgs.github.io/astrocoords/reference/to_cartesian.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/transform_to.html</loc></url>
 </urlset>
 

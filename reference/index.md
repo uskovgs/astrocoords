@@ -23,6 +23,17 @@ Create and inspect sky coordinate vectors.
 - [`separation()`](https://uskovgs.github.io/astrocoords/reference/separation.md)
   : Angular separation between sky coordinates
 
+## Matching
+
+Low-level catalog matching helpers.
+
+- [`to_cartesian()`](https://uskovgs.github.io/astrocoords/reference/to_cartesian.md)
+  : Convert sky coordinates to Cartesian unit vectors
+- [`coord_match()`](https://uskovgs.github.io/astrocoords/reference/coord_match.md)
+  : Match two sky catalogs within angular radius
+- [`coord_nearest()`](https://uskovgs.github.io/astrocoords/reference/coord_nearest.md)
+  : Nearest-neighbor match for sky catalogs
+
 ## Frames and Transforms
 
 Define coordinate frames and transform between them.
