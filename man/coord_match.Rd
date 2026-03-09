@@ -4,38 +4,26 @@
 \alias{coord_match}
 \title{Match two sky catalogs within angular radius}
 \usage{
-coord_match(
-  x,
-  y,
-  max_sep,
-  unit = c("arcsec", "deg", "rad"),
-  method = c("auto", "kdtree", "bruteforce"),
-  recalc_by_erfa = FALSE
-)
+coord_match(x, y, max_sep, unit = "arcsec", method = "kdtree")
 }
 \arguments{
 \item{x, y}{`<sky_coord>` vectors.}
 
 \item{max_sep}{Maximum separation threshold.}
 
-\item{unit}{Separation unit: `"arcsec"`, `"deg"`, or `"rad"`.}
+\item{unit}{Separation unit: `"arcsec"`, `"arcmin"`, `"deg"`, or `"rad"`.}
 
-\item{method}{Matching backend: `"auto"`, `"kdtree"`, or `"bruteforce"`.}
-
-\item{recalc_by_erfa}{If `TRUE`, recompute candidate separations with
-`separation()`; otherwise use inverse chord-distance formula.}
+\item{method}{Matching backend: `"kdtree"` or `"bruteforce"`.}
 }
 \value{
 Base `data.frame` with columns `x_id`, `y_id`, `sep`.
+  `sep` is returned in the same unit as `unit`.
 }
 \description{
 Low-level spherical catalog matching for two `sky_coord` vectors.
 }
 \details{
 If frames differ, `y` is transformed to the frame of `x`.
-
-`method = "auto"` uses `"bruteforce"` when `length(x) * length(y) <= 1e6`,
-and `"kdtree"` otherwise.
 
 Rows are sorted by `x_id`, then `sep`, then `y_id`.
 

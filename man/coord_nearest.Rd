@@ -4,23 +4,14 @@
 \alias{coord_nearest}
 \title{Nearest-neighbor match for sky catalogs}
 \usage{
-coord_nearest(
-  x,
-  y,
-  unit = c("arcsec", "deg", "rad"),
-  method = c("auto", "kdtree", "bruteforce"),
-  recalc_by_erfa = FALSE
-)
+coord_nearest(x, y, unit = "arcsec", method = "kdtree")
 }
 \arguments{
 \item{x, y}{`<sky_coord>` vectors.}
 
-\item{unit}{Separation unit: `"arcsec"`, `"deg"`, or `"rad"`.}
+\item{unit}{Separation unit: `"arcsec"`, `"arcmin"`, `"deg"`, or `"rad"`.}
 
-\item{method}{Matching backend: `"auto"`, `"kdtree"`, or `"bruteforce"`.}
-
-\item{recalc_by_erfa}{If `TRUE`, recompute candidate separations with
-`separation()`; otherwise use inverse chord-distance formula.}
+\item{method}{Matching backend: `"kdtree"` or `"bruteforce"`.}
 }
 \value{
 Base `data.frame` with columns `x_id`, `y_id`, `sep`.

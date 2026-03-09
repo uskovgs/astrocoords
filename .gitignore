@@ -12,3 +12,5 @@ radec.R
 ToDo.md
 inst/doc
 docs
+.gitignore
+test.R

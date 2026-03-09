@@ -11,7 +11,7 @@ Rcpp::Rostream<false>& Rcpp::Rcerr = Rcpp::Rcpp_cerr_get();
 #endif
 
 // cpp_era_s2c
-Rcpp::List cpp_era_s2c(Rcpp::NumericVector lon, Rcpp::NumericVector lat);
+Rcpp::NumericMatrix cpp_era_s2c(Rcpp::NumericVector lon, Rcpp::NumericVector lat);
 RcppExport SEXP _astrocoords_cpp_era_s2c(SEXP lonSEXP, SEXP latSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;

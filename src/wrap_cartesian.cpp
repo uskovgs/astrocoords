@@ -5,7 +5,7 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-Rcpp::List cpp_era_s2c(
+Rcpp::NumericMatrix cpp_era_s2c(
     Rcpp::NumericVector lon,
     Rcpp::NumericVector lat
 ) {
@@ -14,9 +14,12 @@ Rcpp::List cpp_era_s2c(
     Rcpp::stop("`lon` and `lat` must have the same length.");
   }
 
-  Rcpp::NumericVector x(n, NA_REAL);
-  Rcpp::NumericVector y(n, NA_REAL);
-  Rcpp::NumericVector z(n, NA_REAL);
+  Rcpp::NumericMatrix out(n, 3);
+  for (R_xlen_t i = 0; i < n; ++i) {
+    out(i, 0) = NA_REAL;
+    out(i, 1) = NA_REAL;
+    out(i, 2) = NA_REAL;
+  }
 
   for (R_xlen_t i = 0; i < n; ++i) {
     if (Rcpp::NumericVector::is_na(lon[i]) || Rcpp::NumericVector::is_na(lat[i])) {
@@ -25,14 +28,11 @@ Rcpp::List cpp_era_s2c(
 
     double c[3] = {NA_REAL, NA_REAL, NA_REAL};
     eraS2c(lon[i], lat[i], c);
-    x[i] = c[0];
-    y[i] = c[1];
-    z[i] = c[2];
+    out(i, 0) = c[0];
+    out(i, 1) = c[1];
+    out(i, 2) = c[2];
   }
 
-  return Rcpp::List::create(
-    Rcpp::Named("x") = x,
-    Rcpp::Named("y") = y,
-    Rcpp::Named("z") = z
-  );
+  colnames(out) = Rcpp::CharacterVector::create("x", "y", "z");
+  return out;
 }

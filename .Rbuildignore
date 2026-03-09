@@ -1,7 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
 ^LICENSE\.md$
-^radec\.R$
 ^ToDo\.md$
 ^README\.Rmd$
 ^_pkgdown\.yml$
@@ -9,3 +8,4 @@
 ^pkgdown$
 ^\.github$
 ^src/.*\.(o|obj|so|dll)$
+^test\.R$

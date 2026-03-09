@@ -10,7 +10,7 @@ to_cartesian(x)
 \item{x}{A `<sky_coord>` vector.}
 }
 \value{
-A base `data.frame` with numeric columns `x`, `y`, `z`.
+A numeric matrix with columns `x`, `y`, `z`.
 }
 \description{
 Convert spherical sky coordinates (degrees) to unit Cartesian vectors.
