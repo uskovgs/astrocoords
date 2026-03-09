@@ -87,6 +87,9 @@ test_that("format supports configurable styles", {
 
   options(astrocoords.notation = "plain")
   expect_equal(format(x), "00 40 000.0 +20 00 00")
+
+  options(astrocoords.notation = "colon")
+  expect_equal(format(x), "00:40:00.0 +20:00:00")
 })
 
 test_that("print shows compact header with frame", {
@@ -110,6 +113,8 @@ test_that("notation helpers work", {
   expect_equal(getOption("astrocoords.notation"), "plain")
   set_print_pair()
   expect_equal(getOption("astrocoords.notation"), "pair")
+  set_print_colon()
+  expect_equal(getOption("astrocoords.notation"), "colon")
   set_print_hms()
   expect_equal(getOption("astrocoords.notation"), "hmsdms")
 })

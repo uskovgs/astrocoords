@@ -4,12 +4,15 @@
 \alias{set_print}
 \alias{set_print_hms}
 \alias{set_print_plain}
+\alias{set_print_colon}
 \alias{set_print_pair}
 \title{Set printing style for sky coordinates}
 \usage{
 set_print_hms()
 
 set_print_plain()
+
+set_print_colon()
 
 set_print_pair()
 }
@@ -27,6 +30,9 @@ formatted.
 `set_print_plain()` uses a compact plain-text style such as
 `00 40 000.0 +20 00 00`.
 
+`set_print_colon()` uses a compact colon style such as
+`00:40:00.0 +20:00:00`.
+
 `set_print_pair()` prints decimal degree pairs such as `(10, 20)`.
 
 The current style is stored in `options(astrocoords.notation = ...)`.
@@ -38,6 +44,9 @@ set_print_hms()
 format(x)
 
 set_print_plain()
+format(x)
+
+set_print_colon()
 format(x)
 
 set_print_pair()

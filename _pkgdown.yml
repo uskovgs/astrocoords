@@ -74,6 +74,7 @@ reference:
     contents:
       - set_print_hms
       - set_print_plain
+      - set_print_colon
       - set_print_pair
 
   - title: Deprecated

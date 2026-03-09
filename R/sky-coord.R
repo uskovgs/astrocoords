@@ -81,9 +81,12 @@ sky_coord <- function(
   format(x, trim = TRUE, digits = getOption("digits"))
 }
 
-.coord_to_hmsdms <- function(x, kind, nsec = 1L, plain = FALSE) {
+.coord_to_hmsdms <- function(x, kind, nsec = 1L, style = c("hmsdms", "plain", "colon")) {
   x <- vctrs::vec_cast(x, double())
   nsec <- max(as.integer(nsec), 0L)
+  style <- match.arg(style)
+  is_plain <- identical(style, "plain")
+  is_colon <- identical(style, "colon")
 
   if (kind == "ra") {
     x <- x / 15
@@ -98,19 +101,28 @@ sky_coord <- function(
   x3 <- (x2_tmp - x2) * 60
 
   sec_digits <- if (kind %in% c("dec", "lat")) max(nsec - 1L, 0L) else nsec
-  sec_width <- sec_digits + if (plain && kind == "ra") 4L else 3L
+  sec_width <- sec_digits + if (is_plain && kind == "ra") 4L else 3L
   if (kind %in% c("dec", "lat")) {
     sec_width <- sec_digits + 2L
   }
   sec_fmt <- paste0("%0", sec_width, ".", sec_digits, "f")
 
-  if (plain) {
+  if (is_plain) {
     out <- paste0(
       sign_x,
       sprintf("%02d", x1),
       " ",
       sprintf("%02d", x2),
       " ",
+      sprintf(sec_fmt, round(x3, sec_digits))
+    )
+  } else if (is_colon) {
+    out <- paste0(
+      sign_x,
+      sprintf("%02d", x1),
+      ":",
+      sprintf("%02d", x2),
+      ":",
       sprintf(sec_fmt, round(x3, sec_digits))
     )
   } else {
@@ -131,12 +143,12 @@ sky_coord <- function(
 
 .sky_coord_format_style <- function() {
   style <- getOption("astrocoords.notation", "hmsdms")
-  match.arg(style, c("pair", "hmsdms", "plain"))
+  match.arg(style, c("pair", "hmsdms", "plain", "colon"))
 }
 
 #' @export
 format.sky_coord <- function(x, ..., style = .sky_coord_format_style()) {
-  style <- match.arg(style, c("pair", "hmsdms", "plain"))
+  style <- match.arg(style, c("pair", "hmsdms", "plain", "colon"))
   lon <- vctrs::vec_data(x)$lon
   lat <- vctrs::vec_data(x)$lat
   fr <- frame(x)
@@ -155,11 +167,10 @@ format.sky_coord <- function(x, ..., style = .sky_coord_format_style()) {
   }
 
   nsec <- getOption("astrocoords.sky_coord.nsec", 1L)
-  is_plain <- identical(style, "plain")
   lon_kind <- if (identical(fr$x_name, "ra")) "ra" else "lon"
   lat_kind <- if (identical(fr$y_name, "dec")) "dec" else "lat"
-  lon_fmt <- .coord_to_hmsdms(lon, kind = lon_kind, nsec = nsec, plain = is_plain)
-  lat_fmt <- .coord_to_hmsdms(lat, kind = lat_kind, nsec = nsec, plain = is_plain)
+  lon_fmt <- .coord_to_hmsdms(lon, kind = lon_kind, nsec = nsec, style = style)
+  lat_fmt <- .coord_to_hmsdms(lat, kind = lat_kind, nsec = nsec, style = style)
   ifelse(is.na(lon_fmt) | is.na(lat_fmt), "NA", paste(lon_fmt, lat_fmt))
 }
 
@@ -181,7 +192,16 @@ print.sky_coord <- function(x, ...) {
 #' @keywords internal
 #' @export
 vec_ptype_abbr.sky_coord <- function(x, ...) {
-  "sky"
+  fr_name <- tryCatch(frame(x)$name, error = function(e) NA_character_)
+  fr_short <- if (is.na(fr_name) || !nzchar(fr_name)) {
+    "?"
+  } else if (identical(fr_name, "galactic")) {
+    "gal"
+  } else {
+    fr_name
+  }
+
+  paste0("sky|", fr_short)
 }
 
 #' @rdname sky_coord-vctrs-methods
