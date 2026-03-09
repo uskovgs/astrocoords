@@ -80,6 +80,7 @@ Control how sky coordinates are printed.
 
 - [`set_print_hms()`](https://uskovgs.github.io/astrocoords/reference/set_print.md)
   [`set_print_plain()`](https://uskovgs.github.io/astrocoords/reference/set_print.md)
+  [`set_print_colon()`](https://uskovgs.github.io/astrocoords/reference/set_print.md)
   [`set_print_pair()`](https://uskovgs.github.io/astrocoords/reference/set_print.md)
   : Set printing style for sky coordinates
 

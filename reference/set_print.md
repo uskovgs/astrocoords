@@ -10,6 +10,8 @@ set_print_hms()
 
 set_print_plain()
 
+set_print_colon()
+
 set_print_pair()
 ```
 
@@ -24,6 +26,9 @@ Invisibly returns the previous notation.
 
 \`set_print_plain()\` uses a compact plain-text style such as \`00 40
 000.0 +20 00 00\`.
+
+\`set_print_colon()\` uses a compact colon style such as \`00:40:00.0
++20:00:00\`.
 
 \`set_print_pair()\` prints decimal degree pairs such as \`(10, 20)\`.
 
@@ -41,6 +46,10 @@ format(x)
 set_print_plain()
 format(x)
 #> [1] "00 40 000.0 +20 00 00"
+
+set_print_colon()
+format(x)
+#> [1] "00:40:00.0 +20:00:00"
 
 set_print_pair()
 format(x)

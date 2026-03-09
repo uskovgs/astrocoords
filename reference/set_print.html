@@ -56,6 +56,8 @@ formatted.</p>
 <span></span>
 <span><span class="fu">set_print_plain</span><span class="op">(</span><span class="op">)</span></span>
 <span></span>
+<span><span class="fu">set_print_colon</span><span class="op">(</span><span class="op">)</span></span>
+<span></span>
 <span><span class="fu">set_print_pair</span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
     </div>
 
@@ -69,6 +71,8 @@ formatted.</p>
 `00h40m00.0s +20d00'00"`.</p>
 <p>`set_print_plain()` uses a compact plain-text style such as
 `00 40 000.0 +20 00 00`.</p>
+<p>`set_print_colon()` uses a compact colon style such as
+`00:40:00.0 +20:00:00`.</p>
 <p>`set_print_pair()` prints decimal degree pairs such as `(10, 20)`.</p>
 <p>The current style is stored in `options(astrocoords.notation = ...)`.</p>
     </div>
@@ -84,6 +88,10 @@ formatted.</p>
 <span class="r-in"><span><span class="fu">set_print_plain</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] "00 40 000.0 +20 00 00"</span>
+<span class="r-in"><span></span></span>
+<span class="r-in"><span><span class="fu">set_print_colon</span><span class="op">(</span><span class="op">)</span></span></span>
+<span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> [1] "00:40:00.0 +20:00:00"</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">set_print_pair</span><span class="op">(</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="https://rdrr.io/r/base/format.html" class="external-link">format</a></span><span class="op">(</span><span class="va">x</span><span class="op">)</span></span></span>
