@@ -26,6 +26,7 @@ reference:
     desc: Create and inspect sky coordinate vectors.
     contents:
       - sky_coord
+      - is.sky_coord
       - ra_dec
       - gal_coord
       - ra
@@ -38,13 +39,13 @@ reference:
   - title: Matching
     desc: Low-level catalog matching helpers.
     contents:
-      - to_cartesian
       - coord_match
-      - coord_nearest
+      - coord_left_join
 
   - title: Frames and Transforms
     desc: Define coordinate frames and transform between them.
     contents:
+      - to_cartesian
       - icrs
       - galactic
       - transform_to

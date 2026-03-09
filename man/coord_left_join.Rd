@@ -2,6 +2,7 @@
 % Please edit documentation in R/coord-left-join.R
 \name{coord_left_join}
 \alias{coord_left_join}
+\alias{coord_nearest_join}
 \title{Spatial left join for sky coordinates}
 \usage{
 coord_left_join(
@@ -17,6 +18,18 @@ coord_left_join(
   sep_col = "sep",
   suffix = c(".x", ".y")
 )
+
+coord_nearest_join(
+  x,
+  y,
+  x_coord = NULL,
+  y_coord = NULL,
+  unit = "arcsec",
+  method = "kdtree",
+  keep_sep = TRUE,
+  sep_col = "sep",
+  suffix = c(".x", ".y")
+)
 }
 \arguments{
 \item{x, y}{Data frames (or tibble-like objects).}
@@ -24,7 +37,8 @@ coord_left_join(
 \item{x_coord, y_coord}{Coordinate column in `x`/`y`. Supports bare names or
 character names. If `NULL`, the first `<sky_coord>` column is auto-detected.}
 
-\item{max_sep}{Maximum separation threshold passed to [coord_match()].}
+\item{max_sep}{Maximum separation threshold passed to [coord_match()].
+Used in [coord_left_join()]. [coord_nearest_join()] always uses `Inf`.}
 
 \item{unit}{Separation unit passed to [coord_match()]:
 `"arcsec"`, `"arcmin"`, `"deg"`, or `"rad"`.}
@@ -33,7 +47,8 @@ character names. If `NULL`, the first `<sky_coord>` column is auto-detected.}
 `"kdtree"` or `"bruteforce"`.}
 
 \item{multiple}{How to handle multiple matches per row of `x`:
-`"all"` keeps all matches, `"closest"` keeps one nearest match per `x` row.}
+`"all"` keeps all matches, `"closest"` keeps one nearest match per `x` row.
+Used in [coord_left_join()].}
 
 \item{keep_sep}{If `TRUE`, append the separation column to output.}
 

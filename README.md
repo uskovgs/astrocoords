@@ -20,6 +20,10 @@ It currently supports:
 
 - ICRS and Galactic sky coordinates
 - angular separation on the sphere
+- coordinate matching between catalogs (`coord_match()`,
+  `coord_nearest()`), including the `kdtree` method
+- spatial join helpers for data.frames (`coord_left_join()`,
+  `coord_nearest_join()`)
 - simple frame transformation between ICRS and Galactic
 - Julian Date / Modified Julian Date conversion
 
@@ -64,6 +68,20 @@ Measure angular separation in arcseconds:
 ``` r
 separation(ra_dec(10, 20), ra_dec(11, 21))
 #> [1] 4932.552
+```
+
+Find nearest matches between two coordinate vectors:
+
+``` r
+coord_nearest(
+  ra_dec(c(10, 20), c(0, 0)),
+  ra_dec(c(10.001, 19.999), c(0, 0)),
+  unit = "arcsec",
+  method = "kdtree"
+)
+#>   x_id y_id sep
+#> 1    1    1 3.6
+#> 2    2    2 3.6
 ```
 
 Parse a compact coordinate string:

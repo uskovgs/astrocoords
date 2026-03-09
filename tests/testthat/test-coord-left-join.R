@@ -285,3 +285,86 @@ test_that("sep_col collision errors clearly", {
     "collides"
   )
 })
+
+test_that("coord_nearest_join keeps one nearest match per x row", {
+  x <- data.frame(
+    id = 1L,
+    coord = ra_dec(10, 0)
+  )
+  y <- data.frame(
+    y_id = c(1L, 2L),
+    coord = ra_dec(c(10 + 0.2 / 3600, 10 + 0.8 / 3600), c(0, 0))
+  )
+
+  out <- coord_nearest_join(
+    x = x,
+    y = y,
+    x_coord = coord,
+    y_coord = coord,
+    unit = "arcsec",
+    method = "bruteforce"
+  )
+
+  expect_equal(nrow(out), 1L)
+  expect_equal(out$y_id, 1L)
+})
+
+test_that("coord_nearest_join supports character coord names and keep_sep = FALSE", {
+  x <- data.frame(
+    id = 1:2,
+    coord = ra_dec(c(10, 20), c(0, 0))
+  )
+  y <- data.frame(
+    y_id = c(11L, 22L),
+    coord = ra_dec(c(10, 20), c(0, 0))
+  )
+
+  out <- coord_nearest_join(
+    x = x,
+    y = y,
+    x_coord = "coord",
+    y_coord = "coord",
+    unit = "arcsec",
+    method = "bruteforce",
+    keep_sep = FALSE
+  )
+
+  expect_equal(out$y_id, c(11L, 22L))
+  expect_false("sep" %in% names(out))
+})
+
+test_that("multiple = closest on self-join prefers nearest non-self match", {
+  sc <- ra_dec(c(10, 10 + 0.2 / 3600, 20), c(0, 0, 0))
+  df <- data.frame(id = 1:3, sc = sc)
+
+  out <- coord_left_join(
+    x = df,
+    y = df,
+    x_coord = sc,
+    y_coord = sc,
+    max_sep = Inf,
+    unit = "arcsec",
+    method = "bruteforce",
+    multiple = "closest"
+  )
+
+  expect_equal(nrow(out), 3L)
+  expect_false(any(out$id.x == out$id.y))
+})
+
+test_that("coord_nearest_join on self-join prefers nearest non-self match", {
+  sc <- ra_dec(c(10, 10 + 0.2 / 3600, 20), c(0, 0, 0))
+  df <- data.frame(id = 1:3, sc = sc)
+
+  out <- coord_nearest_join(
+    x = df,
+    y = df,
+    x_coord = sc,
+    y_coord = sc,
+    unit = "arcsec",
+    method = "bruteforce"
+  )
+
+  expect_equal(nrow(out), 3L)
+  expect_false(any(out$id.x == out$id.y))
+})

@@ -2,14 +2,18 @@
 % Please edit documentation in R/coord-match.R
 \name{coord_match}
 \alias{coord_match}
+\alias{coord_nearest}
 \title{Match two sky catalogs within angular radius}
 \usage{
 coord_match(x, y, max_sep, unit = "arcsec", method = "kdtree")
+
+coord_nearest(x, y, unit = "arcsec", method = "kdtree")
 }
 \arguments{
 \item{x, y}{`<sky_coord>` vectors.}
 
-\item{max_sep}{Maximum separation threshold.}
+\item{max_sep}{Maximum separation threshold.
+Used in [coord_match()]. [coord_nearest()] always uses `Inf`.}
 
 \item{unit}{Separation unit: `"arcsec"`, `"arcmin"`, `"deg"`, or `"rad"`.}
 

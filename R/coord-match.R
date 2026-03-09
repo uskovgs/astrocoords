@@ -183,6 +183,7 @@
 #'
 #' @param x,y `<sky_coord>` vectors.
 #' @param max_sep Maximum separation threshold.
+#'   Used in [coord_match()]. [coord_nearest()] always uses `Inf`.
 #' @param unit Separation unit: `"arcsec"`, `"arcmin"`, `"deg"`, or `"rad"`.
 #' @param method Matching backend: `"kdtree"` or `"bruteforce"`.
 #'
@@ -252,17 +253,7 @@ coord_match <- function(
   .coord_match_sort(out)
 }
 
-#' Nearest-neighbor match for sky catalogs
-#'
-#' Return one nearest source in `y` for each source in `x`.
-#'
-#' @inheritParams coord_match
-#'
-#' @return Base `data.frame` with columns `x_id`, `y_id`, `sep`.
-#'
-#' @details
-#' Internally calls `coord_match(..., max_sep = Inf)` and keeps only
-#' one nearest row per `x_id`.
+#' @rdname coord_match
 #' @export
 coord_nearest <- function(
   x,

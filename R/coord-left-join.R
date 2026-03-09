@@ -118,12 +118,14 @@
 #' @param x_coord,y_coord Coordinate column in `x`/`y`. Supports bare names or
 #'   character names. If `NULL`, the first `<sky_coord>` column is auto-detected.
 #' @param max_sep Maximum separation threshold passed to [coord_match()].
+#'   Used in [coord_left_join()]. [coord_nearest_join()] always uses `Inf`.
 #' @param unit Separation unit passed to [coord_match()]:
 #'   `"arcsec"`, `"arcmin"`, `"deg"`, or `"rad"`.
 #' @param method Matching backend passed to [coord_match()]:
 #'   `"kdtree"` or `"bruteforce"`.
 #' @param multiple How to handle multiple matches per row of `x`:
 #'   `"all"` keeps all matches, `"closest"` keeps one nearest match per `x` row.
+#'   Used in [coord_left_join()].
 #' @param keep_sep If `TRUE`, append the separation column to output.
 #' @param sep_col Name of the separation column in output.
 #' @param suffix Length-2 character vector for duplicate non-key column names.
@@ -175,6 +177,29 @@ coord_left_join <- function(
   )
 
   if (multiple == "closest" && nrow(match_df) > 0L) {
+    is_self_join <- identical(x[[x_coord_name]], y[[y_coord_name]]) && nrow(x) == nrow(y)
+    if (is_self_join) {
+      is_self_pair <- !is.na(match_df$y_id) & (match_df$x_id == match_df$y_id)
+      match_df <- match_df[!is_self_pair, c("x_id", "y_id", "sep"), drop = FALSE]
+
+      missing_x <- setdiff(seq_len(nrow(x)), unique(match_df$x_id))
+      if (length(missing_x) > 0L) {
+        match_df <- rbind(
+          match_df,
+          data.frame(
+            x_id = as.integer(missing_x),
+            y_id = rep(NA_integer_, length(missing_x)),
+            sep = rep(NA_real_, length(missing_x))
+          )
+        )
+      }
+
+      if (nrow(match_df) > 0L) {
+        ord <- order(match_df$x_id, is.na(match_df$sep), match_df$sep, is.na(match_df$y_id), match_df$y_id)
+        match_df <- match_df[ord, c("x_id", "y_id", "sep"), drop = FALSE]
+      }
+    }
+
     match_df <- match_df[!duplicated(match_df$x_id), c("x_id", "y_id", "sep"), drop = FALSE]
     rownames(match_df) <- NULL
   }
@@ -184,6 +209,34 @@ coord_left_join <- function(
     y = y,
     match_df = match_df,
     y_coord_name = y_coord_name,
+    keep_sep = keep_sep,
+    sep_col = sep_col,
+    suffix = suffix
+  )
+}
+
+#' @rdname coord_left_join
+#' @export
+coord_nearest_join <- function(
+  x,
+  y,
+  x_coord = NULL,
+  y_coord = NULL,
+  unit = "arcsec",
+  method = "kdtree",
+  keep_sep = TRUE,
+  sep_col = "sep",
+  suffix = c(".x", ".y")
+) {
+  coord_left_join(
+    x = x,
+    y = y,
+    x_coord = {{ x_coord }},
+    y_coord = {{ y_coord }},
+    max_sep = Inf,
+    unit = unit,
+    method = method,
+    multiple = "closest",
     keep_sep = keep_sep,
     sep_col = sep_col,
     suffix = suffix
