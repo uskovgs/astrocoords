@@ -34,6 +34,9 @@ Low-level catalog matching helpers.
   : Match two sky catalogs within angular radius
 - [`coord_left_join()`](https://uskovgs.github.io/astrocoords/reference/coord_left_join.md)
   [`coord_nearest_join()`](https://uskovgs.github.io/astrocoords/reference/coord_left_join.md)
+  [`coord_right_join()`](https://uskovgs.github.io/astrocoords/reference/coord_left_join.md)
+  [`coord_full_join()`](https://uskovgs.github.io/astrocoords/reference/coord_left_join.md)
+  [`coord_inner_join()`](https://uskovgs.github.io/astrocoords/reference/coord_left_join.md)
   : Spatial left join for sky coordinates
 
 ## Frames and Transforms
@@ -75,9 +78,9 @@ Convert between calendar dates and JD/MJD.
 
 Control how sky coordinates are printed.
 
-- [`set_print_hms()`](https://uskovgs.github.io/astrocoords/reference/set_print_hms.md)
-  [`set_print_plain()`](https://uskovgs.github.io/astrocoords/reference/set_print_hms.md)
-  [`set_print_pair()`](https://uskovgs.github.io/astrocoords/reference/set_print_hms.md)
+- [`set_print_hms()`](https://uskovgs.github.io/astrocoords/reference/set_print.md)
+  [`set_print_plain()`](https://uskovgs.github.io/astrocoords/reference/set_print.md)
+  [`set_print_pair()`](https://uskovgs.github.io/astrocoords/reference/set_print.md)
   : Set printing style for sky coordinates
 
 ## Deprecated

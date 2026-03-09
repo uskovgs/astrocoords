@@ -10,14 +10,16 @@ It currently supports:
 
 - ICRS and Galactic sky coordinates
 - angular separation on the sphere
+- simple frame transformation between ICRS and Galactic
 - coordinate matching between catalogs
   ([`coord_match()`](https://uskovgs.github.io/astrocoords/reference/coord_match.md),
   [`coord_nearest()`](https://uskovgs.github.io/astrocoords/reference/coord_match.md)),
   including the `kdtree` method
 - spatial join helpers for data.frames
   ([`coord_left_join()`](https://uskovgs.github.io/astrocoords/reference/coord_left_join.md),
-  [`coord_nearest_join()`](https://uskovgs.github.io/astrocoords/reference/coord_left_join.md))
-- simple frame transformation between ICRS and Galactic
+  [`coord_nearest_join()`](https://uskovgs.github.io/astrocoords/reference/coord_left_join.md),
+  [`coord_inner_join()`](https://uskovgs.github.io/astrocoords/reference/coord_left_join.md),
+  etc.)
 - Julian Date / Modified Julian Date conversion
 
 ## Installation

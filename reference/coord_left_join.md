@@ -30,6 +30,48 @@ coord_nearest_join(
   sep_col = "sep",
   suffix = c(".x", ".y")
 )
+
+coord_right_join(
+  x,
+  y,
+  x_coord = NULL,
+  y_coord = NULL,
+  max_sep,
+  unit = "arcsec",
+  method = "kdtree",
+  multiple = "all",
+  keep_sep = TRUE,
+  sep_col = "sep",
+  suffix = c(".x", ".y")
+)
+
+coord_full_join(
+  x,
+  y,
+  x_coord = NULL,
+  y_coord = NULL,
+  max_sep,
+  unit = "arcsec",
+  method = "kdtree",
+  multiple = "all",
+  keep_sep = TRUE,
+  sep_col = "sep",
+  suffix = c(".x", ".y")
+)
+
+coord_inner_join(
+  x,
+  y,
+  x_coord = NULL,
+  y_coord = NULL,
+  max_sep,
+  unit = "arcsec",
+  method = "kdtree",
+  multiple = "all",
+  keep_sep = TRUE,
+  sep_col = "sep",
+  suffix = c(".x", ".y")
+)
 ```
 
 ## Arguments
