@@ -8,6 +8,13 @@ test_that("constructor works in degrees", {
   expect_equal(format(frame(x)), "icrs")
 })
 
+test_that("is.sky_coord returns logical scalar", {
+  x <- sky_coord(180, 45)
+
+  expect_true(is.sky_coord(x))
+  expect_false(is.sky_coord(1))
+})
+
 test_that("coordinate range validation rejects invalid values", {
   expect_error(
     sky_coord(361, 0),

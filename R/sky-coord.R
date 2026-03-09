@@ -18,6 +18,16 @@
   out
 }
 
+#' Check whether an object is a sky_coord vector
+#'
+#' @param x Any R object.
+#'
+#' @return `TRUE` if `x` inherits from `<sky_coord>`, otherwise `FALSE`.
+#' @export
+is.sky_coord <- function(x) {
+  inherits(x, "sky_coord")
+}
+
 #' Create sky coordinates
 #'
 #' Create a vector of sky coordinates in degrees.
