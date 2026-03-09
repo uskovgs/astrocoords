@@ -72,6 +72,8 @@
 <ul>
 <li>ICRS and Galactic sky coordinates</li>
 <li>angular separation on the sphere</li>
+<li>coordinate matching between catalogs (<code><a href="reference/coord_match.html">coord_match()</a></code>, <code><a href="reference/coord_match.html">coord_nearest()</a></code>), including the <code>kdtree</code> method</li>
+<li>spatial join helpers for data.frames (<code><a href="reference/coord_left_join.html">coord_left_join()</a></code>, <code><a href="reference/coord_left_join.html">coord_nearest_join()</a></code>)</li>
 <li>simple frame transformation between ICRS and Galactic</li>
 <li>Julian Date / Modified Julian Date conversion</li>
 </ul>
@@ -108,13 +110,24 @@
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/separation.html">separation</a></span><span class="op">(</span><span class="fu"><a href="reference/ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="reference/ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">21</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] 4932.552</span></span></code></pre></div>
-<p>Parse a compact coordinate string:</p>
+<p>Find nearest matches between two coordinate vectors:</p>
 <div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/coord_match.html">coord_nearest</a></span><span class="op">(</span></span>
+<span>  <span class="fu"><a href="reference/ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  <span class="fu"><a href="reference/ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10.001</span>, <span class="fl">19.999</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">0</span>, <span class="fl">0</span><span class="op">)</span><span class="op">)</span>,</span>
+<span>  unit <span class="op">=</span> <span class="st">"arcsec"</span>,</span>
+<span>  method <span class="op">=</span> <span class="st">"kdtree"</span></span>
+<span><span class="op">)</span></span>
+<span><span class="co">#&gt;   x_id y_id sep</span></span>
+<span><span class="co">#&gt; 1    1    1 3.6</span></span>
+<span><span class="co">#&gt; 2    2    2 3.6</span></span></code></pre></div>
+<p>Parse a compact coordinate string:</p>
+<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/parse_coord.html">parse_coord</a></span><span class="op">(</span><span class="st">"J230631.0+155633"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; &lt;sky_coord[1] icrs&gt;</span></span>
 <span><span class="co">#&gt; [1] 23h06m31.0s +15°56'33"</span></span></code></pre></div>
 <p>Work with Julian Date:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/datetime_to_jd.html">datetime_to_jd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"2026-03-08 12:34:56"</span>, tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">jd</span></span>
 <span><span class="co">#&gt; [1] 2461108</span></span>

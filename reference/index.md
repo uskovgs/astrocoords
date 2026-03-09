@@ -6,6 +6,8 @@ Create and inspect sky coordinate vectors.
 
 - [`sky_coord()`](https://uskovgs.github.io/astrocoords/reference/sky_coord.md)
   : Create sky coordinates
+- [`is.sky_coord()`](https://uskovgs.github.io/astrocoords/reference/is.sky_coord.md)
+  : Check whether an object is a sky_coord vector
 - [`ra_dec()`](https://uskovgs.github.io/astrocoords/reference/ra_dec.md)
   : Create ICRS sky coordinates
 - [`gal_coord()`](https://uskovgs.github.io/astrocoords/reference/gal_coord.md)
@@ -27,17 +29,19 @@ Create and inspect sky coordinate vectors.
 
 Low-level catalog matching helpers.
 
-- [`to_cartesian()`](https://uskovgs.github.io/astrocoords/reference/to_cartesian.md)
-  : Convert sky coordinates to Cartesian unit vectors
 - [`coord_match()`](https://uskovgs.github.io/astrocoords/reference/coord_match.md)
+  [`coord_nearest()`](https://uskovgs.github.io/astrocoords/reference/coord_match.md)
   : Match two sky catalogs within angular radius
-- [`coord_nearest()`](https://uskovgs.github.io/astrocoords/reference/coord_nearest.md)
-  : Nearest-neighbor match for sky catalogs
+- [`coord_left_join()`](https://uskovgs.github.io/astrocoords/reference/coord_left_join.md)
+  [`coord_nearest_join()`](https://uskovgs.github.io/astrocoords/reference/coord_left_join.md)
+  : Spatial left join for sky coordinates
 
 ## Frames and Transforms
 
 Define coordinate frames and transform between them.
 
+- [`to_cartesian()`](https://uskovgs.github.io/astrocoords/reference/to_cartesian.md)
+  : Convert sky coordinates to Cartesian unit vectors
 - [`icrs()`](https://uskovgs.github.io/astrocoords/reference/icrs.md) :
   ICRS frame
 - [`galactic()`](https://uskovgs.github.io/astrocoords/reference/galactic.md)

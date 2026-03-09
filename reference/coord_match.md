@@ -6,6 +6,8 @@ Low-level spherical catalog matching for two \`sky_coord\` vectors.
 
 ``` r
 coord_match(x, y, max_sep, unit = "arcsec", method = "kdtree")
+
+coord_nearest(x, y, unit = "arcsec", method = "kdtree")
 ```
 
 ## Arguments
@@ -16,7 +18,8 @@ coord_match(x, y, max_sep, unit = "arcsec", method = "kdtree")
 
 - max_sep:
 
-  Maximum separation threshold.
+  Maximum separation threshold. Used in \[coord_match()\].
+  \[coord_nearest()\] always uses \`Inf\`.
 
 - unit:
 
