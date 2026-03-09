@@ -26,6 +26,9 @@
 #'
 #' @return Invisibly returns the previous notation.
 #'
+#' @name set_print
+#' @rdname set_print
+#'
 #' @examples
 #' x <- ra_dec(10, 20)
 #'
@@ -42,13 +45,13 @@ set_print_hms <- function() {
   .set_sky_coord_notation("hmsdms")
 }
 
-#' @rdname set_print_hms
+#' @rdname set_print
 #' @export
 set_print_plain <- function() {
   .set_sky_coord_notation("plain")
 }
 
-#' @rdname set_print_hms
+#' @rdname set_print
 #' @export
 set_print_pair <- function() {
   .set_sky_coord_notation("pair")

@@ -368,3 +368,76 @@ test_that("coord_nearest_join on self-join prefers nearest non-self match", {
   expect_equal(nrow(out), 3L)
   expect_false(any(out$id.x == out$id.y))
 })
+
+test_that("coord_right_join keeps all observations from y", {
+  x <- data.frame(
+    x_id = 1:2,
+    coord = ra_dec(c(10, 20), c(0, 0))
+  )
+  y <- data.frame(
+    y_id = 1:3,
+    coord = ra_dec(c(10, 30, 40), c(0, 0, 0))
+  )
+
+  out <- coord_right_join(
+    x = x,
+    y = y,
+    x_coord = coord,
+    y_coord = coord,
+    max_sep = 1,
+    unit = "arcsec",
+    method = "bruteforce"
+  )
+
+  expect_equal(nrow(out), 3L)
+  expect_equal(out$y_id, c(1L, 2L, 3L))
+})
+
+test_that("coord_full_join keeps all observations from x and y", {
+  x <- data.frame(
+    x_id = 1:2,
+    coord = ra_dec(c(10, 20), c(0, 0))
+  )
+  y <- data.frame(
+    y_id = 1:3,
+    coord = ra_dec(c(10, 30, 40), c(0, 0, 0))
+  )
+
+  out <- coord_full_join(
+    x = x,
+    y = y,
+    x_coord = coord,
+    y_coord = coord,
+    max_sep = 1,
+    unit = "arcsec",
+    method = "bruteforce"
+  )
+
+  expect_equal(nrow(out), 4L)
+  expect_true(all(c(1L, 2L) %in% out$x_id))
+  expect_true(all(c(1L, 2L, 3L) %in% out$y_id))
+})
+
+test_that("coord_inner_join keeps only matched observations from x", {
+  x <- data.frame(
+    x_id = 1:3,
+    coord = ra_dec(c(10, 20, 30), c(0, 0, 0))
+  )
+  y <- data.frame(
+    y_id = 1:2,
+    coord = ra_dec(c(10, 30), c(0, 0))
+  )
+
+  out <- coord_inner_join(
+    x = x,
+    y = y,
+    x_coord = coord,
+    y_coord = coord,
+    max_sep = 1,
+    unit = "arcsec",
+    method = "bruteforce"
+  )
+
+  expect_equal(out$x_id, c(1L, 3L))
+  expect_equal(out$y_id, c(1L, 2L))
+})

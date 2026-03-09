@@ -40,7 +40,12 @@ reference:
     desc: Low-level catalog matching helpers.
     contents:
       - coord_match
+      - coord_nearest
       - coord_left_join
+      - coord_nearest_join
+      - coord_right_join
+      - coord_full_join
+      - coord_inner_join
 
   - title: Frames and Transforms
     desc: Define coordinate frames and transform between them.

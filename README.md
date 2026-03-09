@@ -20,11 +20,11 @@ It currently supports:
 
 - ICRS and Galactic sky coordinates
 - angular separation on the sphere
+- simple frame transformation between ICRS and Galactic
 - coordinate matching between catalogs (`coord_match()`,
   `coord_nearest()`), including the `kdtree` method
 - spatial join helpers for data.frames (`coord_left_join()`,
-  `coord_nearest_join()`)
-- simple frame transformation between ICRS and Galactic
+  `coord_nearest_join()`, `coord_inner_join()`, etc.)
 - Julian Date / Modified Julian Date conversion
 
 ## Installation
