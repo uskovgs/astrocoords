@@ -28,6 +28,9 @@ Supported transformations are:
 If \code{x} is already in the requested \code{frame}, it is returned
 unchanged.
 
+For \code{icrs() <-> galactic()} conversion, ERFA documentation states
+matrix-element precision at about 20 microarcseconds.
+
 Use \code{transform_to()} (not \code{transform()}) for \code{sky_coord}
 objects.
 }
