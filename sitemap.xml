@@ -14,6 +14,8 @@
 <url><loc>https://uskovgs.github.io/astrocoords/reference/coord_match.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/datetime_to_jd.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/dec.html</loc></url>
+<url><loc>https://uskovgs.github.io/astrocoords/reference/deg_to_dms.html</loc></url>
+<url><loc>https://uskovgs.github.io/astrocoords/reference/deg_to_hms.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/frame.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/gal_coord.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/galactic.html</loc></url>

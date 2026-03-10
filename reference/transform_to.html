@@ -84,23 +84,23 @@ objects.</p>
     <h2 id="ref-examples">Examples<a class="anchor" aria-label="anchor" href="#ref-examples"></a></h2>
     <div class="sourceCode"><pre class="sourceCode r"><code><span class="r-in"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">120</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">20</span>, <span class="op">-</span><span class="fl">30</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">x</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;sky_coord[2] icrs&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;sky|icrs&gt;[2]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] (10, 20)   (120, -30)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu">transform_to</span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="galactic.html">galactic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
 <span class="r-in"><span><span class="va">g</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;sky_coord[2] galactic&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;sky|galactic&gt;[2]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] (119.2694, -42.79039515) (247.0829, -0.04805424) </span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="fu">transform_to</span><span class="op">(</span><span class="va">g</span>, <span class="fu"><a href="icrs.html">icrs</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;sky_coord[2] icrs&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;sky|icrs&gt;[2]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] (10, 20)   (120, -30)</span>
 <span class="r-in"><span></span></span>
 <span class="r-in"><span><span class="co"># Pipe-friendly workflow</span></span></span>
 <span class="r-in"><span><span class="fu"><a href="ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">transform_to</span><span class="op">(</span><span class="fu"><a href="galactic.html">galactic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span> <span class="op">|&gt;</span></span></span>
 <span class="r-in"><span>  <span class="fu">transform_to</span><span class="op">(</span><span class="fu"><a href="icrs.html">icrs</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span></span>
-<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;sky_coord[1] icrs&gt;</span>
+<span class="r-out co"><span class="r-pr">#&gt;</span> &lt;sky|icrs&gt;[1]</span>
 <span class="r-out co"><span class="r-pr">#&gt;</span> [1] (10, 20)</span>
 </code></pre></div>
     </div>

@@ -86,20 +86,20 @@
 frame.</p>
 <div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt;sky_coord[1] icrs&gt;</span></span>
+<span><span class="co">#&gt; &lt;sky|icrs&gt;[1]</span></span>
 <span><span class="co">#&gt; [1] 00h40m00.0s +20°00'00"</span></span>
 <span><span class="fu"><a href="../reference/gal_coord.html">gal_coord</a></span><span class="op">(</span><span class="fl">120</span>, <span class="op">-</span><span class="fl">30</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt;sky_coord[1] galactic&gt;</span></span>
-<span><span class="co">#&gt; [1] 120°00'00.0" -30°00'00"</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt;sky|galactic&gt;[1]</span></span>
+<span><span class="co">#&gt; [1] +120°00'00" -30°00'00"</span></span></code></pre></div>
 <p>The general constructor is <code><a href="../reference/sky_coord.html">sky_coord()</a></code>. You choose the
 frame with <code><a href="../reference/icrs.html">icrs()</a></code> or <code><a href="../reference/galactic.html">galactic()</a></code>.</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/sky_coord.html">sky_coord</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">40</span><span class="op">)</span>, frame <span class="op">=</span> <span class="fu"><a href="../reference/icrs.html">icrs</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt;sky_coord[2] icrs&gt;</span></span>
-<span><span class="co">#&gt; [1] 00h40m00.0s +30°00'00" 01h19m60.0s +40°00'00"</span></span>
+<span><span class="co">#&gt; &lt;sky|icrs&gt;[2]</span></span>
+<span><span class="co">#&gt; [1] 00h40m00.0s +30°00'00" 01h20m00.0s +40°00'00"</span></span>
 <span><span class="fu"><a href="../reference/sky_coord.html">sky_coord</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">120</span>, <span class="fl">121</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="op">-</span><span class="fl">30</span>, <span class="op">-</span><span class="fl">31</span><span class="op">)</span>, frame <span class="op">=</span> <span class="fu"><a href="../reference/galactic.html">galactic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt;sky_coord[2] galactic&gt;</span></span>
-<span><span class="co">#&gt; [1] 120°00'00.0" -30°00'00" 121°00'00.0" -31°00'00"</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt;sky|galactic&gt;[2]</span></span>
+<span><span class="co">#&gt; [1] +120°00'00" -30°00'00" +121°00'00" -31°00'00"</span></span></code></pre></div>
 <p>You can measure angular separation between two points. The result is
 in arcseconds.</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
@@ -113,12 +113,12 @@ in arcseconds.</p>
 <code class="sourceCode R"><span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">40</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">g</span> <span class="op">&lt;-</span> <span class="fu"><a href="../reference/transform_to.html">transform_to</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="../reference/galactic.html">galactic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">g</span></span>
-<span><span class="co">#&gt; &lt;sky_coord[2] galactic&gt;</span></span>
-<span><span class="co">#&gt; [1] 119°59'08.0" -32°48'23" 128°50'58.6" -22°32'36"</span></span>
+<span><span class="co">#&gt; &lt;sky|galactic&gt;[2]</span></span>
+<span><span class="co">#&gt; [1] +119°59'08" -32°48'23" +128°50'59" -22°32'36"</span></span>
 <span></span>
 <span><span class="fu"><a href="../reference/transform_to.html">transform_to</a></span><span class="op">(</span><span class="va">g</span>, <span class="fu"><a href="../reference/icrs.html">icrs</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt;sky_coord[2] icrs&gt;</span></span>
-<span><span class="co">#&gt; [1] 00h40m00.0s +29°59'60" 01h20m00.0s +39°59'60"</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt;sky|icrs&gt;[2]</span></span>
+<span><span class="co">#&gt; [1] 00h40m00.0s +30°00'00" 01h20m00.0s +40°00'00"</span></span></code></pre></div>
 <p>Accessors depend on the frame. Use <code><a href="../reference/ra.html">ra()</a></code> and
 <code><a href="../reference/dec.html">dec()</a></code> for ICRS, and <code><a href="../reference/l.html">l()</a></code> and <code><a href="../reference/b.html">b()</a></code>
 for Galactic.</p>
@@ -137,7 +137,7 @@ for Galactic.</p>
 <p>You can also parse compact ICRS strings.</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="../reference/parse_coord.html">parse_coord</a></span><span class="op">(</span><span class="st">"J230631.0+155633"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt;sky_coord[1] icrs&gt;</span></span>
+<span><span class="co">#&gt; &lt;sky|icrs&gt;[1]</span></span>
 <span><span class="co">#&gt; [1] 23h06m31.0s +15°56'33"</span></span></code></pre></div>
 <p>You can build a simple IAU-style source name from ICRS
 coordinates.</p>

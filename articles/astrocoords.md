@@ -16,11 +16,11 @@ frame.
 
 ``` r
 ra_dec(10, 20)
-#> <sky_coord[1] icrs>
+#> <sky|icrs>[1]
 #> [1] 00h40m00.0s +20°00'00"
 gal_coord(120, -30)
-#> <sky_coord[1] galactic>
-#> [1] 120°00'00.0" -30°00'00"
+#> <sky|galactic>[1]
+#> [1] +120°00'00" -30°00'00"
 ```
 
 The general constructor is
@@ -31,11 +31,11 @@ You choose the frame with
 
 ``` r
 sky_coord(c(10, 20), c(30, 40), frame = icrs())
-#> <sky_coord[2] icrs>
-#> [1] 00h40m00.0s +30°00'00" 01h19m60.0s +40°00'00"
+#> <sky|icrs>[2]
+#> [1] 00h40m00.0s +30°00'00" 01h20m00.0s +40°00'00"
 sky_coord(c(120, 121), c(-30, -31), frame = galactic())
-#> <sky_coord[2] galactic>
-#> [1] 120°00'00.0" -30°00'00" 121°00'00.0" -31°00'00"
+#> <sky|galactic>[2]
+#> [1] +120°00'00" -30°00'00" +121°00'00" -31°00'00"
 ```
 
 You can measure angular separation between two points. The result is in
@@ -55,12 +55,12 @@ You can also transform coordinates between ICRS and Galactic.
 x <- ra_dec(c(10, 20), c(30, 40))
 g <- transform_to(x, galactic())
 g
-#> <sky_coord[2] galactic>
-#> [1] 119°59'08.0" -32°48'23" 128°50'58.6" -22°32'36"
+#> <sky|galactic>[2]
+#> [1] +119°59'08" -32°48'23" +128°50'59" -22°32'36"
 
 transform_to(g, icrs())
-#> <sky_coord[2] icrs>
-#> [1] 00h40m00.0s +29°59'60" 01h20m00.0s +39°59'60"
+#> <sky|icrs>[2]
+#> [1] 00h40m00.0s +30°00'00" 01h20m00.0s +40°00'00"
 ```
 
 Accessors depend on the frame. Use
@@ -88,7 +88,7 @@ You can also parse compact ICRS strings.
 
 ``` r
 parse_coord("J230631.0+155633")
-#> <sky_coord[1] icrs>
+#> <sky|icrs>[1]
 #> [1] 23h06m31.0s +15°56'33"
 ```
 

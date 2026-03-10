@@ -45,7 +45,7 @@ format(x)
 
 set_print_plain()
 format(x)
-#> [1] "00 40 000.0 +20 00 00"
+#> [1] "00 40 00.0 +20 00 00"
 
 set_print_colon()
 format(x)

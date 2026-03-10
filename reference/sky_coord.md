@@ -48,18 +48,18 @@ A \<sky_coord\> vector.
 ``` r
 x <- sky_coord(10, 20)
 x
-#> <sky_coord[1] icrs>
+#> <sky|icrs>[1]
 #> [1] (10, 20)
 
 g <- sky_coord(120, -30, frame = galactic())
 g
-#> <sky_coord[1] galactic>
+#> <sky|galactic>[1]
 #> [1] (120, -30)
 
 ra_dec(10, 20)
-#> <sky_coord[1] icrs>
+#> <sky|icrs>[1]
 #> [1] (10, 20)
 gal_coord(120, -30)
-#> <sky_coord[1] galactic>
+#> <sky|galactic>[1]
 #> [1] (120, -30)
 ```

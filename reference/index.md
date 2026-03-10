@@ -60,6 +60,10 @@ Parse source coordinates and build IAU-style names.
   : Parse coordinate strings into ICRS sky_coord
 - [`iau_name()`](https://uskovgs.github.io/astrocoords/reference/iau_name.md)
   : Build IAU-style source names from sky coordinates
+- [`deg_to_hms()`](https://uskovgs.github.io/astrocoords/reference/deg_to_hms.md)
+  : Format degrees as RA-like HMS strings
+- [`deg_to_dms()`](https://uskovgs.github.io/astrocoords/reference/deg_to_dms.md)
+  : Format degrees as DMS strings
 
 ## Time
 
