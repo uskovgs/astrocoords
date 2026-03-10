@@ -14,6 +14,8 @@ navbar:
     articles:
       text: Articles
       menu:
+        - text: Coord matching
+          href: articles/coord_matching.html
         - text: Working with time
           href: articles/working_with_time.html
     github:
