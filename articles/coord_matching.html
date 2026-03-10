@@ -132,7 +132,8 @@ while <code>multiple = "closest"</code> keeps only one match per row in
 <span></span>
 <span><span class="va">p1</span> <span class="op">&lt;-</span> <span class="va">df12</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/ggplot.html" class="external-link">ggplot</a></span><span class="op">(</span><span class="fu"><a href="https://ggplot2.tidyverse.org/reference/aes.html" class="external-link">aes</a></span><span class="op">(</span><span class="va">ra</span>, <span class="va">dec</span>, color <span class="op">=</span> <span class="va">cat</span><span class="op">)</span><span class="op">)</span> <span class="op">+</span></span>
-<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> </span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/geom_point.html" class="external-link">geom_point</a></span><span class="op">(</span><span class="op">)</span> <span class="op">+</span></span>
+<span>  <span class="fu"><a href="https://ggplot2.tidyverse.org/reference/coord_fixed.html" class="external-link">coord_fixed</a></span><span class="op">(</span>ratio <span class="op">=</span> <span class="fl">1</span><span class="op">)</span></span>
 <span><span class="va">p1</span></span></code></pre></div>
 <p><img src="coord_matching_files/figure-html/unnamed-chunk-2-1.png" class="r-plt" alt="" width="700"></p>
 <div class="section level3">
@@ -334,7 +335,11 @@ while <code>multiple = "closest"</code> keeps only one match per row in
 <span>    inherit.aes <span class="op">=</span> <span class="cn">FALSE</span></span>
 <span>  <span class="op">)</span></span></code></pre></div>
 <p><img src="coord_matching_files/figure-html/unnamed-chunk-9-1.png" class="r-plt" alt="" width="700"></p>
-<p><code>multiple="closest"</code></p>
+</div>
+<div class="section level3">
+<h3 id="multipleclosest">
+<code>multiple="closest"</code><a class="anchor" aria-label="anchor" href="#multipleclosest"></a>
+</h3>
 <div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">df12_intersect</span> <span class="op">&lt;-</span> <span class="va">df1</span> <span class="op">|&gt;</span></span>
 <span>  <span class="fu"><a href="../reference/coord_left_join.html">coord_inner_join</a></span><span class="op">(</span><span class="va">df2</span>, max_sep <span class="op">=</span> <span class="va">MAX_SEP</span>, unit <span class="op">=</span> <span class="st">"arcmin"</span>, multiple <span class="op">=</span> <span class="st">"closest"</span><span class="op">)</span></span>

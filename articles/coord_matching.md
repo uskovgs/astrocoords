@@ -50,7 +50,8 @@ df12$sc <- c(df1$sc, df2$sc)
 
 p1 <- df12 |>
   ggplot(aes(ra, dec, color = cat)) +
-  geom_point() 
+  geom_point() +
+  coord_fixed(ratio = 1)
 p1
 ```
 
@@ -263,7 +264,7 @@ p1 +
 
 ![](coord_matching_files/figure-html/unnamed-chunk-9-1.png)
 
-`multiple="closest"`
+### `multiple="closest"`
 
 ``` r
 df12_intersect <- df1 |>
