@@ -1,0 +1,207 @@
+---
+title: "Catalog matching joins"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{coord_matching}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+```{r setup}
+library(astrocoords)
+library(ggplot2)
+theme_set(theme_light())
+```
+
+## TL;DR
+
+- `coord_inner_join()` keeps only rows from `x` that have matches in `y` within `max_sep`.
+- `coord_left_join()` keeps all rows from `x`; unmatched rows get `NA` from `y`.
+- `coord_right_join()` keeps all rows from `y`; unmatched rows get `NA` from `x`.
+- `coord_full_join()` keeps all rows from both tables.
+- `coord_nearest_join()` returns one nearest match in `y` for each row in `x`.
+- `multiple = "all"` keeps all matches inside the radius, while `multiple = "closest"` keeps only one match per row in `x`.
+
+
+
+
+# Understanding joins
+
+```{r}
+set.seed(1)
+N <- 10
+df1 <- data.frame(
+  ra = runif(N), 
+  dec = runif(N),
+  cat = "first"
+)
+df2 <- data.frame(
+  ra = runif(N), 
+  dec = runif(N),
+  cat = "second"
+)
+
+df12 <- do.call(rbind, list(df1, df2))
+df1$sc <- ra_dec(df1$ra, df1$dec)
+df2$sc <- ra_dec(df2$ra, df2$dec)
+
+df12$sc <- c(df1$sc, df2$sc)
+
+p1 <- df12 |>
+  ggplot(aes(ra, dec, color = cat)) +
+  geom_point() 
+p1
+```
+
+## Inner join within radius
+
+```{r}
+df12_intersect <- df1 |>
+  coord_inner_join(df2, max_sep = 5, unit = "arcmin")
+
+p1 +
+  geom_segment(
+    data = df12_intersect,
+    aes(x = ra.x, xend = ra.y, y = dec.x, yend = dec.y),
+    color = "black"
+  ) +
+  ggforce::geom_circle(
+    data = df12_intersect,
+    aes(x0 = ra.x, y0 = dec.x, r= 5/60),
+    fill = "grey50",
+    alpha = 0.2,
+    inherit.aes = FALSE
+  ) +
+    geom_label(
+      data = df12_intersect,
+      aes(ra.x, dec.x + 0.1, label = paste(round(sep, 1), "arcmin")),
+      inherit.aes = FALSE,      
+    )
+```
+
+
+## Nearest-neighbor join
+
+
+```{r}
+df12_nearest <- df1 |>
+  coord_nearest_join(df2, unit = "arcmin") 
+
+p1 +
+  geom_segment(
+    data = df12_nearest,
+    aes(x = ra.x, xend = ra.y, y = dec.x, yend = dec.y),
+    color = "black"
+  ) +
+  ggforce::geom_circle(
+    data = df12_nearest,
+    aes(x0 = ra.x, y0 = dec.x, r = sep/60),
+    fill = "grey50",
+    alpha = 0.2,
+    inherit.aes = FALSE
+  ) +
+    geom_label(
+      data = df12_nearest,
+      aes(ra.x, dec.x + 0.1, label = paste(round(sep, 1), "arcmin")),
+      inherit.aes = FALSE
+    )
+```
+
+
+## Left vs right vs full join
+
+```{r}
+df1 |>
+  coord_left_join(df2, max_sep = 5, unit = "arcmin")
+```
+
+
+```{r}
+df1 |>
+  coord_right_join(df2, max_sep = 5, unit = "arcmin")
+```
+
+```{r}
+df1 |>
+  coord_full_join(df2, max_sep = 5, unit = "arcmin")
+```
+
+# Multiple matches: all vs closest
+
+
+```{r}
+set.seed(1)
+
+N <- 13
+df1 <- data.frame(
+  ra = runif(N), 
+  dec = runif(N),
+  cat = "first"
+)
+df2 <- data.frame(
+  ra = runif(N), 
+  dec = runif(N),
+  cat = "second"
+)
+
+df12 <- do.call(rbind, list(df1, df2))
+df1$sc <- ra_dec(df1$ra, df1$dec)
+df2$sc <- ra_dec(df2$ra, df2$dec)
+
+df12$sc <- c(df1$sc, df2$sc)
+
+p1 <- df12 |>
+  ggplot(aes(ra, dec, color = cat)) +
+  geom_point() +
+  coord_fixed(ratio = 1)
+p1
+```
+
+## `multiple="all"`
+```{r}
+MAX_SEP <- 8
+df12_intersect <- df1 |>
+  coord_inner_join(df2, max_sep = MAX_SEP, unit = "arcmin")
+
+p1 +
+  geom_segment(
+    data = df12_intersect,
+    aes(x = ra.x, xend = ra.y, y = dec.x, yend = dec.y),
+    color = "black"
+  ) +
+  ggforce::geom_circle(
+    data = df12_intersect,
+    aes(x0 = ra.x, y0 = dec.x, r = MAX_SEP/60),
+    fill = "grey50",
+    alpha = 0.2,
+    inherit.aes = FALSE
+  )
+```
+
+`multiple="closest"`
+
+```{r}
+df12_intersect <- df1 |>
+  coord_inner_join(df2, max_sep = MAX_SEP, unit = "arcmin", multiple = "closest")
+
+p1 +
+  geom_segment(
+    data = df12_intersect,
+    aes(x = ra.x, xend = ra.y, y = dec.x, yend = dec.y),
+    color = "black"
+  ) +
+  ggforce::geom_circle(
+    data = df12_intersect,
+    aes(x0 = ra.x, y0 = dec.x, r= MAX_SEP/60),
+    fill = "grey50",
+    alpha = 0.2,
+    inherit.aes = FALSE
+  )
+```

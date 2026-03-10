@@ -18,7 +18,9 @@ Imports:
 Suggests:
     knitr,
     rmarkdown,
-    testthat (>= 3.0.0)
+    testthat (>= 3.0.0),
+    ggplot2,
+    ggforce
 LinkingTo: 
     Rcpp
 VignetteBuilder: 
