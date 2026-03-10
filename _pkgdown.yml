@@ -62,6 +62,8 @@ reference:
     contents:
       - parse_coord
       - iau_name
+      - deg_to_hms
+      - deg_to_dms
 
   - title: Time
     desc: Convert between calendar dates and JD/MJD.

@@ -53,6 +53,10 @@ test_that("galactic frame and sugar constructors work", {
   expect_equal(frame(x)$name, "galactic")
   expect_equal(frame(x)$x_name, "l")
   expect_equal(frame(x)$y_name, "b")
+  expect_equal(frame(x)$x_min, 0)
+  expect_equal(frame(x)$x_max, 360)
+  expect_equal(frame(x)$y_min, -90)
+  expect_equal(frame(x)$y_max, 90)
   expect_equal(l(x), 120)
   expect_equal(b(x), -30)
   expect_equal(l(y), 120)
@@ -86,7 +90,7 @@ test_that("format supports configurable styles", {
   expect_equal(format(x), "00h40m00.0s +20\u00b000'00\"")
 
   options(astrocoords.notation = "plain")
-  expect_equal(format(x), "00 40 000.0 +20 00 00")
+  expect_equal(format(x), "00 40 00.0 +20 00 00")
 
   options(astrocoords.notation = "colon")
   expect_equal(format(x), "00:40:00.0 +20:00:00")
@@ -96,7 +100,7 @@ test_that("print shows compact header with frame", {
   x <- sky_coord(10, 20)
   out <- capture.output(print(x))
 
-  expect_match(out[1], "^<sky_coord\\[1\\] icrs>$")
+  expect_match(out[1], "^<sky\\|icrs>\\[1\\]$")
 })
 
 test_that("notation helpers work", {
@@ -117,4 +121,12 @@ test_that("notation helpers work", {
   expect_equal(getOption("astrocoords.notation"), "colon")
   set_print_hms()
   expect_equal(getOption("astrocoords.notation"), "hmsdms")
+})
+
+test_that("deg_to_hms and deg_to_dms are used for formatting helpers", {
+  expect_equal(deg_to_hms(10), "00:40:00.0")
+  expect_equal(deg_to_hms(10, sep = " "), "00 40 00.0")
+  expect_equal(deg_to_hms(10, sep = "hms"), "00h40m00.0s")
+  expect_equal(deg_to_dms(20, sep = "dms"), "+20°00'00\"")
+  expect_equal(deg_to_dms(20, signed = FALSE), "20:00:00")
 })

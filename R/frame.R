@@ -1,9 +1,21 @@
-.sky_frame <- function(name, x_name, y_name) {
+.sky_frame <- function(
+  name,
+  x_name,
+  y_name,
+  x_min,
+  x_max,
+  y_min,
+  y_max
+) {
   structure(
     list(
       name = name,
       x_name = x_name,
-      y_name = y_name
+      y_name = y_name,
+      x_min = x_min,
+      x_max = x_max,
+      y_min = y_min,
+      y_max = y_max
     ),
     class = c(name, "sky_frame")
   )
@@ -18,7 +30,15 @@
 #' @references \url{https://en.wikipedia.org/wiki/International_Celestial_Reference_System}
 #' @export
 icrs <- function() {
-  .sky_frame("icrs", x_name = "ra", y_name = "dec")
+  .sky_frame(
+    "icrs",
+    x_name = "ra",
+    y_name = "dec",
+    x_min = 0,
+    x_max = 360,
+    y_min = -90,
+    y_max = 90
+  )
 }
 
 #' Galactic frame
@@ -30,7 +50,15 @@ icrs <- function() {
 #' @references \url{https://en.wikipedia.org/wiki/Galactic_coordinate_system}
 #' @export
 galactic <- function() {
-  .sky_frame("galactic", x_name = "l", y_name = "b")
+  .sky_frame(
+    "galactic",
+    x_name = "l",
+    y_name = "b",
+    x_min = 0,
+    x_max = 360,
+    y_min = -90,
+    y_max = 90
+  )
 }
 
 .same_frame <- function(x, y) {
