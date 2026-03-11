@@ -34,6 +34,9 @@ Supported transformations are:
 
 If `x` is already in the requested `frame`, it is returned unchanged.
 
+For `icrs() <-> galactic()` conversion, ERFA documentation states
+matrix-element precision at about 20 microarcseconds.
+
 Use `transform_to()` (not
 [`transform()`](https://rdrr.io/r/base/transform.html)) for `sky_coord`
 objects.
