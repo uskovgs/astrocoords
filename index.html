@@ -67,18 +67,18 @@
 <!-- badges: start -->
 
 <!-- badges: end -->
-<p><code>astrocoords</code> is an R package for basic astronomical coordinate and time conversion.</p>
-<p>Core coordinate and time calculations in <code>astrocoords</code> are based on the <a href="https://github.com/liberfa/erfa" class="external-link">ERFA</a> library.</p>
-<p>It currently supports:</p>
+<p><code>astrocoords</code> is an R package for working with astronomical coordinates and matching catalogs.</p>
+<p>It stores sky coordinates as a vector type instead of separate numeric columns, making coordinate transformations, angular separations, catalog matching, and spatial joins more natural in R.</p>
+<p>It provides:</p>
 <ul>
-<li>ICRS and Galactic sky coordinates</li>
-<li>angular separation on the sphere</li>
-<li>simple frame transformation between ICRS and Galactic</li>
-<li>coordinate matching between catalogs (<code><a href="reference/coord_match.html">coord_match()</a></code>, <code><a href="reference/coord_match.html">coord_nearest()</a></code>), including the <code>kdtree</code> method</li>
-<li>spatial join helpers for data.frames (<code><a href="reference/coord_left_join.html">coord_left_join()</a></code>, <code><a href="reference/coord_left_join.html">coord_nearest_join()</a></code>, <code><a href="reference/coord_left_join.html">coord_inner_join()</a></code>, etc.)</li>
-<li>sexagesimal conversion helpers (<code><a href="reference/deg_to_hms.html">deg_to_hms()</a></code>, <code><a href="reference/deg_to_dms.html">deg_to_dms()</a></code>, <code><a href="reference/hms_to_deg.html">hms_to_deg()</a></code>, <code><a href="reference/dms_to_deg.html">dms_to_deg()</a></code>)</li>
-<li>Julian Date / Modified Julian Date conversion</li>
+<li><p>sky coordinate objects (<code>sky_coord</code>) with ICRS and Galactic frames</p></li>
+<li><p>angular separation and frame transformations</p></li>
+<li><p>catalog matching (<code><a href="reference/coord_match.html">coord_match()</a></code>, <code><a href="reference/coord_match.html">coord_nearest()</a></code>)</p></li>
+<li><p>spatial joins for data frames (<code><a href="reference/coord_left_join.html">coord_left_join()</a></code>, <code><a href="reference/coord_left_join.html">coord_nearest_join()</a></code>, etc.)</p></li>
+<li><p>sexagesimal conversion helpers</p></li>
+<li><p>Julian Date / Modified Julian Date conversion</p></li>
 </ul>
+<p>Core coordinate and time calculations are based on the <a href="https://github.com/liberfa/erfa" class="external-link">ERFA</a> library.</p>
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
@@ -123,19 +123,52 @@
 <span><span class="co">#&gt;   x_id y_id sep</span></span>
 <span><span class="co">#&gt; 1    1    1 3.6</span></span>
 <span><span class="co">#&gt; 2    2    2 3.6</span></span></code></pre></div>
-<p>Parse a compact coordinate string:</p>
+<p>Use a spatial join between two data frames:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu"><a href="reference/parse_coord.html">parse_coord</a></span><span class="op">(</span><span class="st">"J230631.0+155633"</span><span class="op">)</span></span>
+<code class="sourceCode R"><span><span class="va">df1</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  id <span class="op">=</span> <span class="fl">1</span><span class="op">:</span><span class="fl">2</span>,</span>
+<span>  coord <span class="op">=</span> <span class="fu"><a href="reference/ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">40</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df2</span> <span class="op">&lt;-</span> <span class="fu"><a href="https://rdrr.io/r/base/data.frame.html" class="external-link">data.frame</a></span><span class="op">(</span></span>
+<span>  name <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"a"</span>, <span class="st">"b"</span><span class="op">)</span>,</span>
+<span>  coord <span class="op">=</span> <span class="fu"><a href="reference/ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10.0002</span>, <span class="fl">20.0003</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30.0001</span>, <span class="fl">39.9998</span><span class="op">)</span><span class="op">)</span></span>
+<span><span class="op">)</span></span>
+<span></span>
+<span><span class="va">df1</span> <span class="op">|&gt;</span></span>
+<span>  <span class="fu"><a href="reference/coord_left_join.html">coord_left_join</a></span><span class="op">(</span><span class="va">df2</span>, max_sep <span class="op">=</span> <span class="fl">5</span>, unit <span class="op">=</span> <span class="st">"arcsec"</span><span class="op">)</span></span>
+<span><span class="co">#&gt;   id                  coord name       sep</span></span>
+<span><span class="co">#&gt; 1  1 00h40m00.0s +30°00'00"    a 0.7199997</span></span>
+<span><span class="co">#&gt; 2  2 01h20m00.0s +40°00'00"    b 1.0967560</span></span></code></pre></div>
+<p>Parse a compact coordinate string:</p>
+<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="va">sc</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/parse_coord.html">parse_coord</a></span><span class="op">(</span><span class="st">"J230631.0+155633"</span><span class="op">)</span></span>
+<span><span class="va">sc</span></span>
 <span><span class="co">#&gt; &lt;sky|icrs&gt;[1]</span></span>
 <span><span class="co">#&gt; [1] 23h06m31.0s +15°56'33"</span></span></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu"><a href="reference/iau_name.html">iau_name</a></span><span class="op">(</span><span class="va">sc</span>, prefix <span class="op">=</span> <span class="st">"SRGA J"</span>, ra_digits <span class="op">=</span> <span class="fl">3</span>, dec_digits <span class="op">=</span> <span class="fl">2</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "SRGA J230631.000+155633.00"</span></span></code></pre></div>
 <p>Work with Julian Date:</p>
-<div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">jd</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/datetime_to_jd.html">datetime_to_jd</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/as.POSIXlt.html" class="external-link">as.POSIXct</a></span><span class="op">(</span><span class="st">"2026-03-08 12:34:56"</span>, tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="va">jd</span></span>
-<span><span class="co">#&gt; [1] 2461108</span></span>
+<span><span class="fu"><a href="https://rdrr.io/r/base/print.html" class="external-link">print</a></span><span class="op">(</span><span class="va">jd</span>, digits<span class="op">=</span><span class="fl">11</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] 2461108.0243</span></span>
 <span></span>
 <span><span class="fu"><a href="reference/jd_to_datetime.html">jd_to_datetime</a></span><span class="op">(</span><span class="va">jd</span>, tz <span class="op">=</span> <span class="st">"UTC"</span><span class="op">)</span></span>
 <span><span class="co">#&gt; [1] "2026-03-08 12:34:56 UTC"</span></span></code></pre></div>
+</div>
+<div class="section level2">
+<h2 id="learn-more">Learn more<a class="anchor" aria-label="anchor" href="#learn-more"></a>
+</h2>
+<ul>
+<li>Website: <a href="https://uskovgs.github.io/astrocoords/" class="uri">https://uskovgs.github.io/astrocoords/</a>
+</li>
+<li>Reference: <a href="https://uskovgs.github.io/astrocoords/reference/" class="uri">https://uskovgs.github.io/astrocoords/reference/</a>
+</li>
+<li>Articles: <a href="https://uskovgs.github.io/astrocoords/articles/" class="uri">https://uskovgs.github.io/astrocoords/articles/</a>
+</li>
+</ul>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="license">
