@@ -54,7 +54,7 @@ Define coordinate frames and transform between them.
 
 ## Parsing and Naming
 
-Parse source coordinates and build IAU-style names.
+Parse, format, and convert sexagesimal coordinates.
 
 - [`parse_coord()`](https://uskovgs.github.io/astrocoords/reference/parse_coord.md)
   : Parse coordinate strings into ICRS sky_coord
@@ -64,6 +64,10 @@ Parse source coordinates and build IAU-style names.
   : Format degrees as RA-like HMS strings
 - [`deg_to_dms()`](https://uskovgs.github.io/astrocoords/reference/deg_to_dms.md)
   : Format degrees as DMS strings
+- [`hms_to_deg()`](https://uskovgs.github.io/astrocoords/reference/hms_to_deg.md)
+  : Convert HMS components to degrees
+- [`dms_to_deg()`](https://uskovgs.github.io/astrocoords/reference/dms_to_deg.md)
+  : Convert DMS components to degrees
 
 ## Time
 
@@ -87,10 +91,3 @@ Control how sky coordinates are printed.
   [`set_print_colon()`](https://uskovgs.github.io/astrocoords/reference/set_print.md)
   [`set_print_pair()`](https://uskovgs.github.io/astrocoords/reference/set_print.md)
   : Set printing style for sky coordinates
-
-## Deprecated
-
-Backward-compatible aliases.
-
-- [`radec()`](https://uskovgs.github.io/astrocoords/reference/radec.md)
-  : Deprecated alias for parse_coord

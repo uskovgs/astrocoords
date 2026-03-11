@@ -16,9 +16,11 @@
 <url><loc>https://uskovgs.github.io/astrocoords/reference/dec.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/deg_to_dms.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/deg_to_hms.html</loc></url>
+<url><loc>https://uskovgs.github.io/astrocoords/reference/dms_to_deg.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/frame.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/gal_coord.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/galactic.html</loc></url>
+<url><loc>https://uskovgs.github.io/astrocoords/reference/hms_to_deg.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/iau_name.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/icrs.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/index.html</loc></url>
@@ -30,7 +32,6 @@
 <url><loc>https://uskovgs.github.io/astrocoords/reference/parse_coord.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/ra.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/ra_dec.html</loc></url>
-<url><loc>https://uskovgs.github.io/astrocoords/reference/radec.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/separation.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/set_print.html</loc></url>
 <url><loc>https://uskovgs.github.io/astrocoords/reference/sky_coord-vctrs-methods.html</loc></url>

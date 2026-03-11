@@ -76,6 +76,7 @@
 <li>simple frame transformation between ICRS and Galactic</li>
 <li>coordinate matching between catalogs (<code><a href="reference/coord_match.html">coord_match()</a></code>, <code><a href="reference/coord_match.html">coord_nearest()</a></code>), including the <code>kdtree</code> method</li>
 <li>spatial join helpers for data.frames (<code><a href="reference/coord_left_join.html">coord_left_join()</a></code>, <code><a href="reference/coord_left_join.html">coord_nearest_join()</a></code>, <code><a href="reference/coord_left_join.html">coord_inner_join()</a></code>, etc.)</li>
+<li>sexagesimal conversion helpers (<code><a href="reference/deg_to_hms.html">deg_to_hms()</a></code>, <code><a href="reference/deg_to_dms.html">deg_to_dms()</a></code>, <code><a href="reference/hms_to_deg.html">hms_to_deg()</a></code>, <code><a href="reference/dms_to_deg.html">dms_to_deg()</a></code>)</li>
 <li>Julian Date / Modified Julian Date conversion</li>
 </ul>
 <div class="section level2">
@@ -100,13 +101,13 @@
 <span></span>
 <span><span class="va">x</span> <span class="op">&lt;-</span> <span class="fu"><a href="reference/ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="fl">30</span>, <span class="fl">40</span><span class="op">)</span><span class="op">)</span></span>
 <span><span class="va">x</span></span>
-<span><span class="co">#&gt; &lt;sky_coord[2] icrs&gt;</span></span>
-<span><span class="co">#&gt; [1] 00h40m00.0s +30°00'00" 01h19m60.0s +40°00'00"</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt;sky|icrs&gt;[2]</span></span>
+<span><span class="co">#&gt; [1] 00h40m00.0s +30°00'00" 01h20m00.0s +40°00'00"</span></span></code></pre></div>
 <p>Transform them to Galactic coordinates:</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/transform_to.html">transform_to</a></span><span class="op">(</span><span class="va">x</span>, <span class="fu"><a href="reference/galactic.html">galactic</a></span><span class="op">(</span><span class="op">)</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt;sky_coord[2] galactic&gt;</span></span>
-<span><span class="co">#&gt; [1] 119°59'08.0" -32°48'23" 128°50'58.6" -22°32'36"</span></span></code></pre></div>
+<span><span class="co">#&gt; &lt;sky|galactic&gt;[2]</span></span>
+<span><span class="co">#&gt; [1] +119°59'08" -32°48'23" +128°50'59" -22°32'36"</span></span></code></pre></div>
 <p>Measure angular separation in arcseconds:</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/separation.html">separation</a></span><span class="op">(</span><span class="fu"><a href="reference/ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fl">10</span>, <span class="fl">20</span><span class="op">)</span>, <span class="fu"><a href="reference/ra_dec.html">ra_dec</a></span><span class="op">(</span><span class="fl">11</span>, <span class="fl">21</span><span class="op">)</span><span class="op">)</span></span>
@@ -125,7 +126,7 @@
 <p>Parse a compact coordinate string:</p>
 <div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="reference/parse_coord.html">parse_coord</a></span><span class="op">(</span><span class="st">"J230631.0+155633"</span><span class="op">)</span></span>
-<span><span class="co">#&gt; &lt;sky_coord[1] icrs&gt;</span></span>
+<span><span class="co">#&gt; &lt;sky|icrs&gt;[1]</span></span>
 <span><span class="co">#&gt; [1] 23h06m31.0s +15°56'33"</span></span></code></pre></div>
 <p>Work with Julian Date:</p>
 <div class="sourceCode" id="cb7"><pre class="downlit sourceCode r">
