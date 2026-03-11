@@ -58,12 +58,14 @@ reference:
       - transform_to
 
   - title: Parsing and Naming
-    desc: Parse source coordinates and build IAU-style names.
+    desc: Parse, format, and convert sexagesimal coordinates.
     contents:
       - parse_coord
       - iau_name
       - deg_to_hms
       - deg_to_dms
+      - hms_to_deg
+      - dms_to_deg
 
   - title: Time
     desc: Convert between calendar dates and JD/MJD.
@@ -80,8 +82,3 @@ reference:
       - set_print_plain
       - set_print_colon
       - set_print_pair
-
-  - title: Deprecated
-    desc: Backward-compatible aliases.
-    contents:
-      - radec

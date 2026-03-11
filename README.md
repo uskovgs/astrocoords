@@ -25,6 +25,8 @@ It currently supports:
   `coord_nearest()`), including the `kdtree` method
 - spatial join helpers for data.frames (`coord_left_join()`,
   `coord_nearest_join()`, `coord_inner_join()`, etc.)
+- sexagesimal conversion helpers (`deg_to_hms()`, `deg_to_dms()`,
+  `hms_to_deg()`, `dms_to_deg()`)
 - Julian Date / Modified Julian Date conversion
 
 ## Installation
@@ -51,16 +53,16 @@ library(astrocoords)
 
 x <- ra_dec(c(10, 20), c(30, 40))
 x
-#> <sky_coord[2] icrs>
-#> [1] 00h40m00.0s +30°00'00" 01h19m60.0s +40°00'00"
+#> <sky|icrs>[2]
+#> [1] 00h40m00.0s +30°00'00" 01h20m00.0s +40°00'00"
 ```
 
 Transform them to Galactic coordinates:
 
 ``` r
 transform_to(x, galactic())
-#> <sky_coord[2] galactic>
-#> [1] 119°59'08.0" -32°48'23" 128°50'58.6" -22°32'36"
+#> <sky|galactic>[2]
+#> [1] +119°59'08" -32°48'23" +128°50'59" -22°32'36"
 ```
 
 Measure angular separation in arcseconds:
@@ -88,7 +90,7 @@ Parse a compact coordinate string:
 
 ``` r
 parse_coord("J230631.0+155633")
-#> <sky_coord[1] icrs>
+#> <sky|icrs>[1]
 #> [1] 23h06m31.0s +15°56'33"
 ```
 

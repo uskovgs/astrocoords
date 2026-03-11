@@ -14,6 +14,7 @@ Imports:
     checkmate,
     Rcpp (>= 1.1.1),
     rlang,
+    stringi,
     vctrs
 Suggests:
     knitr,

@@ -126,3 +126,71 @@ deg_to_dms <- function(x, digits = 0L, sep = ":", signed = TRUE) {
   out[is.na(x)] <- NA_character_
   out
 }
+
+#' Convert HMS components to degrees
+#'
+#' Convert hour-minute-second components to decimal degrees.
+#'
+#' @param h Hours. Allowed range is `0 <= h < 24`, with one special case:
+#'   `h = 24` is allowed only when `m = 0` and `s = 0`.
+#' @param m Minutes. Allowed range is `0 <= m < 60`.
+#' @param s Seconds. Allowed range is `0 <= s < 60`.
+#'
+#' @return Numeric vector in degrees.
+#' @examples
+#' hms_to_deg(12, 34, 56)
+#' 
+#' hms_to_deg(24.0)
+#' @export
+hms_to_deg <- function(h = 0, m = 0, s = 0) {
+  checkmate::assert_numeric(h, lower = 0)
+  checkmate::assert_numeric(m, lower = 0)
+  checkmate::assert_numeric(s, lower = 0)
+
+  args <- vctrs::vec_recycle_common(h = h, m = m, s = s)
+  h <- args$h
+  m <- args$m
+  s <- args$s
+
+  is_na <- is.na(h) | is.na(m) | is.na(s)
+
+  is_24_boundary <- !is_na & (h == 24) & (m == 0) & (s == 0)
+
+  checkmate::assert_true(all(is_na | ((h < 24) | is_24_boundary)))
+  checkmate::assert_true(all(is_na | (m < 60)))
+  checkmate::assert_true(all(is_na | (s < 60)))
+
+  h_eff <- ifelse(is_24_boundary, 24, h)
+  out <- (h_eff + m / 60 + s / 3600) * 15
+  out
+}
+
+
+#' Convert DMS components to degrees
+#'
+#' Convert degree-minute-second components to decimal degrees.
+#'
+#' @param d Degrees (signed).
+#' @param m Arcminutes.
+#' @param s Arcseconds.
+#'
+#' @return Numeric vector in degrees.
+#' @examples
+#' dms_to_deg(-76, 54, 3.21)
+#' @export
+dms_to_deg <- function(d, m = 0, s = 0) {
+  checkmate::assert_numeric(d)
+  checkmate::assert_numeric(m, lower = 0)
+  checkmate::assert_numeric(s, lower = 0)
+
+  args <- vctrs::vec_recycle_common(d = d, m = m, s = s)
+  d <- args$d
+  m <- args$m
+  s <- args$s
+
+  checkmate::assert_true(all(is.na(m) | (m >= 0 & m < 60) ))
+  checkmate::assert_true(all(is.na(s) | (s >= 0 & s < 60) ))
+
+  sign_d <- ifelse(d < 0, -1, 1)
+  sign_d * (abs(d) + m / 60 + s / 3600)
+}

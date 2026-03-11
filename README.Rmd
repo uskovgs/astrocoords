@@ -33,6 +33,7 @@ It currently supports:
 - simple frame transformation between ICRS and Galactic
 - coordinate matching between catalogs (`coord_match()`, `coord_nearest()`), including the `kdtree` method
 - spatial join helpers for data.frames (`coord_left_join()`, `coord_nearest_join()`, `coord_inner_join()`, etc.)
+- sexagesimal conversion helpers (`deg_to_hms()`, `deg_to_dms()`, `hms_to_deg()`, `dms_to_deg()`)
 - Julian Date / Modified Julian Date conversion
 
 ## Installation
