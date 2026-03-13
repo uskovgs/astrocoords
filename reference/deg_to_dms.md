@@ -22,7 +22,7 @@ deg_to_dms(x, digits = 0L, sep = ":", signed = TRUE)
 
   Output style: - \`":"\` gives strings like \`"+20:00:00"\` - \`" "\`
   gives strings like \`"+20 00 00"\` - \`"dms"\` gives strings like
-  \`"+20°00'00\\"\`
+  \`"+20°00'00\\"\` - \`""\` gives strings like \`"+200000"\`
 
 - signed:
 
