@@ -1,8 +1,6 @@
 .set_sky_coord_notation <- function(notation = c("hmsdms", "plain", "colon", "pair")) {
-  notation <- match.arg(notation)
-  old <- getOption("astrocoords.notation")
+  notation <- checkmate::assert_choice(notation,  c("hmsdms", "plain", "colon", "pair"))
   options(astrocoords.notation = notation)
-  invisible(old)
 }
 
 .get_sky_coord_notation <- function() {

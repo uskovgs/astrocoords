@@ -1,15 +1,21 @@
 `%||%` <- function(x, y) if (is.null(x)) y else x
 
+.coeff_rad_to_unit <- function(unit) {
+  switch(
+    unit,
+    "rad" = 1,
+    "deg" = 180 / pi, # rad -> deg
+    "arcmin" = 180 / pi * 60, # rad -> arcmin
+    "arcsec" = 180 / pi * 3600 # rad -> arcsec
+  )
+}
+
 .rad_to_deg <- function(x) {
   x * 180 / pi
 }
 
 .deg_to_rad <- function(x) {
   x * pi / 180
-}
-
-.normalize_lon_deg <- function(x) {
-  x %% 360
 }
 
 .validate_equal_lengths <- function(x, y) {

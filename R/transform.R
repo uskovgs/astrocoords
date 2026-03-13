@@ -1,8 +1,4 @@
 .transform_icrs_to_galactic <- function(x) {
-  .validate_sky_coord(x)
-  if (!identical(frame(x)$name, "icrs")) {
-    stop("`x` must be in <icrs> frame.", call. = FALSE)
-  }
 
   data <- vctrs::vec_data(x)
   out <- cpp_era_icrs2g(
@@ -11,17 +7,13 @@
   )
 
   sky_coord(
-    lon = .normalize_lon_deg(.rad_to_deg(out$x)),
+    lon = .rad_to_deg(out$x),
     lat = .rad_to_deg(out$y),
     frame = galactic()
   )
 }
 
 .transform_galactic_to_icrs <- function(x) {
-  .validate_sky_coord(x)
-  if (!identical(frame(x)$name, "galactic")) {
-    stop("`x` must be in <galactic> frame.", call. = FALSE)
-  }
 
   data <- vctrs::vec_data(x)
   out <- cpp_era_g2icrs(
@@ -30,7 +22,7 @@
   )
 
   sky_coord(
-    lon = .normalize_lon_deg(.rad_to_deg(out$x)),
+    lon = .rad_to_deg(out$x),
     lat = .rad_to_deg(out$y),
     frame = icrs()
   )
@@ -88,20 +80,18 @@ transform_to.default <- function(x, frame) {
 #' @export
 transform_to.sky_coord <- function(x, frame) {
   .validate_sky_coord(x)
-  target_frame <- .validate_frame(frame)
-
-  src <- attr(x, "frame", exact = TRUE)
-  dst <- target_frame
+  dst <- .validate_frame(frame)
+  src <- frame(x)
 
   if (.same_frame(src, dst)) {
     return(x)
   }
 
-  if (identical(src$name, "icrs") && identical(dst$name, "galactic")) {
+  if (src$name == "icrs" && dst$name == "galactic") {
     return(.transform_icrs_to_galactic(x))
   }
 
-  if (identical(src$name, "galactic") && identical(dst$name, "icrs")) {
+  if (src$name == "galactic" && dst$name == "icrs") {
     return(.transform_galactic_to_icrs(x))
   }
 

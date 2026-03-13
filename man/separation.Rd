@@ -4,13 +4,16 @@
 \alias{separation}
 \title{Angular separation between sky coordinates}
 \usage{
-separation(x, y)
+separation(x, y, unit = "arcsec")
 }
 \arguments{
 \item{x, y}{<sky_coord> vectors.}
+
+\item{unit}{Separation unit: `"arcsec"` (default), `"arcmin"`, `"deg"`,
+or `"rad"`.}
 }
 \value{
-Numeric vector in arcseconds.
+Numeric vector of angular separation.
 }
 \description{
 Angular separation between sky coordinates

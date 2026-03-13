@@ -62,7 +62,7 @@ galactic <- function() {
 }
 
 .same_frame <- function(x, y) {
-  identical(unclass(x), unclass(y))
+  identical(x$name, y$name)
 }
 
 #' @export

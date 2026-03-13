@@ -30,3 +30,20 @@ test_that("separation supports galactic and mixed-frame inputs", {
   expect_equal(separation(x, y_gal), 90 * 3600, tolerance = 1e-8)
   expect_equal(separation(x, y_icrs), 90 * 3600, tolerance = 1e-8)
 })
+
+test_that("separation supports output unit conversion", {
+  x <- sky_coord(0, 0)
+  y <- sky_coord(90, 0)
+
+  expect_equal(separation(x, y, unit = "rad"), pi / 2, tolerance = 1e-12)
+  expect_equal(separation(x, y, unit = "deg"), 90, tolerance = 1e-8)
+  expect_equal(separation(x, y, unit = "arcmin"), 90 * 60, tolerance = 1e-8)
+  expect_equal(separation(x, y, unit = "arcsec"), 90 * 3600, tolerance = 1e-8)
+})
+
+test_that("separation validates unit argument", {
+  x <- sky_coord(0, 0)
+  y <- sky_coord(1, 0)
+
+  expect_error(separation(x, y, unit = "foo"), "unit")
+})

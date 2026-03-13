@@ -1,6 +1,7 @@
 .find_coord_col <- function(data) {
-  idx <- which(sapply(data, is.sky_coord))
-  if (length(idx) > 0L) names(data)[[idx[1L]]] else NULL
+  flags <- vapply(data, is.sky_coord, logical(1))
+  i <- match(TRUE, flags, nomatch = 0L)
+  if (i == 0L) NULL else names(data)[[i]]
 }
 
 .resolve_coord_col <- function(data, expr_or_name, arg_name, data_arg) {
@@ -82,10 +83,14 @@
   sep_col,
   suffix
 ) {
-  x_out <- as.data.frame(x[match_df$x_id, , drop = FALSE], stringsAsFactors = FALSE)
+  x_id <- as.integer(match_df[, "x_id"])
+  y_id <- as.integer(match_df[, "y_id"])
+  sep <- match_df[, "sep"]
+
+  x_out <- as.data.frame(x[x_id, , drop = FALSE], stringsAsFactors = FALSE)
 
   y_cols <- setdiff(names(y), y_coord_name)
-  y_out <- as.data.frame(y[match_df$y_id, y_cols, drop = FALSE], stringsAsFactors = FALSE)
+  y_out <- as.data.frame(y[y_id, y_cols, drop = FALSE], stringsAsFactors = FALSE)
 
   renamed <- .apply_suffixes(names(x_out), names(y_out), suffix = suffix)
   names(x_out) <- renamed$x_names
@@ -103,7 +108,7 @@
 
   out <- cbind(x_out, y_out)
   if (keep_sep) {
-    out[[sep_col]] <- match_df$sep
+    out[[sep_col]] <- sep
   }
 
   rownames(out) <- NULL
@@ -111,13 +116,13 @@
 }
 
 .validate_join_args <- function(max_sep, unit, method, multiple, keep_sep, sep_col, suffix) {
-  checkmate::assert_number(max_sep, lower = 0, finite = FALSE, .var.name = "max_sep")
-  checkmate::assert_choice(unit, c("arcsec", "arcmin", "deg", "rad"), .var.name = "unit")
-  checkmate::assert_choice(method, c("kdtree", "bruteforce"), .var.name = "method")
-  checkmate::assert_choice(multiple, c("all", "closest"), .var.name = "multiple")
-  checkmate::assert_flag(keep_sep, .var.name = "keep_sep")
-  checkmate::assert_string(sep_col, min.chars = 1, .var.name = "sep_col")
-  checkmate::assert_character(suffix, len = 2, any.missing = FALSE, .var.name = "suffix")
+  checkmate::assert_number(max_sep, lower = 0, finite = FALSE)
+  checkmate::assert_choice(unit, c("arcsec", "arcmin", "deg", "rad"))
+  checkmate::assert_choice(method, c("kdtree", "bruteforce"))
+  checkmate::assert_choice(multiple, c("all", "closest"))
+  checkmate::assert_flag(keep_sep)
+  checkmate::assert_string(sep_col, min.chars = 1)
+  checkmate::assert_character(suffix, len = 2, any.missing = FALSE)
 }
 
 .match_df_for_join <- function(x, y, x_coord_name, y_coord_name, max_sep, unit, method, multiple) {
@@ -135,14 +140,16 @@
 
   is_self_join <- identical(x, y) && identical(x_coord_name, y_coord_name)
   if (is_self_join) {
-    is_self_pair <- !is.na(match_df$y_id) & (match_df$x_id == match_df$y_id)
+    x_id <- match_df[, "x_id"]
+    y_id <- match_df[, "y_id"]
+    is_self_pair <- !is.na(y_id) & (x_id == y_id)
     match_df <- match_df[!is_self_pair, c("x_id", "y_id", "sep"), drop = FALSE]
 
-    missing_x <- setdiff(seq_len(nrow(x)), unique(match_df$x_id))
+    missing_x <- setdiff(seq_len(nrow(x)), unique(match_df[, "x_id"]))
     if (length(missing_x) > 0L) {
       match_df <- rbind(
         match_df,
-        data.frame(
+        cbind(
           x_id = as.integer(missing_x),
           y_id = rep(NA_integer_, length(missing_x)),
           sep = rep(NA_real_, length(missing_x))
@@ -151,18 +158,25 @@
     }
 
     if (nrow(match_df) > 0L) {
-      ord <- order(match_df$x_id, is.na(match_df$sep), match_df$sep, is.na(match_df$y_id), match_df$y_id)
+      ord <- order(
+        match_df[, "x_id"],
+        is.na(match_df[, "sep"]),
+        match_df[, "sep"],
+        is.na(match_df[, "y_id"]),
+        match_df[, "y_id"]
+      )
       match_df <- match_df[ord, c("x_id", "y_id", "sep"), drop = FALSE]
     }
   }
 
-  match_df <- match_df[!duplicated(match_df$x_id), c("x_id", "y_id", "sep"), drop = FALSE]
+  match_df <- match_df[!duplicated(match_df[, "x_id"]), c("x_id", "y_id", "sep"), drop = FALSE]
   rownames(match_df) <- NULL
   match_df
 }
 
 .append_unmatched_y <- function(match_df, n_y) {
-  matched_y <- unique(match_df$y_id[!is.na(match_df$y_id)])
+  y_id <- match_df[, "y_id"]
+  matched_y <- unique(y_id[!is.na(y_id)])
   missing_y <- setdiff(seq_len(n_y), matched_y)
 
   if (length(missing_y) == 0L) {
@@ -171,7 +185,7 @@
 
   rbind(
     match_df,
-    data.frame(
+    cbind(
       x_id = rep(NA_integer_, length(missing_y)),
       y_id = as.integer(missing_y),
       sep = rep(NA_real_, length(missing_y))
@@ -214,8 +228,8 @@ coord_left_join <- function(
   sep_col = "sep",
   suffix = c(".x", ".y")
 ) {
-  checkmate::assert_data_frame(x, .var.name = "x")
-  checkmate::assert_data_frame(y, .var.name = "y")
+  checkmate::assert_data_frame(x)
+  checkmate::assert_data_frame(y)
   .validate_join_args(max_sep, unit, method, multiple, keep_sep, sep_col, suffix)
 
   x_coord_name <- .resolve_coord_col(
@@ -315,10 +329,16 @@ coord_right_join <- function(
     multiple = multiple
   )
 
-  match_df <- match_df[!is.na(match_df$y_id), c("x_id", "y_id", "sep"), drop = FALSE]
+  match_df <- match_df[!is.na(match_df[, "y_id"]), c("x_id", "y_id", "sep"), drop = FALSE]
   match_df <- .append_unmatched_y(match_df, nrow(y))
   if (nrow(match_df) > 0L) {
-    ord <- order(match_df$y_id, is.na(match_df$sep), match_df$sep, is.na(match_df$x_id), match_df$x_id)
+    ord <- order(
+      match_df[, "y_id"],
+      is.na(match_df[, "sep"]),
+      match_df[, "sep"],
+      is.na(match_df[, "x_id"]),
+      match_df[, "x_id"]
+    )
     match_df <- match_df[ord, c("x_id", "y_id", "sep"), drop = FALSE]
   }
   rownames(match_df) <- NULL
@@ -416,7 +436,7 @@ coord_inner_join <- function(
     multiple = multiple
   )
 
-  match_df <- match_df[!is.na(match_df$y_id), c("x_id", "y_id", "sep"), drop = FALSE]
+  match_df <- match_df[!is.na(match_df[, "y_id"]), c("x_id", "y_id", "sep"), drop = FALSE]
   rownames(match_df) <- NULL
 
   .left_join_from_match(

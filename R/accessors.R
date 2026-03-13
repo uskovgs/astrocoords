@@ -47,7 +47,7 @@ frame <- function(x) {
 
 .require_frame_name <- function(x, expected, accessor) {
   fr <- frame(x)
-  if (!identical(fr$name, expected)) {
+  if (fr$name != expected) {
     stop(
       sprintf("`%s()` requires <%s> coordinates, got <%s>.", accessor, expected, fr$name),
       call. = FALSE

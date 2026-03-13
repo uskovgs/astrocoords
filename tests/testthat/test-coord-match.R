@@ -11,7 +11,7 @@ test_that("coord_match bruteforce evaluates all pair combinations", {
   )
 
   expect_equal(nrow(out), 6L)
-  expect_false(any(is.na(out$y_id)))
-  expect_equal(sort(unique(out$x_id)), c(1L, 2L))
-  expect_equal(sort(unique(out$y_id)), c(1L, 2L, 3L))
+  expect_false(any(is.na(out[, "y_id"])))
+  expect_equal(sort(unique(out[ , "x_id"])), c(1L, 2L))
+  expect_equal(sort(unique(out[ ,"y_id"])), c(1L, 2L, 3L))
 })

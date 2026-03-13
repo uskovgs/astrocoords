@@ -5,7 +5,7 @@
 \alias{coord_nearest}
 \title{Match two sky catalogs within angular radius}
 \usage{
-coord_match(x, y, max_sep, unit = "arcsec", method = "kdtree")
+coord_match(x, y, max_sep, unit = "arcsec", method = "kdtree", sort = TRUE)
 
 coord_nearest(x, y, unit = "arcsec", method = "kdtree")
 }
@@ -18,9 +18,12 @@ Used in [coord_match()]. [coord_nearest()] always uses `Inf`.}
 \item{unit}{Separation unit: `"arcsec"`, `"arcmin"`, `"deg"`, or `"rad"`.}
 
 \item{method}{Matching backend: `"kdtree"` or `"bruteforce"`.}
+
+\item{sort}{If `TRUE` (default), sort matches by `x_id`, then `sep`, then `y_id`.
+Set to `FALSE` to skip sorting for better performance.}
 }
 \value{
-Base `data.frame` with columns `x_id`, `y_id`, `sep`.
+Numeric matrix with columns `x_id`, `y_id`, `sep`.
   `sep` is returned in the same unit as `unit`.
 }
 \description{
