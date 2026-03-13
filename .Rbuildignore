@@ -1,5 +1,6 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
+^(.*/)?\.DS_Store$
 ^LICENSE\.md$
 ^ToDo\.md$
 ^README\.Rmd$

@@ -7,7 +7,7 @@
 #' @return A numeric matrix with columns `x`, `y`, `z`.
 #' @export
 to_cartesian <- function(x) {
-  x <- .validate_sky_coord(x)
+  .validate_sky_coord(x)
   data <- vctrs::vec_data(x)
 
   cpp_era_s2c(

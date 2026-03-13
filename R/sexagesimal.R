@@ -39,6 +39,7 @@
 #'   - `":"` gives strings like `"00:40:00.0"`
 #'   - `" "` gives strings like `"00 40 00.0"`
 #'   - `"hms"` gives strings like `"00h40m00.0s"`
+#'   - `""` gives strings like `"004000.0"`
 #'
 #' @return Character vector with one formatted value per input element.
 #'
@@ -50,7 +51,9 @@
 deg_to_hms <- function(x, digits = 1L, sep = ":") {
   checkmate::assert_numeric(x, finite = TRUE)
   checkmate::assert_int(digits, lower = 0L)
-  checkmate::assert_choice(sep, c(":", " ", "hms"))
+  checkmate::assert_choice(sep, c(":", " ", "hms", ""))
+
+  if (sep == "") sep <- "nosep"
 
   x <- x %% 360
   parts <- .sex_split_abs(x / 15, digits = digits)
@@ -67,6 +70,7 @@ deg_to_hms <- function(x, digits = 1L, sep = ":") {
     sep,
     ":" = paste0(hh, ":", mm, ":", ss),
     " " = paste0(hh, " ", mm, " ", ss),
+    nosep =  paste0(hh, mm, ss),
     hms = paste0(hh, "h", mm, "m", ss, "s")
   )
 
@@ -86,6 +90,7 @@ deg_to_hms <- function(x, digits = 1L, sep = ":") {
 #'   - `":"` gives strings like `"+20:00:00"`
 #'   - `" "` gives strings like `"+20 00 00"`
 #'   - `"dms"` gives strings like `"+20°00'00\""`
+#'   - `""` gives strings like `"+200000"`
 #' @param signed If `TRUE`, include `+` for non-negative values.
 #'
 #' @return Character vector with one formatted value per input element.
@@ -98,8 +103,10 @@ deg_to_hms <- function(x, digits = 1L, sep = ":") {
 deg_to_dms <- function(x, digits = 0L, sep = ":", signed = TRUE) {
   checkmate::assert_numeric(x, finite = TRUE)
   checkmate::assert_int(digits, lower = 0L)
-  checkmate::assert_choice(sep, c(":", " ", "dms"))
+  checkmate::assert_choice(sep, c(":", " ", "dms", ""))
   checkmate::assert_flag(signed, .var.name = "signed")
+
+  if (sep == "") sep <- "nosep"
   
 
   parts <- .sex_split_abs(x, digits = digits)
@@ -120,6 +127,7 @@ deg_to_dms <- function(x, digits = 0L, sep = ":", signed = TRUE) {
     sep,
     ":"  = paste0(sign_chr, dd, ":", mm, ":", ss),
     " "  = paste0(sign_chr, dd, " ", mm, " ", ss),
+    nosep = paste0(sign_chr, dd, mm, ss),
     dms  = paste0(sign_chr, dd, "\u00b0", mm, "'", ss, "\"")
   )
 

@@ -205,8 +205,8 @@ coord_match <- function(
   unit = "arcsec",
   method = "kdtree"
 ) {
-  x <- .validate_sky_coord(x)
-  y <- .validate_sky_coord(y)
+  .validate_sky_coord(x)
+  .validate_sky_coord(y)
   checkmate::assert_choice(unit, c("arcsec", "arcmin", "deg", "rad"), .var.name = "unit")
   checkmate::assert_choice(method, c("kdtree", "bruteforce"), .var.name = "method")
   checkmate::assert_number(max_sep, lower = 0, finite = FALSE, .var.name = "max_sep")

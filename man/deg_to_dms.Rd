@@ -14,7 +14,8 @@ deg_to_dms(x, digits = 0L, sep = ":", signed = TRUE)
 \item{sep}{Output style:
 - `":"` gives strings like `"+20:00:00"`
 - `" "` gives strings like `"+20 00 00"`
-- `"dms"` gives strings like `"+20°00'00\""`}
+- `"dms"` gives strings like `"+20°00'00\""`
+- `""` gives strings like `"+200000"`}
 
 \item{signed}{If `TRUE`, include `+` for non-negative values.}
 }

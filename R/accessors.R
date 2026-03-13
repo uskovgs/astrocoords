@@ -11,7 +11,7 @@
 #' ra(x)
 #' @export
 ra <- function(x) {
-  x <- .validate_sky_coord(x)
+  .validate_sky_coord(x)
   .require_frame_name(x, expected = "icrs", accessor = "ra")
   vctrs::vec_data(x)$lon
 }
@@ -29,7 +29,7 @@ ra <- function(x) {
 #' dec(x)
 #' @export
 dec <- function(x) {
-  x <- .validate_sky_coord(x)
+  .validate_sky_coord(x)
   .require_frame_name(x, expected = "icrs", accessor = "dec")
   vctrs::vec_data(x)$lat
 }
@@ -41,7 +41,7 @@ dec <- function(x) {
 #' @return A <sky_frame> object.
 #' @export
 frame <- function(x) {
-  x <- .validate_sky_coord(x)
+  .validate_sky_coord(x)
   attr(x, "frame", exact = TRUE)
 }
 
@@ -68,7 +68,7 @@ frame <- function(x) {
 #' l(x)
 #' @export
 l <- function(x) {
-  x <- .validate_sky_coord(x)
+  .validate_sky_coord(x)
   .require_frame_name(x, expected = "galactic", accessor = "l")
   vctrs::vec_data(x)$lon
 }
@@ -86,7 +86,7 @@ l <- function(x) {
 #' b(x)
 #' @export
 b <- function(x) {
-  x <- .validate_sky_coord(x)
+  .validate_sky_coord(x)
   .require_frame_name(x, expected = "galactic", accessor = "b")
   vctrs::vec_data(x)$lat
 }

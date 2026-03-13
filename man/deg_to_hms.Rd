@@ -14,7 +14,8 @@ deg_to_hms(x, digits = 1L, sep = ":")
 \item{sep}{Output style:
 - `":"` gives strings like `"00:40:00.0"`
 - `" "` gives strings like `"00 40 00.0"`
-- `"hms"` gives strings like `"00h40m00.0s"`}
+- `"hms"` gives strings like `"00h40m00.0s"`
+- `""` gives strings like `"004000.0"`}
 }
 \value{
 Character vector with one formatted value per input element.

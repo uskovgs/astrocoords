@@ -1,5 +1,5 @@
 .transform_icrs_to_galactic <- function(x) {
-  x <- .validate_sky_coord(x)
+  .validate_sky_coord(x)
   if (!identical(frame(x)$name, "icrs")) {
     stop("`x` must be in <icrs> frame.", call. = FALSE)
   }
@@ -18,7 +18,7 @@
 }
 
 .transform_galactic_to_icrs <- function(x) {
-  x <- .validate_sky_coord(x)
+  .validate_sky_coord(x)
   if (!identical(frame(x)$name, "galactic")) {
     stop("`x` must be in <galactic> frame.", call. = FALSE)
   }
@@ -87,7 +87,7 @@ transform_to.default <- function(x, frame) {
 
 #' @export
 transform_to.sky_coord <- function(x, frame) {
-  x <- .validate_sky_coord(x)
+  .validate_sky_coord(x)
   target_frame <- .validate_frame(frame)
 
   src <- attr(x, "frame", exact = TRUE)

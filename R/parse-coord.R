@@ -1,8 +1,7 @@
 .parse_j_coord <- function(x) {
-  j_pattern <- "J(\\d{2})(\\d{2})(\\d{2}(?:\\.\\d*)?)([+-])(\\d{2})(\\d{2})(\\d{2}(?:\\.\\d*)?)(?!\\d)"
   parts <- stringi::stri_match_first_regex(
     x,
-    j_pattern
+    "J(\\d{2})(\\d{2})(\\d{2}(?:\\.\\d*)?)([+-])(\\d{2})(\\d{2})(\\d{2}(?:\\.\\d*)?)(?!\\d)"
   )
   ok <- !is.na(parts[, 1])
   n <- length(x)
@@ -28,17 +27,17 @@
 
 
 .parse_hms_dms_coord <- function(x) {
-  clean <- stringi::stri_trim_both(x)
-  clean <- stringi::stri_replace_all_regex(
-    clean,
-    "[hHdD\\u00B0mM'\"\\u2019sS:,]+",
-    " "
-  )
-  clean <- stringi::stri_replace_all_regex(clean, "\\s+", " ")
-  clean <- stringi::stri_trim_both(clean)
+  x_clean <- x |>
+    stringi::stri_trim_both() |>
+    stringi::stri_replace_all_regex(
+      "[hHdD\\u00B0mM'\"\\u2019sS:,]+",
+      " "
+    ) |>
+    stringi::stri_replace_all_regex("\\s+", " ") |>
+    stringi::stri_trim_both()
 
   parts <- stringi::stri_match_first_regex(
-    clean,
+    x_clean,
     "^([0-9]{1,2}) ([0-9]{1,2}) ([0-9]{1,2}(?:\\.[0-9]*)?) ([+-][0-9]{1,2}) ([0-9]{1,2}) ([0-9]{1,2}(?:\\.[0-9]*)?)$"
   )
 

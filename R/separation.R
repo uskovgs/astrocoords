@@ -24,8 +24,8 @@ separation.default <- function(x, y) {
 
 #' @export
 separation.sky_coord <- function(x, y) {
-  x <- .validate_sky_coord(x)
-  y <- .validate_sky_coord(y)
+  .validate_sky_coord(x)
+  .validate_sky_coord(y)
 
   coords <- vctrs::vec_recycle_common(x = x, y = y)
   x <- coords$x

@@ -43,5 +43,4 @@
 
 .validate_sky_coord <- function(x) {
   checkmate::assert_class(x, "sky_coord", .var.name = checkmate::vname(x))
-  x
 }
