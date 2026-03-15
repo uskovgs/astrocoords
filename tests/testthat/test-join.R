@@ -211,6 +211,31 @@ test_that("keep_sep = FALSE drops separation column", {
   expect_false("sep" %in% names(out))
 })
 
+test_that("keep_y_coord = TRUE keeps coordinate column from y", {
+  x <- data.frame(
+    id = 1L,
+    coord = ra_dec(10, 0)
+  )
+  y <- data.frame(
+    y_id = 1L,
+    coord = ra_dec(10, 0)
+  )
+
+  out <- coord_left_join(
+    x = x,
+    y = y,
+    x_coord = coord,
+    y_coord = coord,
+    max_sep = 1,
+    unit = "arcsec",
+    method = "bruteforce",
+    keep_y_coord = TRUE
+  )
+
+  expect_true("coord.x" %in% names(out))
+  expect_true("coord.y" %in% names(out))
+})
+
 test_that("unit = arcmin is supported", {
   x <- data.frame(
     id = 1L,

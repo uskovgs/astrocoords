@@ -74,11 +74,12 @@
   list(x_names = x_out, y_names = y_out)
 }
 
-.left_join_from_match <- function(
+.join_from_match <- function(
   x,
   y,
   match_df,
   y_coord_name,
+  keep_y_coord,
   keep_sep,
   sep_col,
   suffix
@@ -89,7 +90,11 @@
 
   x_out <- as.data.frame(x[x_id, , drop = FALSE], stringsAsFactors = FALSE)
 
-  y_cols <- setdiff(names(y), y_coord_name)
+  if (keep_y_coord) {
+    y_cols <- names(y)
+  } else {
+    y_cols <- setdiff(names(y), y_coord_name)
+  }
   y_out <- as.data.frame(y[y_id, y_cols, drop = FALSE], stringsAsFactors = FALSE)
 
   renamed <- .apply_suffixes(names(x_out), names(y_out), suffix = suffix)
@@ -115,11 +120,21 @@
   out
 }
 
-.validate_join_args <- function(max_sep, unit, method, multiple, keep_sep, sep_col, suffix) {
+.validate_join_args <- function(
+  max_sep,
+  unit,
+  method,
+  multiple,
+  keep_y_coord,
+  keep_sep,
+  sep_col,
+  suffix
+) {
   checkmate::assert_number(max_sep, lower = 0, finite = FALSE)
   checkmate::assert_choice(unit, c("arcsec", "arcmin", "deg", "rad"))
   checkmate::assert_choice(method, c("kdtree", "bruteforce"))
   checkmate::assert_choice(multiple, c("all", "closest"))
+  checkmate::assert_flag(keep_y_coord)
   checkmate::assert_flag(keep_sep)
   checkmate::assert_string(sep_col, min.chars = 1)
   checkmate::assert_character(suffix, len = 2, any.missing = FALSE)
@@ -209,6 +224,8 @@
 #' @param multiple How to handle multiple matches per row of `x`:
 #'   `"all"` keeps all matches, `"closest"` keeps one nearest match per `x` row.
 #'   Used in [coord_left_join()].
+#' @param keep_y_coord If `TRUE`, keep the coordinate column from `y`
+#'   in the output.
 #' @param keep_sep If `TRUE`, append the separation column to output.
 #' @param sep_col Name of the separation column in output.
 #' @param suffix Length-2 character vector for duplicate non-key column names.
@@ -224,13 +241,14 @@ coord_left_join <- function(
   unit = "arcsec",
   method = "kdtree",
   multiple = "all",
+  keep_y_coord = FALSE,
   keep_sep = TRUE,
   sep_col = "sep",
   suffix = c(".x", ".y")
 ) {
   checkmate::assert_data_frame(x)
   checkmate::assert_data_frame(y)
-  .validate_join_args(max_sep, unit, method, multiple, keep_sep, sep_col, suffix)
+  .validate_join_args(max_sep, unit, method, multiple, keep_y_coord, keep_sep, sep_col, suffix)
 
   x_coord_name <- .resolve_coord_col(
     data = x,
@@ -256,11 +274,12 @@ coord_left_join <- function(
     multiple = multiple
   )
 
-  .left_join_from_match(
+  .join_from_match(
     x = x,
     y = y,
     match_df = match_df,
     y_coord_name = y_coord_name,
+    keep_y_coord = keep_y_coord,
     keep_sep = keep_sep,
     sep_col = sep_col,
     suffix = suffix
@@ -276,6 +295,7 @@ coord_nearest_join <- function(
   y_coord = NULL,
   unit = "arcsec",
   method = "kdtree",
+  keep_y_coord = FALSE,
   keep_sep = TRUE,
   sep_col = "sep",
   suffix = c(".x", ".y")
@@ -289,6 +309,7 @@ coord_nearest_join <- function(
     unit = unit,
     method = method,
     multiple = "closest",
+    keep_y_coord = keep_y_coord,
     keep_sep = keep_sep,
     sep_col = sep_col,
     suffix = suffix
@@ -307,13 +328,14 @@ coord_right_join <- function(
   unit = "arcsec",
   method = "kdtree",
   multiple = "all",
+  keep_y_coord = FALSE,
   keep_sep = TRUE,
   sep_col = "sep",
   suffix = c(".x", ".y")
 ) {
   checkmate::assert_data_frame(x, .var.name = "x")
   checkmate::assert_data_frame(y, .var.name = "y")
-  .validate_join_args(max_sep, unit, method, multiple, keep_sep, sep_col, suffix)
+  .validate_join_args(max_sep, unit, method, multiple, keep_y_coord, keep_sep, sep_col, suffix)
 
   x_coord_name <- .resolve_coord_col(x, rlang::enquo(x_coord), "x_coord", "x")
   y_coord_name <- .resolve_coord_col(y, rlang::enquo(y_coord), "y_coord", "y")
@@ -343,11 +365,12 @@ coord_right_join <- function(
   }
   rownames(match_df) <- NULL
 
-  .left_join_from_match(
+  .join_from_match(
     x = x,
     y = y,
     match_df = match_df,
     y_coord_name = y_coord_name,
+    keep_y_coord = keep_y_coord,
     keep_sep = keep_sep,
     sep_col = sep_col,
     suffix = suffix
@@ -366,13 +389,14 @@ coord_full_join <- function(
   unit = "arcsec",
   method = "kdtree",
   multiple = "all",
+  keep_y_coord = FALSE,
   keep_sep = TRUE,
   sep_col = "sep",
   suffix = c(".x", ".y")
 ) {
   checkmate::assert_data_frame(x, .var.name = "x")
   checkmate::assert_data_frame(y, .var.name = "y")
-  .validate_join_args(max_sep, unit, method, multiple, keep_sep, sep_col, suffix)
+  .validate_join_args(max_sep, unit, method, multiple, keep_y_coord, keep_sep, sep_col, suffix)
 
   x_coord_name <- .resolve_coord_col(x, rlang::enquo(x_coord), "x_coord", "x")
   y_coord_name <- .resolve_coord_col(y, rlang::enquo(y_coord), "y_coord", "y")
@@ -391,11 +415,12 @@ coord_full_join <- function(
   match_df <- .append_unmatched_y(match_df, nrow(y))
   rownames(match_df) <- NULL
 
-  .left_join_from_match(
+  .join_from_match(
     x = x,
     y = y,
     match_df = match_df,
     y_coord_name = y_coord_name,
+    keep_y_coord = keep_y_coord,
     keep_sep = keep_sep,
     sep_col = sep_col,
     suffix = suffix
@@ -414,13 +439,14 @@ coord_inner_join <- function(
   unit = "arcsec",
   method = "kdtree",
   multiple = "all",
+  keep_y_coord = FALSE,
   keep_sep = TRUE,
   sep_col = "sep",
   suffix = c(".x", ".y")
 ) {
   checkmate::assert_data_frame(x, .var.name = "x")
   checkmate::assert_data_frame(y, .var.name = "y")
-  .validate_join_args(max_sep, unit, method, multiple, keep_sep, sep_col, suffix)
+  .validate_join_args(max_sep, unit, method, multiple, keep_y_coord, keep_sep, sep_col, suffix)
 
   x_coord_name <- .resolve_coord_col(x, rlang::enquo(x_coord), "x_coord", "x")
   y_coord_name <- .resolve_coord_col(y, rlang::enquo(y_coord), "y_coord", "y")
@@ -439,11 +465,12 @@ coord_inner_join <- function(
   match_df <- match_df[!is.na(match_df[, "y_id"]), c("x_id", "y_id", "sep"), drop = FALSE]
   rownames(match_df) <- NULL
 
-  .left_join_from_match(
+  .join_from_match(
     x = x,
     y = y,
     match_df = match_df,
     y_coord_name = y_coord_name,
+    keep_y_coord = keep_y_coord,
     keep_sep = keep_sep,
     sep_col = sep_col,
     suffix = suffix
