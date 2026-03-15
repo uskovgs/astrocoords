@@ -5,7 +5,7 @@ Low-level spherical catalog matching for two \`sky_coord\` vectors.
 ## Usage
 
 ``` r
-coord_match(x, y, max_sep, unit = "arcsec", method = "kdtree")
+coord_match(x, y, max_sep, unit = "arcsec", method = "kdtree", sort = TRUE)
 
 coord_nearest(x, y, unit = "arcsec", method = "kdtree")
 ```
@@ -29,9 +29,14 @@ coord_nearest(x, y, unit = "arcsec", method = "kdtree")
 
   Matching backend: \`"kdtree"\` or \`"bruteforce"\`.
 
+- sort:
+
+  If \`TRUE\` (default), sort matches by \`x_id\`, then \`sep\`, then
+  \`y_id\`. Set to \`FALSE\` to skip sorting for better performance.
+
 ## Value
 
-Base \`data.frame\` with columns \`x_id\`, \`y_id\`, \`sep\`. \`sep\` is
+Numeric matrix with columns \`x_id\`, \`y_id\`, \`sep\`. \`sep\` is
 returned in the same unit as \`unit\`.
 
 ## Details

@@ -5,7 +5,7 @@ Angular separation between sky coordinates
 ## Usage
 
 ``` r
-separation(x, y)
+separation(x, y, unit = "arcsec")
 ```
 
 ## Arguments
@@ -14,9 +14,14 @@ separation(x, y)
 
   \<sky_coord\> vectors.
 
+- unit:
+
+  Separation unit: \`"arcsec"\` (default), \`"arcmin"\`, \`"deg"\`, or
+  \`"rad"\`.
+
 ## Value
 
-Numeric vector in arcseconds.
+Numeric vector of angular separation.
 
 ## Examples
 
